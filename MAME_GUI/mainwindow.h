@@ -1,0 +1,72 @@
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QMainWindow>
+
+namespace Ui {
+class MainWindow;
+}
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+private slots:
+
+    void on_Launcher_Button_clicked();
+
+    void on_Chose_file1_clicked();
+
+    void on_pushButton_launch_MAME_clicked();
+
+    void on_Launcher_Button_Saturn_clicked();
+
+    void on_Chose_file_Saturn_clicked();
+
+    void on_Chose_file_SNES_clicked();
+
+    void on_Launcher_Button_SNES_clicked();
+
+    void on_Chose_file_NES_clicked();
+
+    void on_Launcher_Button_NES_clicked();
+
+    void on_Chose_file_PC98_floppy1_clicked();
+
+    void on_Chose_file_PC98_floppy2_clicked();
+
+    void on_Chose_file_PC98_CDROM_clicked();
+
+    void on_Launcher_Button_PC98_clicked();
+
+    void on_actionAbout_2_triggered();
+
+    void on_actionExit_triggered();
+
+    void on_Chose_file_MegaDrive_clicked();
+
+    void on_Launcher_Button_Megadrive_clicked();
+
+    void on_Chose_file_N64_clicked();
+
+    void on_Launcher_Button_N64_clicked();
+
+    void on_Chose_file_PC88_floppy1_clicked();
+
+    void on_Chose_file_PC88_floppy2_clicked();
+
+    void on_Launcher_Button_PC98_2_clicked();
+
+    void on_Chose_file_MasterSystem_clicked();
+
+    void on_Launcher_Button_MasterSystem_clicked();
+
+private:
+    Ui::MainWindow *ui;
+};
+
+#endif // MAINWINDOW_H
