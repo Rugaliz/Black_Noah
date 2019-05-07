@@ -65,6 +65,13 @@ private slots:
 
     void on_Launcher_Button_MasterSystem_clicked();
 
+
+    void on_Chose_file_PC_Engine_HuCard_clicked();
+
+    void on_Chose_file_PC_Engine_CDROM_clicked();
+
+    void on_Launcher_Button_PC_Engine_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
