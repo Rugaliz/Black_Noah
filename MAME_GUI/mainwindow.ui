@@ -52,7 +52,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab_MAME">
        <attribute name="title">
@@ -477,6 +477,68 @@ p, li { white-space: pre-wrap; }
         </property>
        </widget>
       </widget>
+      <widget class="QWidget" name="tab_8">
+       <attribute name="title">
+        <string>CD</string>
+       </attribute>
+       <widget class="QWidget" name="verticalLayoutWidget_14">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>350</y>
+          <width>170</width>
+          <height>151</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_15">
+         <item>
+          <widget class="QRadioButton" name="radioButton_NTSC_USA_MegaCD">
+           <property name="text">
+            <string>NTSC_USA</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_NTSC_Japan_MegaCD">
+           <property name="text">
+            <string>NTSC_Japan</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Chose_file_SEGA_CD">
+           <property name="text">
+            <string>Chose Game Disk</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Launcher_Button_SEGA_CD">
+           <property name="text">
+            <string>Launch!</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_MAME_11">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>300</y>
+          <width>531</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222; background-color:#ffffff;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#222222; background-color:#ffffff;&quot;&gt;Sega CD&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222; background-color:#ffffff;&quot;&gt;, released as the &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#222222; background-color:#ffffff;&quot;&gt;Mega-CD &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222; background-color:#ffffff;&quot;&gt;in most regions outside North America and Brazil, is a CD-ROM accessory for the SEGA GEnisis Video Game Console designed and produced by SEGA as part of the  fourth generation of video game consoles. It was released on December 12, 1991 in Japan. The Sega CD lets the user play CD-based games and adds hardware functionality such as a faster CPU and graphic enhancements. It can also play audio CDs and CD+G discs.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </widget>
       <widget class="QWidget" name="tab_12">
        <attribute name="title">
         <string>Saturn</string>
@@ -484,9 +546,9 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="verticalLayoutWidget_5">
         <property name="geometry">
          <rect>
-          <x>590</x>
+          <x>579</x>
           <y>300</y>
-          <width>160</width>
+          <width>171</width>
           <height>201</height>
          </rect>
         </property>
@@ -546,6 +608,76 @@ p, li { white-space: pre-wrap; }
         </property>
        </widget>
       </widget>
+      <widget class="QWidget" name="tab_16">
+       <attribute name="title">
+        <string>Dreamcast</string>
+       </attribute>
+       <widget class="QWidget" name="verticalLayoutWidget_15">
+        <property name="geometry">
+         <rect>
+          <x>579</x>
+          <y>300</y>
+          <width>171</width>
+          <height>201</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <widget class="QRadioButton" name="radioButton_NTSC_USA_Dreamcast">
+           <property name="text">
+            <string>NTSC_USA</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_PAL_EU_Dreamcast">
+           <property name="text">
+            <string>PAL_EU</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_NTSC_Japan_Dreamcast">
+           <property name="text">
+            <string>NTSC_Japan</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Chose_file_Dreamcast">
+           <property name="text">
+            <string>Chose Game Disk</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Launcher_Button_Dreamcast">
+           <property name="text">
+            <string>Launch!</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_MAME_12">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>300</y>
+          <width>531</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:9px; margin-bottom:9px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222; background-color:#ffffff;&quot;&gt;The&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#222222;&quot;&gt;Dreamcast&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt; is a home video game console released by SEGA on November 27, 1998 in Japan. It was the first in the sixth generation of video game consoles. The Dreamcast was SEGA's final home console, marking the end of the company's 18 years in the console market.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:9px; margin-bottom:9px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222; background-color:#ffffff;&quot;&gt;In contrast to the expensive hardware of the unsuccessful SEGA Saturn&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt;, the Dreamcast was designed to reduce costs with &amp;quot;off-the-shelf&amp;quot; components, including a Hitachi SH-4 CPU and an NEC PowerVR2 GPU.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
@@ -562,7 +694,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab_13">
        <attribute name="title">
@@ -704,7 +836,104 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:9px; margin-bottom:9px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#000000; background-color:#ffffff;&quot;&gt;he&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#000000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Nintendo 64 &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#000000;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;N64&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#000000;&quot;&gt;), stylized as &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;NINTENDO&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#000000; vertical-align:super;&quot;&gt;64&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#000000;&quot;&gt;, is a home video game console developed and marketed by Nintendo. Named for its 64-bit central processing unit, it was released in June 1996 in Japan. It was the last major home console to use the cartridge as its primary storage format until the Nintendo Switch in 2017. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:9px; margin-bottom:9px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#000000; background-color:#ffffff;&quot;&gt;The&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#000000;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Nintendo 64 &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#000000;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;N64&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#000000;&quot;&gt;), stylized as &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;NINTENDO&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#000000; vertical-align:super;&quot;&gt;64&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#000000;&quot;&gt;, is a home video game console developed and marketed by Nintendo. Named for its 64-bit central processing unit, it was released in June 1996 in Japan. It was the last major home console to use the cartridge as its primary storage format until the Nintendo Switch in 2017. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_17">
+       <attribute name="title">
+        <string>Game Boy Color</string>
+       </attribute>
+       <widget class="QWidget" name="verticalLayoutWidget_16">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>380</y>
+          <width>170</width>
+          <height>121</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_16">
+         <item>
+          <widget class="QPushButton" name="Chose_file_GBC">
+           <property name="text">
+            <string>Chose Game Cartridge</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Launcher_Button_GBC">
+           <property name="text">
+            <string>Launch!</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_MAME_9">
+        <property name="geometry">
+         <rect>
+          <x>22</x>
+          <y>300</y>
+          <width>531</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:9px; margin-bottom:9px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222; background-color:#ffffff;&quot;&gt;The&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#222222;&quot;&gt;Game Boy Color&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt; (&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#222222;&quot;&gt;GBC&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt;) is a handheld game console manufactured by Nintendo, which was released on October 21, 1998, in Japan. It is the successor of the  Game boy.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:9px; margin-bottom:9px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222; background-color:#ffffff;&quot;&gt;The GBC features a color screen&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt; rather than monochrome. As with the original Game Boy, it has a custom 8-bit processor made by Sharp that is considered a hybrid between the intel 8080 and the Zilog Z80. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_18">
+       <attribute name="title">
+        <string>Game Boy Advanced</string>
+       </attribute>
+       <widget class="QWidget" name="verticalLayoutWidget_17">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>380</y>
+          <width>170</width>
+          <height>121</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_17">
+         <item>
+          <widget class="QPushButton" name="Chose_file_GBAdvanced">
+           <property name="text">
+            <string>Chose Game Cartridge</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Launcher_Button_GBAdvanced">
+           <property name="text">
+            <string>Launch!</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_MAME_10">
+        <property name="geometry">
+         <rect>
+          <x>22</x>
+          <y>300</y>
+          <width>531</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:9px; margin-bottom:9px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222; background-color:#ffffff;&quot;&gt;The&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#222222;&quot;&gt;Game Boy Advance&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt; (&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#222222;&quot;&gt;GBA&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt;) is a 32-bit handheld video game console developed, manufactured and marketed by Nintendo as the successor to the Game Boy Color. It was released in Japan on March 21, 2001. The GBA was part of the sixth generation. The original model did not have an illuminated screen; Nintendo addressed that with the release of a redesigned model with a frontlit screen, the Game Boy Advanced SP, in 2003.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </widget>
@@ -737,7 +966,7 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>Video</string>
     </property>
-    <addaction name="actionCRT"/>
+    <addaction name="toggle_unevenstretch"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuVideo"/>
@@ -757,15 +986,18 @@ p, li { white-space: pre-wrap; }
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionCRT">
+  <action name="toggle_unevenstretch">
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>CRT shader</string>
+    <string>Unevenstretch</string>
    </property>
    <property name="toolTip">
-    <string>CRT shader (Timothy Lottes)</string>
+    <string>If enabled the image streeches to fill vertical space</string>
    </property>
   </action>
  </widget>

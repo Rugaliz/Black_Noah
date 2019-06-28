@@ -72,6 +72,24 @@ private slots:
 
     void on_Launcher_Button_PC_Engine_clicked();
 
+    void on_Chose_file_SEGA_CD_clicked();
+
+    void on_Launcher_Button_SEGA_CD_clicked();
+
+    void on_Chose_file_Dreamcast_clicked();
+
+    void on_Launcher_Button_Dreamcast_clicked();
+
+    void on_Chose_file_GBC_clicked();
+
+    void on_Launcher_Button_GBC_clicked();
+
+    void on_Chose_file_GBAdvanced_clicked();
+
+    void on_Launcher_Button_GBAdvanced_clicked();
+
+    void on_toggle_unevenstretch_changed();
+
 private:
     Ui::MainWindow *ui;
 };
