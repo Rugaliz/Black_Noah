@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+
 namespace Ui {
 class MainWindow;
 }
@@ -59,12 +60,11 @@ private slots:
 
     void on_Chose_file_PC88_floppy2_clicked();
 
-    void on_Launcher_Button_PC98_2_clicked();
+    void on_Launcher_Button_PC88_clicked();
 
     void on_Chose_file_MasterSystem_clicked();
 
     void on_Launcher_Button_MasterSystem_clicked();
-
 
     void on_Chose_file_PC_Engine_HuCard_clicked();
 
@@ -89,6 +89,16 @@ private slots:
     void on_Launcher_Button_GBAdvanced_clicked();
 
     void on_toggle_unevenstretch_changed();
+
+    void on_Chose_file_X68k_floppy1_clicked();
+
+    void on_Chose_file_X68k_floppy2_clicked();
+
+    void on_Chose_file_X68k_floppy3_clicked();
+
+    void on_Chose_file_X68k_floppy4_clicked();
+
+    void on_Launcher_Button_X68k_clicked();
 
 private:
     Ui::MainWindow *ui;

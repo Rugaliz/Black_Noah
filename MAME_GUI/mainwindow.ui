@@ -23,8 +23,8 @@
    <widget class="QTabWidget" name="tabWidget_2">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>-1</x>
+      <y>-1</y>
       <width>801</width>
       <height>571</height>
      </rect>
@@ -52,7 +52,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_MAME">
        <attribute name="title">
@@ -97,9 +97,100 @@ p, li { white-space: pre-wrap; }
       </widget>
       <widget class="QWidget" name="tab">
        <attribute name="title">
+        <string>X68k</string>
+       </attribute>
+       <widget class="QWidget" name="verticalLayoutWidget_21">
+        <property name="geometry">
+         <rect>
+          <x>570</x>
+          <y>270</y>
+          <width>170</width>
+          <height>231</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_21">
+         <item>
+          <widget class="QPushButton" name="Chose_file_X68k_floppy1">
+           <property name="text">
+            <string>Chose Floppy 1</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Chose_file_X68k_floppy2">
+           <property name="text">
+            <string>Chose Floppy 2</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Chose_file_X68k_floppy3">
+           <property name="text">
+            <string>Chose Floppy 3</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Chose_file_X68k_floppy4">
+           <property name="text">
+            <string>Chose Floppy 4</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Launcher_Button_X68k">
+           <property name="text">
+            <string>Launch!</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_PC98_5">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>300</y>
+          <width>531</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:9px; margin-bottom:9px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222; background-color:#ffffff;&quot;&gt;The&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; font-weight:600; color:#222222;&quot;&gt;X68000&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt; is a home computer created by Sharp Corporation, first released in 1987, sold only in Japan.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:9px; margin-bottom:9px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222; background-color:#ffffff;&quot;&gt;The first model features a 10 MHz&lt;/span&gt;&lt;span style=&quot; font-family:'sans-serif'; font-size:12pt; color:#222222;&quot;&gt;  Motorola 68000 CPU (hence the name), 1 MB of RAM, and no hard drive; the last model was released in 1993 with a 25 MHz Motorola 68030 CPU, 4 MB of RAM, and optional 80 MB SCSI hard drive. RAM in these systems is expandable to 12 MB, though most games and applications do not require more than 2 MB.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_19">
+     <attribute name="title">
+      <string>NEC</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-1</y>
+        <width>761</width>
+        <height>571</height>
+       </rect>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab_20">
+       <attribute name="title">
         <string>PC-88</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_11">
+       <widget class="QWidget" name="verticalLayoutWidget_18">
         <property name="geometry">
          <rect>
           <x>570</x>
@@ -108,7 +199,7 @@ p, li { white-space: pre-wrap; }
           <height>181</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_12">
+        <layout class="QVBoxLayout" name="verticalLayout_18">
          <item>
           <widget class="QPushButton" name="Chose_file_PC88_floppy1">
            <property name="text">
@@ -131,7 +222,7 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="Launcher_Button_PC98_2">
+          <widget class="QPushButton" name="Launcher_Button_PC88">
            <property name="text">
             <string>Launch!</string>
            </property>
@@ -139,7 +230,7 @@ p, li { white-space: pre-wrap; }
          </item>
         </layout>
        </widget>
-       <widget class="QTextBrowser" name="textBrowser_PC88">
+       <widget class="QTextBrowser" name="textBrowser_PC88_2">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -158,11 +249,11 @@ p, li { white-space: pre-wrap; }
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="tab_21">
        <attribute name="title">
         <string>PC-98</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_8">
+       <widget class="QWidget" name="verticalLayoutWidget_19">
         <property name="geometry">
          <rect>
           <x>570</x>
@@ -171,7 +262,7 @@ p, li { white-space: pre-wrap; }
           <height>181</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_9">
+        <layout class="QVBoxLayout" name="verticalLayout_19">
          <item>
           <widget class="QPushButton" name="Chose_file_PC98_floppy1">
            <property name="text">
@@ -202,7 +293,7 @@ p, li { white-space: pre-wrap; }
          </item>
         </layout>
        </widget>
-       <widget class="QTextBrowser" name="textBrowser_PC98">
+       <widget class="QTextBrowser" name="textBrowser_PC98_3">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -220,11 +311,11 @@ p, li { white-space: pre-wrap; }
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_3">
+      <widget class="QWidget" name="tab_22">
        <attribute name="title">
         <string>PC Engine</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_13">
+       <widget class="QWidget" name="verticalLayoutWidget_20">
         <property name="geometry">
          <rect>
           <x>570</x>
@@ -233,7 +324,7 @@ p, li { white-space: pre-wrap; }
           <height>181</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_14">
+        <layout class="QVBoxLayout" name="verticalLayout_20">
          <item>
           <widget class="QPushButton" name="Chose_file_PC_Engine_HuCard">
            <property name="text">
@@ -257,7 +348,7 @@ p, li { white-space: pre-wrap; }
          </item>
         </layout>
        </widget>
-       <widget class="QTextBrowser" name="textBrowser_PC98_2">
+       <widget class="QTextBrowser" name="textBrowser_PC98_4">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -390,7 +481,7 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>580</x>
           <y>380</y>
-          <width>170</width>
+          <width>178</width>
           <height>121</height>
          </rect>
         </property>
@@ -438,7 +529,7 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>580</x>
           <y>380</y>
-          <width>170</width>
+          <width>178</width>
           <height>121</height>
          </rect>
         </property>
@@ -705,7 +796,7 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>580</x>
           <y>380</y>
-          <width>170</width>
+          <width>178</width>
           <height>121</height>
          </rect>
         </property>
@@ -753,7 +844,7 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>580</x>
           <y>380</y>
-          <width>170</width>
+          <width>178</width>
           <height>121</height>
          </rect>
         </property>
@@ -801,7 +892,7 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>580</x>
           <y>380</y>
-          <width>170</width>
+          <width>178</width>
           <height>121</height>
          </rect>
         </property>
@@ -849,7 +940,7 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>580</x>
           <y>380</y>
-          <width>170</width>
+          <width>178</width>
           <height>121</height>
          </rect>
         </property>
@@ -898,7 +989,7 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>580</x>
           <y>380</y>
-          <width>170</width>
+          <width>178</width>
           <height>121</height>
          </rect>
         </property>
@@ -947,7 +1038,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
