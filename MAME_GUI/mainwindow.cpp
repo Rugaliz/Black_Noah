@@ -28,16 +28,19 @@ static std::string ROM_path_X68k_floppy3 = "";
 static std::string ROM_path_X68k_floppy4 = "";
 static std::string ROM_path_PC88_floppy1 = "";
 static std::string ROM_path_PC88_floppy2 = "";
+static std::string ROM_path_PC88_Cassete = "";
 static std::string ROM_path_PC98_floppy1 = "";
 static std::string ROM_path_PC98_floppy2 = "";
 static std::string ROM_path_PC98_CDROM = "";
-static std::string CRT_Shader="";
+static std::string ROM_path_PC98_HDD = "";
+static std::string Shader="";
 static std::string region = "";
 static std::string region_MegaCD = "";
 static std::string filter = "";
 static std::string region_Saturn ="";
 static std::string region_Dreamcast ="";
 static std::string vertical_strech ="";
+static std::string glsl_shader ="";
 static std::string Last_Directory = "/home" ;
 
 
@@ -52,8 +55,22 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->radioButton_NTSC_USA_MegaCD->setChecked(true);      // set radiobutton of region set by default to ntsc
     ui->radioButton_NTSC_USA_Dreamcast->setChecked(true);   // set radiobutton of region set by default to ntsc
     this->setWindowTitle("Black Noah");                     // change window title
+    // begin checking for toggled buttons
+    if (ui->toggle_unevenstretch->isChecked()) {
+         vertical_strech = " -unevenstretch";
 
+    }
+    else {
+         vertical_strech = " -nounevenstretch";
+    }
+    if (ui->toggle_shader->isChecked()) {
+         glsl_shader = " -gl_glsl";
 
+    }
+    else {
+         glsl_shader = " -nogl_glsl ";
+    }
+    // end checking for toggeled buttons
 }
 
 
@@ -72,6 +89,21 @@ void MainWindow::on_toggle_unevenstretch_changed()
     }
     else {
          vertical_strech = " -nounevenstretch";
+    }
+}
+
+
+
+
+
+void MainWindow::on_toggle_shader_changed()
+{
+    if (ui->toggle_shader->isChecked()) {
+         glsl_shader = " -gl_glsl";
+
+    }
+    else {
+         glsl_shader = " -nogl_glsl ";
     }
 }
 
@@ -104,6 +136,7 @@ void MainWindow::on_Chose_file_X68k_floppy1_clicked()
                 "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_X68k_floppy1 = filename_X68k_floppy1.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 void MainWindow::on_Chose_file_X68k_floppy2_clicked()
@@ -117,6 +150,7 @@ void MainWindow::on_Chose_file_X68k_floppy2_clicked()
                 "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_X68k_floppy2 = filename_X68k_floppy1.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 void MainWindow::on_Chose_file_X68k_floppy3_clicked()
@@ -130,6 +164,7 @@ void MainWindow::on_Chose_file_X68k_floppy3_clicked()
                 "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_X68k_floppy3 = filename_X68k_floppy1.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 void MainWindow::on_Chose_file_X68k_floppy4_clicked()
@@ -143,6 +178,7 @@ void MainWindow::on_Chose_file_X68k_floppy4_clicked()
                 "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_X68k_floppy4 = filename_X68k_floppy1.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 void MainWindow::on_Chose_file_Saturn_clicked()
@@ -157,6 +193,7 @@ void MainWindow::on_Chose_file_Saturn_clicked()
                 );
     ROM_path_Saturn = filename_saturn.toUtf8().constData();
     //QMessageBox::information(this,tr("File Name"),filename_saturn);
+    Last_Directory = ROM_path;
 }
 
 void MainWindow::on_Chose_file_Dreamcast_clicked()
@@ -170,6 +207,7 @@ void MainWindow::on_Chose_file_Dreamcast_clicked()
                 "Compressed hundks of data (*.chd);;Cue Sheet (*.cue);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_Dreamcast = filename_Dreamcast.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 void MainWindow::on_Chose_file_PC_Engine_HuCard_clicked()
@@ -184,6 +222,7 @@ void MainWindow::on_Chose_file_PC_Engine_HuCard_clicked()
                 );
     ROM_path_PC_Engine_HuCards = filename.toUtf8().constData();
     //QMessageBox::information(this,tr("File Name"),filename);
+    Last_Directory = ROM_path;
 }
 
 
@@ -199,6 +238,7 @@ void MainWindow::on_Chose_file_PC_Engine_CDROM_clicked()
                 );
     ROM_path_PC_Engine_CDROM = filename.toUtf8().constData();
     //QMessageBox::information(this,tr("File Name"),filename);
+    Last_Directory = ROM_path;
 }
 
 void MainWindow::on_Chose_file_SNES_clicked()
@@ -212,6 +252,7 @@ void MainWindow::on_Chose_file_SNES_clicked()
                 "Zip files (*.zip);;Cartridge files (*.smc);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_SNES = filename_SNES.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 
@@ -227,6 +268,7 @@ void MainWindow::on_Chose_file_NES_clicked()
                 "Zip files (*.zip);;Cartridge files (*.smc);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_NES = filename_NES.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 void MainWindow::on_Chose_file_GBC_clicked()
@@ -240,6 +282,7 @@ void MainWindow::on_Chose_file_GBC_clicked()
                 "Zip files (*.zip);;Cartridge files (*.gbc);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_GBC = filename_GBC.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 void MainWindow::on_Chose_file_GBAdvanced_clicked()
@@ -252,6 +295,7 @@ void MainWindow::on_Chose_file_GBAdvanced_clicked()
                 "Zip files (*.zip);;Cartridge files (*.gba);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_GBA = filename_GBA.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 void MainWindow::on_Chose_file_PC88_floppy1_clicked()
@@ -264,6 +308,7 @@ void MainWindow::on_Chose_file_PC88_floppy1_clicked()
                 "Floppy disk image (*.d88);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_PC88_floppy1 = filename_PC88_floppy1.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 
@@ -277,7 +322,23 @@ void MainWindow::on_Chose_file_PC88_floppy2_clicked()
                 "Floppy disk image (*.d88);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_PC88_floppy2 = filename_PC88_floppy2.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
+
+void MainWindow::on_Chose_file_PC88_Cassete_clicked()
+{
+    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString filename_PC88_cassete = QFileDialog::getOpenFileName(
+                this,
+                tr("Chose Game"),
+                QLast_Directory,
+                "Cassete image (*.d88);;All files (*.*)"  // determines types of files and name to display in window
+                );
+    ROM_path_PC88_Cassete = filename_PC88_cassete.toUtf8().constData();
+    Last_Directory = ROM_path;
+}
+
+
 
 void MainWindow::on_Chose_file_PC98_floppy1_clicked()
 //chosing files and saving file path (PC-98)
@@ -287,9 +348,10 @@ void MainWindow::on_Chose_file_PC98_floppy1_clicked()
                 this,
                 tr("Chose Game"),
                 QLast_Directory,
-                "Floppy disk image (*.fdi *.hdm .d88);;All files (*.*)"  // determines types of files and name to display in window
+                "Floppy disk image (*.fdi *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_PC98_floppy1 = filename_PC98_floppy1.toUtf8().constData();
+    Last_Directory = ROM_path;
 
 }
 
@@ -300,10 +362,12 @@ void MainWindow::on_Chose_file_PC98_floppy2_clicked()
                 this,
                 tr("Chose Game"),
                 QLast_Directory,
-                "Floppy disk image (*.fdi *.hdm .d88);;All files (*.*)"  // determines types of files and name to display in window
+                "Floppy disk image (*.fdi *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_PC98_floppy2 = filename_PC98_floppy2.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
+
 
 void MainWindow::on_Chose_file_PC98_CDROM_clicked()
 {
@@ -315,7 +379,23 @@ void MainWindow::on_Chose_file_PC98_CDROM_clicked()
                 "Compressed hunk of data (*.chd);;Disk image (*.iso);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_PC98_CDROM = filename_PC98_CDROM.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
+
+
+void MainWindow::on_Chose_file_PC98_HDD_clicked()
+{
+    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString filename_PC98_HDD = QFileDialog::getOpenFileName(
+                this,
+                tr("Chose Game"),
+                QLast_Directory,
+                "Hard Disk Image (*.hdi);;All files (*.*)"  // determines types of files and name to display in window
+                );
+    ROM_path_PC98_HDD = filename_PC98_HDD.toUtf8().constData();
+    Last_Directory = ROM_path;
+}
+
 
 void MainWindow::on_Chose_file_MasterSystem_clicked()
 //chosing files and saving file path (Master System)
@@ -328,6 +408,7 @@ void MainWindow::on_Chose_file_MasterSystem_clicked()
                 "Zip files (*.zip);;Cartridge files (*.sms);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_MasterSystem = filename_MasterSystem.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 
@@ -342,6 +423,7 @@ void MainWindow::on_Chose_file_MegaDrive_clicked()
                 "Zip files (*.zip);;Cartridge files (*.md);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_Genesis = filename_Genesis.toUtf8().constData();
+    Last_Directory = ROM_path;
 
 }
 
@@ -357,6 +439,7 @@ void MainWindow::on_Chose_file_SEGA_CD_clicked()
                 "Compressed Hunk of Data(*.chd);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_SEGA_CD = filename_SEGA_CD.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 void MainWindow::on_Chose_file_N64_clicked()
@@ -369,6 +452,7 @@ void MainWindow::on_Chose_file_N64_clicked()
                 "Zip files (*.zip);;Cartridge files (*.z64);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_N64 = filename_N64.toUtf8().constData();
+    Last_Directory = ROM_path;
 }
 
 
@@ -378,7 +462,7 @@ void MainWindow::on_Chose_file_N64_clicked()
 void MainWindow::on_pushButton_launch_MAME_clicked()  // Launcher for MAME
 {
 
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = "mame" + option;
     const char *mame_Command = command.c_str();
     system(mame_Command);
@@ -387,8 +471,8 @@ void MainWindow::on_pushButton_launch_MAME_clicked()  // Launcher for MAME
 
 void MainWindow::on_Launcher_Button_X68k_clicked()
 {
-    std::string machine_cmd = "mame x68000";             // run machine command linux version
-    std::string load_floppy1 = (" -flop1 ");                 // tell mame to load files onto floppy disk tray
+    std::string machine_cmd = "mame x68000";                // run machine command linux version
+    std::string load_floppy1 = (" -flop1 ");                // tell mame to load files onto floppy disk tray
     std::string load_floppy2 = (" -flop2 ");                // tell mame to load files onto floppy disk tray
     std::string load_floppy3 = (" -flop3 ");                // tell mame to load files onto floppy disk tray
     std::string load_floppy4 = (" -flop4 ");                // tell mame to load files onto floppy disk tray
@@ -396,7 +480,7 @@ void MainWindow::on_Launcher_Button_X68k_clicked()
     std::string floppy2_locale = ROM_path_X68k_floppy2;     // Path pointed in "Floppy2"
     std::string floppy3_locale = ROM_path_X68k_floppy3;     // Path pointed in "Floppy3"
     std::string floppy4_locale = ROM_path_X68k_floppy4;     // Path pointed in "Floppy4"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + load_floppy1 + "\""+ floppy1_locale + "\"" + load_floppy2 + "\""+ floppy2_locale + "\"" + load_floppy3 + "\""+ floppy3_locale + "\"" + load_floppy4 + "\""+ floppy4_locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *X68k_command = command.c_str();
     system(X68k_command);
@@ -425,7 +509,7 @@ void MainWindow::on_Launcher_Button_clicked()
         std::string load_cd = (" -cdrm ");                  // tell mame to load files onto cd tray
         PS_memcard1 = " -memc1 ~/.mame/memcard/psx.mc1";    // command and location of memory card 1
         PS_memcard2 = " -memc2 ~/.mame/memcard/psx.mc2";    // command and location of memory card 2
-        std::string option = vertical_strech;
+        std::string option = vertical_strech + glsl_shader;
         std::string command = machine_cmd + region + PS_memcard1 + PS_memcard2 + load_cd + "\"" + file1locale + "\"" + option; // pass "'" before and after file path to send a proper quoted path to console
         const char *PS_Command = command.c_str();
         system(PS_Command);                                 // send whole command to OS command line
@@ -440,7 +524,7 @@ void MainWindow::on_Launcher_Button_PC88_clicked()
     std::string load_floppy2 = (" -flop2 ");                // tell mame to load files onto floppy disk tray
     std::string floppy1_locale = ROM_path_PC88_floppy1;     // Path pointed in "Floppy1"
     std::string floppy2_locale = ROM_path_PC88_floppy2;     // Path pointed in "Floppy2"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + load_floppy1 + "\""+ floppy1_locale + "\"" + load_floppy2 + "\""+ floppy2_locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *PC88_command = command.c_str();
     system(PC88_command);
@@ -453,11 +537,13 @@ void MainWindow::on_Launcher_Button_PC98_clicked() // PC98 launcher (NES_2 is a 
     std::string load_foppy1 = (" -flop1 ");                 // tell mame to load files onto floppy disk tray
     std::string load_floppy2 = (" -flop2 ");                // tell mame to load files onto floppy disk tray
     std::string load_cd = (" -cdrm ");                      // tell mame to load files onto cd tray
+    std::string load_hdd = (" -hard ");                     // tell mame to load files onto emulated hard drive disk
+    std::string HDD_locale = ROM_path_PC98_HDD;             // Path pointed in "Hard Disk"
     std::string CD_locale = ROM_path_PC98_CDROM;            // Path pointed in "CD_ROM"
     std::string floppy1_locale = ROM_path_PC98_floppy1;     // Path pointed in "Floppy1"
     std::string floppy2_locale = ROM_path_PC98_floppy2;     // Path pointed in "Floppy2"
-    std::string option = vertical_strech;
-    std::string command = machine_cmd + load_foppy1 + "\"" + floppy1_locale + "\"" + load_floppy2 + "\""+ floppy2_locale + "\"" + load_cd + "\""+ CD_locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
+    std::string option = vertical_strech + glsl_shader;
+    std::string command = machine_cmd + load_foppy1 + "\"" + floppy1_locale + "\"" + load_floppy2 + "\""+ floppy2_locale + "\"" + load_cd + "\""+ CD_locale + "\"" + load_hdd + "\""+ HDD_locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *PC98_command = command.c_str();
     system(PC98_command);
 
@@ -471,7 +557,7 @@ void MainWindow::on_Launcher_Button_PC_Engine_clicked()
     std::string load_cd = (" -cdrm ");                          // tell mame to load files onto cd tray
     std::string HuCard_locale = ROM_path_PC_Engine_HuCards;     // Path pointed in "Floppy1"
     std::string CD_locale = ROM_path_PC_Engine_CDROM;           // Path pointed in "CD_ROM"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + load_HuCard + "\"" + HuCard_locale + "\"" + load_cd + "\""+ CD_locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *PC_Engine_command = command.c_str();
     system(PC_Engine_command);
@@ -483,7 +569,7 @@ void MainWindow::on_Launcher_Button_MasterSystem_clicked()
     std::string machine_cmd = "mame sms";                   // run machine command linux version
     std::string load_cd = (" -cartridge ");                 // tell mame to load files onto cd tray
     std::string file1locale = ROM_path_MasterSystem;        // Path pointed in "ROM1"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + load_cd + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *MasterSystem_command = command.c_str();
     system(MasterSystem_command);
@@ -495,7 +581,7 @@ void MainWindow::on_Launcher_Button_Megadrive_clicked()
     std::string machine_cmd = "mame genesis";               // run machine command linux version
     std::string load_cd = (" -cartridge ");                 // tell mame to load files onto cd tray
     std::string file1locale = ROM_path_Genesis;             // Path pointed in "ROM1"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + load_cd + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *Genesis_command = command.c_str();
     system(Genesis_command);
@@ -515,7 +601,7 @@ void MainWindow::on_Launcher_Button_SEGA_CD_clicked()
     std::string machine_cmd = "mame ";                      // run machine command linux version
     std::string load_cd = (" -cdrm ");                      // tell mame to load files onto cd tray
     std::string file1locale = ROM_path_SEGA_CD;             // Path pointed in "ROM1"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + region_MegaCD + load_cd + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *SEGA_CD_command = command.c_str();
     system(SEGA_CD_command);
@@ -539,7 +625,7 @@ void MainWindow::on_Launcher_Button_Saturn_clicked()
     std::string machine_cmd = "mame ";                      // run machine command linux version
     std::string load_cd = (" -cdrm ");                      // tell mame to load files onto cd tray
     std::string file1locale = ROM_path_Saturn;              // Path pointed in "ROM1"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + region_Saturn + load_cd + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *Saturn_command = command.c_str();
     system(Saturn_command);
@@ -561,8 +647,8 @@ void MainWindow::on_Launcher_Button_Dreamcast_clicked()
 
     std::string machine_cmd = "mame ";                      // run machine command linux version
     std::string load_cd = (" -cdrm ");                      // tell mame to load files onto cd tray
-    std::string file1locale = ROM_path_Dreamcast;              // Path pointed in "ROM1"
-    std::string option = vertical_strech;
+    std::string file1locale = ROM_path_Dreamcast;           // Path pointed in "ROM1"
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + region_Dreamcast + load_cd + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *Dreamcast_command = command.c_str();
     system(Dreamcast_command);
@@ -573,7 +659,7 @@ void MainWindow::on_Launcher_Button_NES_clicked()
     std::string machine_cmd = "mame nes";                   // run machine command linux version
     std::string load_cd = (" -cartridge ");                 // tell mame to load files onto cd tray
     std::string file1locale = ROM_path_NES;                 // Path pointed in "ROM1"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + load_cd + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *NES_command = command.c_str();
     system(NES_command);
@@ -594,7 +680,7 @@ void MainWindow::on_Launcher_Button_SNES_clicked()
     std::string machine_cmd = "mame snes";                  // run machine command linux version
     std::string load_cd = (" -cartridge ");                 // tell mame to load files onto cd tray
     std::string file1locale = ROM_path_SNES;                // Path pointed in "ROM1"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + load_cd + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *SNES_command = command.c_str();
     system(SNES_command);
@@ -606,7 +692,7 @@ void MainWindow::on_Launcher_Button_N64_clicked()
     std::string machine_cmd = "mame n64";                   // run machine command linux version
     std::string load_cd = (" -cartridge ");                 // tell mame to load files onto cd tray
     std::string file1locale = ROM_path_N64;                 // Path pointed in "ROM1"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + load_cd + "\"" + file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *N64_command = command.c_str();
     system(N64_command);
@@ -617,7 +703,7 @@ void MainWindow::on_Launcher_Button_GBC_clicked()
     std::string machine_cmd = "mame gbcolor";               // run machine command linux version
     std::string load_cd = (" -cartridge ");                 // tell mame to load files onto cd tray
     std::string file1locale = ROM_path_GBC;                 // Path pointed in "ROM1"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + load_cd + "\"" + file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *GBC_command = command.c_str();
     system(GBC_command);
@@ -629,7 +715,7 @@ void MainWindow::on_Launcher_Button_GBAdvanced_clicked()
     std::string machine_cmd = "mame gba";                   // run machine command linux version
     std::string load_cd = (" -cartridge ");                 // tell mame to load files onto cd tray
     std::string file1locale = ROM_path_GBA;                 // Path pointed in "ROM1"
-    std::string option = vertical_strech;
+    std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + load_cd + "\"" + file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *GBA_command = command.c_str();
     system(GBA_command);
@@ -652,6 +738,9 @@ void MainWindow::on_actionExit_triggered()
 }
 // //////////////////////////////////////////////////////////////////////////////////////////////
 // //////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 
 

@@ -90,6 +90,8 @@ private slots:
 
     void on_toggle_unevenstretch_changed();
 
+    void on_toggle_shader_changed();
+
     void on_Chose_file_X68k_floppy1_clicked();
 
     void on_Chose_file_X68k_floppy2_clicked();
@@ -99,6 +101,10 @@ private slots:
     void on_Chose_file_X68k_floppy4_clicked();
 
     void on_Launcher_Button_X68k_clicked();
+
+    void on_Chose_file_PC88_Cassete_clicked();
+
+    void on_Chose_file_PC98_HDD_clicked();
 
 private:
     Ui::MainWindow *ui;
