@@ -1,9 +1,9 @@
 # Black Noah
-MAME gui frontend for misc consoles and systems.
+MAME gui frontend for various consoles and systems.
 
-This was made with Qt Creator and thus can be compile with it.
+This was made with Qt Creator and thus should be compiled with it.
 
-Linux and Windows binaries compiled with Qt Creator and libs compiled with linuxdeployqt and WindeployQt
+The available Linux and Windows binaries dependencies and libs were compiled with linuxdeployqt and WindeployQt
 https://github.com/probonopd/linuxdeployqt
 
 
