@@ -25,11 +25,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        default_settings.cpp \
+        launchmethods.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        os_check.cpp
 
 HEADERS += \
-        mainwindow.h
+        default_settings.h \
+        launchmethods.h \
+        mainwindow.h \
+        os_check.h
 
 FORMS += \
         mainwindow.ui
@@ -38,3 +44,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resourced.qrc
