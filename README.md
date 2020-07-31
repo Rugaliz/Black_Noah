@@ -4,6 +4,7 @@ MAME gui frontend for various consoles and systems.
 This was made with Qt Creator and thus should be compiled with it.
 
 The available Linux and Windows binaries dependencies and libs were compiled with linuxdeployqt and WindeployQt
+
 https://github.com/probonopd/linuxdeployqt
 
 
