@@ -18,6 +18,8 @@ mame must be instaled in the typical bin folders of your system. This frontend a
 For Windows systems:
 Place these files in the same folder as your mame executable with the rest of mame's folders. This frontend also requires ps1 memory card files located at memcard(/psx.mc1 and /psx.mc2) for the Playstation launcher.
 
+NOTE: Make sure your mame executable is named "mame".
+
 
 
 Also bios files for each system are required and must be placed where your MAME instalation rom path.
