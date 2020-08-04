@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>images/panther.svg</file>
+        <file>images/panther2.png</file>
+    </qresource>
+</RCC>
