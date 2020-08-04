@@ -23,4 +23,4 @@ Place these files in the same folder as your mame executable with the rest of ma
 Also bios files for each system are required and must be placed where your MAME instalation rom path.
 
 
-![](MAME_GUI/images/blacknoah.png)
+![](BlackNoah/images/blacknoah.png)
