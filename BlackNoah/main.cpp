@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
     os_Check.CheckOS();
     QApplication a(argc, argv);
-    a.setWindowIcon(QIcon(":/img/images/panther.svg"));
+    a.setWindowIcon(QIcon(":/img/images/BlackNoah_Logo.svg"));
     MainWindow w;
     w.show();
 

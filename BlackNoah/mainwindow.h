@@ -124,6 +124,10 @@ private slots:
 
     void on_Launcher_Button_PC_FX_clicked();
 
+    void on_Chose_file_FamicomDisk_clicked();
+
+    void on_Launcher_Button_FamicomDisk_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -13,6 +13,7 @@ static std::string ROM_path="";
 static std::string ROM_path_Saturn="";
 static std::string ROM_path_SNES = "";
 static std::string ROM_path_NES = "";
+static std::string ROM_path_FDS = "";
 static std::string ROM_path_N64 = "";
 static std::string ROM_path_GBC = "";
 static std::string ROM_path_GBA = "";
@@ -39,12 +40,13 @@ static std::string ROM_path_FMMarty_CDROM = "";
 static std::string ROM_path_NGPC = "";
 static std::string ROM_path_Neo_Geo_CDz = "";
 static std::string Shader="";
-static std::string region = "";
+static std::string region_PSX = "";
 static std::string region_MegaCD = "";
 static std::string filter = "";
 static std::string region_Saturn ="";
 static std::string region_Dreamcast ="";
 static std::string region_MegaDrive = "";
+static std::string region_NES = "";
 static std::string vertical_strech ="";
 static std::string glsl_shader ="";
 static std::string Last_Directory = "/home" ;
@@ -57,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    Default_Settings();
     ui->setupUi(this);
     ui->toggle_unevenstretch->setChecked(false);
+    ui->radioButton_NES->setChecked(true);
     ui->radioButton_NTSC_USA->setChecked(true);             // set radiobutton of region set by default to ntsc
     ui->radioButton_NTSC_USA_Saturn->setChecked(true);      // set radiobutton of region set by default to ntsc
     ui->radioButton_NTSC_USA_MegaCD->setChecked(true);      // set radiobutton of region set by default to ntsc
@@ -262,6 +265,33 @@ void MainWindow::on_Chose_file_PC_FX_CDROM_clicked()
     Last_Directory = ROM_path_PC_FX_CDROM;
 }
 
+void MainWindow::on_Chose_file_NES_clicked()
+//chosing files and saving file path (NES)
+{
+    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString filename_NES = QFileDialog::getOpenFileName(
+                this,
+                tr("Chose Game"),
+                QLast_Directory,
+                "Zip files (*.zip);;Cartridge files (*.nes);;All files (*.*)"  // determines types of files and name to display in window
+                );
+    ROM_path_NES = filename_NES.toUtf8().constData();
+    Last_Directory = ROM_path_NES;
+}
+
+void MainWindow::on_Chose_file_FamicomDisk_clicked()
+{
+    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString filename_FDS = QFileDialog::getOpenFileName(
+                this,
+                tr("Chose Game"),
+                QLast_Directory,
+                "Zip files (*.zip);;Floppy disk files (*.fds);;All files (*.*)"  // determines types of files and name to display in window
+                );
+    ROM_path_FDS = filename_FDS.toUtf8().constData();
+    Last_Directory = ROM_path_FDS;
+}
+
 void MainWindow::on_Chose_file_SNES_clicked()
 //chosing files and saving file path (SNES)
 {
@@ -274,20 +304,6 @@ void MainWindow::on_Chose_file_SNES_clicked()
                 );
     ROM_path_SNES = filename_SNES.toUtf8().constData();
     Last_Directory = ROM_path_SNES;
-}
-
-void MainWindow::on_Chose_file_NES_clicked()
-//chosing files and saving file path (NES)
-{
-    QString QLast_Directory = QString::fromStdString(Last_Directory);
-    QString filename_NES = QFileDialog::getOpenFileName(
-                this,
-                tr("Chose Game"),
-                QLast_Directory,
-                "Zip files (*.zip);;Cartridge files (*.smc);;All files (*.*)"  // determines types of files and name to display in window
-                );
-    ROM_path_NES = filename_NES.toUtf8().constData();
-    Last_Directory = ROM_path_NES;
 }
 
 void MainWindow::on_Chose_file_GBC_clicked()
@@ -418,7 +434,7 @@ void MainWindow::on_Chose_file_FMTownsMarty_floppy_clicked()
                 this,
                 tr("Chose Game"),
                 QLast_Directory,
-                "Compressed hunk of data (*.chd);;Disk image (*.iso);;All files (*.*)"  // determines types of files and name to display in window
+                "Floppy disk image (*.fdi *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_FMMarty_floppy = filename_FMMarty_Floppy.toUtf8().constData();
     Last_Directory = ROM_path_FMMarty_floppy;
@@ -539,15 +555,15 @@ void MainWindow::on_Launcher_Button_X68k_clicked()
 void MainWindow::on_Launcher_Button_clicked() // Sony Playstation
 {
     if (ui->radioButton_NTSC_USA->isChecked()) {
-        region = "psu";
+        region_PSX = "psu";
     }
     if (ui->radioButton_PAL_EU->isChecked()) {
-        region = "pse";
+        region_PSX = "pse";
     }
     if (ui->radioButton_NTSC_Japan->isChecked()) {
-        region = "psj";
+        region_PSX = "psj";
     }
-    LM.Playstation(ROM_path, vertical_strech, glsl_shader, region);    // Playstation launcher method from class launchmethods
+    LM.Playstation(ROM_path, vertical_strech, glsl_shader, region_PSX);    // Playstation launcher method from class launchmethods
 }
 
 void MainWindow::on_Launcher_Button_PC88_clicked()
@@ -643,8 +659,22 @@ void MainWindow::on_Launcher_Button_Dreamcast_clicked()
 
 void MainWindow::on_Launcher_Button_NES_clicked()
 {
-    LM.Nintendo_NES(ROM_path_NES, vertical_strech, glsl_shader);
+    if (ui->radioButton_NTSC_USA_MegaDrive->isChecked()) {
+         region_NES = "nes";
+    }
+
+    if (ui->radioButton_NTSC_Japan_MegaDrive->isChecked()) {
+         region_NES = "famicom";
+    }
+
+    LM.Nintendo_NES(region_NES,ROM_path_NES, vertical_strech, glsl_shader);
 }
+
+void MainWindow::on_Launcher_Button_FamicomDisk_clicked()
+{
+    LM.Nintendo_FDS(ROM_path_FDS, vertical_strech, glsl_shader);
+}
+
 
 void MainWindow::on_Launcher_Button_SNES_clicked()
 {

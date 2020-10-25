@@ -10,6 +10,12 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
    <size>
     <width>770</width>
@@ -246,13 +252,27 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="verticalLayoutWidget_7">
         <property name="geometry">
          <rect>
-          <x>580</x>
-          <y>380</y>
+          <x>570</x>
+          <y>310</y>
           <width>178</width>
-          <height>121</height>
+          <height>181</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QRadioButton" name="radioButton_NES">
+           <property name="text">
+            <string>NES</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_Famicom">
+           <property name="text">
+            <string>Famicom</string>
+           </property>
+          </widget>
+         </item>
          <item>
           <widget class="QPushButton" name="Chose_file_NES">
            <property name="text">
@@ -287,6 +307,54 @@ p, li { white-space: pre-wrap; }
         </property>
        </widget>
       </widget>
+      <widget class="QWidget" name="tab_25">
+       <attribute name="title">
+        <string>FamicomDisk</string>
+       </attribute>
+       <widget class="QTextBrowser" name="textBrowser_MAME_14">
+        <property name="geometry">
+         <rect>
+          <x>22</x>
+          <y>300</y>
+          <width>531</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Family Computer Disk System, commonly referred to as the Famicom Disk System, is a peripheral for Nintendo's Family Computer home video game console, released only in Japan on February 21, 1986. It uses proprietary floppy disks called &amp;quot;Disk Cards&amp;quot; for cheaper data storage and it adds a new high-fidelity sound channel for supporting FDS games.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="verticalLayoutWidget_8">
+        <property name="geometry">
+         <rect>
+          <x>570</x>
+          <y>310</y>
+          <width>178</width>
+          <height>181</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_9">
+         <item>
+          <widget class="QPushButton" name="Chose_file_FamicomDisk">
+           <property name="text">
+            <string>Chose Game Floppy</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Launcher_Button_FamicomDisk">
+           <property name="text">
+            <string>Launch!</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
       <widget class="QWidget" name="tab_14">
        <attribute name="title">
         <string>SNES</string>
@@ -294,8 +362,8 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="verticalLayoutWidget_6">
         <property name="geometry">
          <rect>
-          <x>580</x>
-          <y>380</y>
+          <x>570</x>
+          <y>370</y>
           <width>178</width>
           <height>121</height>
          </rect>
@@ -342,8 +410,8 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="verticalLayoutWidget_9">
         <property name="geometry">
          <rect>
-          <x>580</x>
-          <y>380</y>
+          <x>570</x>
+          <y>370</y>
           <width>178</width>
           <height>121</height>
          </rect>
@@ -390,8 +458,8 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="verticalLayoutWidget_16">
         <property name="geometry">
          <rect>
-          <x>580</x>
-          <y>380</y>
+          <x>570</x>
+          <y>370</y>
           <width>178</width>
           <height>121</height>
          </rect>
@@ -439,8 +507,8 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="verticalLayoutWidget_17">
         <property name="geometry">
          <rect>
-          <x>580</x>
-          <y>380</y>
+          <x>570</x>
+          <y>370</y>
           <width>178</width>
           <height>121</height>
          </rect>
@@ -509,7 +577,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>570</x>
-          <y>320</y>
+          <y>310</y>
           <width>170</width>
           <height>181</height>
          </rect>
@@ -571,7 +639,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>570</x>
-          <y>290</y>
+          <y>280</y>
           <width>170</width>
           <height>211</height>
          </rect>
@@ -640,7 +708,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>570</x>
-          <y>320</y>
+          <y>310</y>
           <width>170</width>
           <height>181</height>
          </rect>
@@ -762,7 +830,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>570</x>
-          <y>380</y>
+          <y>370</y>
           <width>178</width>
           <height>121</height>
          </rect>
@@ -810,7 +878,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>570</x>
-          <y>330</y>
+          <y>320</y>
           <width>178</width>
           <height>171</height>
          </rect>
@@ -819,14 +887,14 @@ p, li { white-space: pre-wrap; }
          <item>
           <widget class="QRadioButton" name="radioButton_NTSC_USA_MegaDrive">
            <property name="text">
-            <string>NTSC_USA</string>
+            <string>Genesis</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QRadioButton" name="radioButton_NTSC_Japan_MegaDrive">
            <property name="text">
-            <string>NTSC_Japan</string>
+            <string>Megadrive JP</string>
            </property>
           </widget>
          </item>
@@ -871,8 +939,8 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="verticalLayoutWidget_14">
         <property name="geometry">
          <rect>
-          <x>580</x>
-          <y>350</y>
+          <x>570</x>
+          <y>340</y>
           <width>170</width>
           <height>151</height>
          </rect>
@@ -933,8 +1001,8 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="verticalLayoutWidget_5">
         <property name="geometry">
          <rect>
-          <x>579</x>
-          <y>300</y>
+          <x>570</x>
+          <y>290</y>
           <width>171</width>
           <height>201</height>
          </rect>
@@ -1002,8 +1070,8 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="verticalLayoutWidget_15">
         <property name="geometry">
          <rect>
-          <x>579</x>
-          <y>300</y>
+          <x>570</x>
+          <y>290</y>
           <width>171</width>
           <height>201</height>
          </rect>
@@ -1090,7 +1158,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>570</x>
-          <y>380</y>
+          <y>370</y>
           <width>178</width>
           <height>121</height>
          </rect>
@@ -1137,8 +1205,8 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="verticalLayoutWidget_23">
         <property name="geometry">
          <rect>
-          <x>579</x>
-          <y>350</y>
+          <x>570</x>
+          <y>340</y>
           <width>171</width>
           <height>151</height>
          </rect>
@@ -1203,8 +1271,8 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="verticalLayoutWidget_3">
         <property name="geometry">
          <rect>
-          <x>590</x>
-          <y>300</y>
+          <x>580</x>
+          <y>290</y>
           <width>160</width>
           <height>201</height>
          </rect>

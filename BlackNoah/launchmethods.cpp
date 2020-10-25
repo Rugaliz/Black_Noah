@@ -154,10 +154,20 @@ void LaunchMethods::SEGA_Dreamcast (std::string ROM_path_Dreamcast, std::string 
     system(Dreamcast_command);
 }
 
-void LaunchMethods::Nintendo_NES (std::string ROM_path_NES, std::string vertical_strech, std::string glsl_shader) {
-    std::string machine_cmd = "mame nes";                   // run machine command linux version
-    std::string load_cd = (" -cartridge ");                 // tell mame to load files onto cd tray
+void LaunchMethods::Nintendo_NES (std::string region_NES, std::string ROM_path_NES, std::string vertical_strech, std::string glsl_shader) {
+    std::string machine_cmd = "mame ";                      // run machine command linux version
+    std::string load_Cartridge = (" -cartridge ");                 // tell mame to load files onto cd tray
     std::string file1locale = ROM_path_NES;                 // Path pointed in "ROM1"
+    std::string option = vertical_strech + glsl_shader;
+    std::string command = machine_cmd + region_NES + load_Cartridge + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
+    const char *NES_command = command.c_str();
+    system(NES_command);
+}
+
+void LaunchMethods::Nintendo_FDS (std::string ROM_path_FDS, std::string vertical_strech, std::string glsl_shader) {
+    std::string machine_cmd = "mame  fds";                  // run machine command linux version
+    std::string load_cd = (" -flop ");                 // tell mame to load files onto cd tray
+    std::string file1locale = ROM_path_FDS;                 // Path pointed in "ROM1"
     std::string option = vertical_strech + glsl_shader;
     std::string command = machine_cmd + load_cd + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *NES_command = command.c_str();

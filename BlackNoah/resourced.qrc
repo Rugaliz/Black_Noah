@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/img">
         <file>images/panther.svg</file>
-        <file>images/panther2.png</file>
+        <file>images/BlackNoah_Logo.svg</file>
     </qresource>
 </RCC>

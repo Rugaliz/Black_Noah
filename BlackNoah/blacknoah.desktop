@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=BlackNoah
+GenericName=GUI for MAME
+Comment=GUI for MAME
+Exec=blacknoah
+Icon=blacknoah
+Categories=Game;
+Keywords=gaming;emulator;
+Terminal=false
+Type=Application
+Categories=Application
