@@ -381,7 +381,7 @@ void MainWindow::on_Chose_file_PC98_floppy1_clicked()
                 this,
                 tr("Chose Game"),
                 QLast_Directory,
-                "Floppy disk image (*.fdi *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
+                "Floppy disk image (*.fdi *.fdd *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_PC98_floppy1 = filename_PC98_floppy1.toUtf8().constData();
     Last_Directory = ROM_path_PC98_floppy1;
@@ -395,7 +395,7 @@ void MainWindow::on_Chose_file_PC98_floppy2_clicked()
                 this,
                 tr("Chose Game"),
                 QLast_Directory,
-                "Floppy disk image (*.fdi *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
+                "Floppy disk image (*.fdi *.fdd *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_PC98_floppy2 = filename_PC98_floppy2.toUtf8().constData();
     Last_Directory = ROM_path_PC98_floppy2;
