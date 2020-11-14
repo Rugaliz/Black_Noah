@@ -1,5 +1,6 @@
 <RCC>
-    <qresource prefix="/img">
-        <file>images/BlackNoah_Logo.svg</file>
+    <qresource prefix="/img"/>
+    <qresource prefix="/">
+        <file>images/blacknoah.svg</file>
     </qresource>
 </RCC>
