@@ -32,1316 +32,1393 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTabWidget" name="tabWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>-1</x>
-      <y>0</y>
-      <width>801</width>
-      <height>531</height>
-     </rect>
-    </property>
-    <property name="tabPosition">
-     <enum>QTabWidget::West</enum>
-    </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <widget class="QWidget" name="tab_5">
-     <attribute name="title">
-      <string>Other</string>
-     </attribute>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="geometry">
-       <rect>
-        <x>-2</x>
-        <y>-1</y>
-        <width>761</width>
-        <height>541</height>
-       </rect>
-      </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Rounded</enum>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget_2">
+      <property name="tabPosition">
+       <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tab_MAME">
+      <widget class="QWidget" name="tab_5">
        <attribute name="title">
-        <string>MAME</string>
+        <string>Other</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>580</x>
-          <y>340</y>
-          <width>160</width>
-          <height>131</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <widget class="QPushButton" name="pushButton_launch_MAME">
-           <property name="text">
-            <string>Launch</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="tabShape">
+           <enum>QTabWidget::Rounded</enum>
+          </property>
+          <property name="currentIndex">
+           <number>2</number>
+          </property>
+          <widget class="QWidget" name="tab_MAME">
+           <attribute name="title">
+            <string>MAME</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_11">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>225</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_10">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;MAME (Multiple Arcade Machine Emulator) is a free and open source emulator designed to recreate the hardware of arcade game systems in software on modern personal computers and other platforms. The intention is to preserve gaming history by preventing vintage games from being lost or forgotten. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab">
-       <attribute name="title">
-        <string>X68k</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_21">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>250</y>
-          <width>170</width>
-          <height>231</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_21">
-         <item>
-          <widget class="QPushButton" name="Chose_file_X68k_floppy1">
-           <property name="text">
-            <string>Chose Floppy 1</string>
-           </property>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;MAME (Multiple Arcade Machine Emulator) is a free and open source emulator designed to recreate the hardware of arcade game systems in software on modern personal computers and other platforms. The intention is to preserve gaming history by preventing vintage games from being lost or forgotten. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="QPushButton" name="pushButton_launch_MAME">
+                  <property name="text">
+                   <string>Launch</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_X68k_floppy2">
-           <property name="text">
-            <string>Chose Floppy 2</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_X68k_floppy3">
-           <property name="text">
-            <string>Chose Floppy 3</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_X68k_floppy4">
-           <property name="text">
-            <string>Chose Floppy 4</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_X68k">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_PC98_5">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+          <widget class="QWidget" name="tab">
+           <attribute name="title">
+            <string>X68k</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_13">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_12">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_PC98_5">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The X68000 is a home computer created by Sharp Corporation, first released in 1987, sold only in Japan.&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The first model features a 10 MHz  Motorola 68000 CPU (hence the name), 1 MB of RAM, and no hard drive; the last model was released in 1993 with a 25 MHz Motorola 68030 CPU, 4 MB of RAM, and optional 80 MB SCSI hard drive. RAM in these systems is expandable to 12 MB, though most games and applications do not require more than 2 MB.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_3">
-       <attribute name="title">
-        <string>FM Towns Marty</string>
-       </attribute>
-       <widget class="QTextBrowser" name="textBrowser_PC98_6">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The X68000 is a home computer created by Sharp Corporation, first released in 1987, sold only in Japan.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The first model features a 10 MHz  Motorola 68000 CPU (hence the name), 1 MB of RAM, and no hard drive; the last model was released in 1993 with a 25 MHz Motorola 68030 CPU, 4 MB of RAM, and optional 80 MB SCSI hard drive. RAM in these systems is expandable to 12 MB, though most games and applications do not require more than 2 MB.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_21">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_X68k_floppy1">
+                  <property name="text">
+                   <string>Chose Floppy 1</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_X68k_floppy2">
+                  <property name="text">
+                   <string>Chose Floppy 2</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_X68k_floppy3">
+                  <property name="text">
+                   <string>Chose Floppy 3</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_X68k_floppy4">
+                  <property name="text">
+                   <string>Chose Floppy 4</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_X68k">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_3">
+           <attribute name="title">
+            <string>FM Towns Marty</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_15">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_14">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_PC98_6">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The FM Towns Marty is a fifth-generation home video game console released in 1993 by Fujitsu, exclusively for the Japanese market. &lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The console came complete with a built in CD-ROM drive and disk drive. It was based on the earlier FM Towns computer system Fujitsu had released in 1989. The Marty was backward-compatible with older FM Towns games. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="verticalLayoutWidget_22">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>280</y>
-          <width>170</width>
-          <height>191</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_22">
-         <item>
-          <widget class="QPushButton" name="Chose_file_FMTownsMarty_floppy">
-           <property name="text">
-            <string>Chose Floppy</string>
-           </property>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The FM Towns Marty is a fifth-generation home video game console released in 1993 by Fujitsu, exclusively for the Japanese market. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The console came complete with a built in CD-ROM drive and disk drive. It was based on the earlier FM Towns computer system Fujitsu had released in 1989. The Marty was backward-compatible with older FM Towns games. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_22">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_FMTownsMarty_floppy">
+                  <property name="text">
+                   <string>Chose Floppy</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_FMTownsMarty_CDROM">
+                  <property name="text">
+                   <string>Chose CD-ROM</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_FMMarty">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_FMTownsMarty_CDROM">
-           <property name="text">
-            <string>Chose CD-ROM</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_FMMarty">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_4">
-     <attribute name="title">
-      <string>Nintendo</string>
-     </attribute>
-     <widget class="QTabWidget" name="tabWidget_5">
-      <property name="geometry">
-       <rect>
-        <x>-6</x>
-        <y>-1</y>
-        <width>771</width>
-        <height>561</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tab_13">
+      <widget class="QWidget" name="tab_19">
        <attribute name="title">
-        <string>NES</string>
+        <string>NEC</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_7">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>290</y>
-          <width>178</width>
-          <height>181</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_8">
-         <item>
-          <widget class="QRadioButton" name="radioButton_NES">
-           <property name="text">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget_6">
+          <property name="tabShape">
+           <enum>QTabWidget::Rounded</enum>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_20">
+           <attribute name="title">
+            <string>PC-88</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_29">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_11">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_28">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_PC88_2">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The PC-8800 series commonly shortened to PC-88, are a brand of Zilog Z80-based 8-bit home computers released by Nippon Electric Company (NEC) in 1981 and primarily sold in Japan. The PC-8800 series sold extremely well and became one of the three major Japanese home computers of the 1980s. It was later eclipsed by NEC's 16-bit PC-9800 series, although it still maintained strong sales up until the early 90s.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_18">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_PC88_floppy1">
+                  <property name="text">
+                   <string>Chose Floppy 1</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_PC88_floppy2">
+                  <property name="text">
+                   <string>Chose Floppy 2</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_PC88_Cassete">
+                  <property name="text">
+                   <string>Chose Cassete</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_PC88">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_21">
+           <attribute name="title">
+            <string>PC-98</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_31">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_12">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_30">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_PC98_3">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The PC-9800 series, commonly shortened to PC-98, is a lineup of Japanese 16-bit and 32-bit personal computers manufactured by NEC from 1982 through 2000. The platform established NEC's dominance in the Japanese personal computer market, and by 1999, more than 18 million PC-98 units had been sold.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_19">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_PC98_floppy1">
+                  <property name="text">
+                   <string>Chose Floppy 1</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_PC98_floppy2">
+                  <property name="text">
+                   <string>Chose Floppy 2</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_PC98_CDROM">
+                  <property name="text">
+                   <string>Chose CD-ROM</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_PC98_HDD">
+                  <property name="text">
+                   <string>Hard Drive</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_PC98">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_22">
+           <attribute name="title">
+            <string>PC Engine</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_33">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_13">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_32">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_PC98_4">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The TurboGrafx-16, known in Japan as PC Engine, is a cartridge based console manufactured and marketed by NEC, and designed by Hudson Soft. It was released in Japan on October 30, 1987. It was the first console released in the 16-bit era, although it used an 8-bit CPU. The TurboGrafx-16 has an 8-bit CPU, a 16-bit video color encoder, and a 16-bit video display controller. The GPUs are capable of displaying 482 colors simultaneously, out of 512. Games were stored on a HuCard cartridge, or in CD-ROM optical format.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_20">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_PC_Engine_HuCard">
+                  <property name="text">
+                   <string>Chose HuCard</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_PC_Engine_CDROM">
+                  <property name="text">
+                   <string>Chose CD-ROM</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_PC_Engine">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_24">
+           <attribute name="title">
+            <string>PC FX</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_35">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_14">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_34">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_PC98_7">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The PC-FX is a 32-bit home video game console developed by both NEC and Hudson Soft and released in Japan in 1994. Powered by an NEC V810 CPU and using CD-ROMs, the PC-FX was intended as the successor to the PC Engine and its international counterpart the TurboGrafx-16, two successful video game consoles from the late 1980s. It is NEC's final foray into the home console market.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The console is shaped like a tower PC and was meant to be upgradeable. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_24">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_PC_FX_CDROM">
+                  <property name="text">
+                   <string>Chose CD-ROM</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_PC_FX">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Nintendo</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget_5">
+          <property name="currentIndex">
+           <number>5</number>
+          </property>
+          <widget class="QWidget" name="tab_13">
+           <attribute name="title">
             <string>NES</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_Famicom">
-           <property name="text">
-            <string>Famicom</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_NES">
-           <property name="text">
-            <string>Chose Game Cartridge</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_NES">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_6">
-        <property name="geometry">
-         <rect>
-          <x>22</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_17">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_16">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_6">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Nintendo Entertainment System (NES) is an 8-bit home video game console developed and manufactured by Nintendo. It is a remodeled export version of the company's Family Computer (FC) platform in Japan, commonly known as the Famicom for short, which launched on July 15, 1983.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Nintendo Entertainment System (NES) is an 8-bit home video game console developed and manufactured by Nintendo. It is a remodeled export version of the company's Family Computer (FC) platform in Japan, commonly known as the Famicom for short, which launched on July 15, 1983.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_8">
+                <item>
+                 <widget class="QRadioButton" name="radioButton_NES">
+                  <property name="text">
+                   <string>NES</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_Famicom">
+                  <property name="text">
+                   <string>Famicom</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_NES">
+                  <property name="text">
+                   <string>Chose Game Cartridge</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_NES">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_25">
+           <attribute name="title">
+            <string>FamicomDisk</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_19">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_18">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_14">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Family Computer Disk System, commonly referred to as the Famicom Disk System, is a peripheral for Nintendo's Family Computer home video game console, released only in Japan on February 21, 1986. It uses proprietary floppy disks called &amp;quot;Disk Cards&amp;quot; for cheaper data storage and it adds a new high-fidelity sound channel for supporting FDS games.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_9">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_FamicomDisk">
+                  <property name="text">
+                   <string>Chose Game Floppy</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_FamicomDisk">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_14">
+           <attribute name="title">
+            <string>SNES</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_21">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_7">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_20">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_7">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Super Nintendo Entertainment System (SNES), also known as the Super NES or Super Nintendo, is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan. In Japan, the system is called the Super Famicom (SFC). &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_7">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_SNES">
+                  <property name="text">
+                   <string>Chose Game Cartridge</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_SNES">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_15">
+           <attribute name="title">
+            <string>N64</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_23">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_8">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_22">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_8">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Nintendo 64 (N64), is a home video game console developed and marketed by Nintendo. Named for its 64-bit central processing unit, it was released in June 1996 in Japan. It was the last major home console to use the cartridge as its primary storage format until the Nintendo Switch in 2017. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_10">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_N64">
+                  <property name="text">
+                   <string>Chose Game Cartridge</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_N64">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_17">
+           <attribute name="title">
+            <string>Game Boy Color</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_25">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_9">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_24">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_9">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Game Boy Color (GBC) is a handheld game console manufactured by Nintendo, which was released on October 21, 1998, in Japan. It is the successor of the  Game boy.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The GBC features a color screen rather than monochrome. As with the original Game Boy, it has a custom 8-bit processor made by Sharp that is considered a hybrid between the intel 8080 and the Zilog Z80. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_16">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_GBC">
+                  <property name="text">
+                   <string>Chose Game Cartridge</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_GBC">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_18">
+           <attribute name="title">
+            <string>Game Boy Advanced</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_27">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_10">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_26">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_10">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Game Boy Advance (GBA) is a 32-bit handheld video game console developed, manufactured and marketed by Nintendo as the successor to the Game Boy Color. It was released in Japan on March 21, 2001. The GBA was part of the sixth generation. The original model did not have an illuminated screen; Nintendo addressed that with the release of a redesigned model with a frontlit screen, the Game Boy Advanced SP, in 2003.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_17">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_GBAdvanced">
+                  <property name="text">
+                   <string>Chose Game Cartridge</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_GBAdvanced">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QWidget" name="tab_25">
+      <widget class="QWidget" name="tab_9">
        <attribute name="title">
-        <string>FamicomDisk</string>
+        <string>Sega</string>
        </attribute>
-       <widget class="QTextBrowser" name="textBrowser_MAME_14">
-        <property name="geometry">
-         <rect>
-          <x>22</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget_4">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_10">
+           <attribute name="title">
+            <string>Master System</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_37">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_15">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_36">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_3">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Family Computer Disk System, commonly referred to as the Famicom Disk System, is a peripheral for Nintendo's Family Computer home video game console, released only in Japan on February 21, 1986. It uses proprietary floppy disks called &amp;quot;Disk Cards&amp;quot; for cheaper data storage and it adds a new high-fidelity sound channel for supporting FDS games.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="verticalLayoutWidget_8">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>290</y>
-          <width>178</width>
-          <height>181</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_9">
-         <item>
-          <widget class="QPushButton" name="Chose_file_FamicomDisk">
-           <property name="text">
-            <string>Chose Game Floppy</string>
-           </property>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Sega Master System (SMS) is a third-generation 8-bit home video game console manufactured by Sega. It was originally a remodeled export version of the Sega Mark III which was released in Japan in 1985. A cost-reduced model known as the Master System II was released in 1990 in North America and Europe.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_13">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_MasterSystem">
+                  <property name="text">
+                   <string>Chose Game Cartridge</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_MasterSystem">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_FamicomDisk">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
+          <widget class="QWidget" name="tab_11">
+           <attribute name="title">
+            <string>Genesis/Megadrive</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_39">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_16">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_38">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_4">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Sega Genesis, known as the Mega Drive in regions outside of North America, is a 16-bit home video game console developed and sold by Sega. The Genesis was Sega's third console and the successor to the Master System. Sega released it as the Mega Drive in Japan in 1988, followed by North America as the Genesis in 1989. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_11">
+                <item>
+                 <widget class="QRadioButton" name="radioButton_NTSC_USA_MegaDrive">
+                  <property name="text">
+                   <string>Genesis</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_NTSC_Japan_MegaDrive">
+                  <property name="text">
+                   <string>Megadrive JP</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_MegaDrive">
+                  <property name="text">
+                   <string>Chose Game Cartridge</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_Megadrive">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </widget>
-         </item>
-        </layout>
-       </widget>
+          <widget class="QWidget" name="tab_8">
+           <attribute name="title">
+            <string>CD</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_41">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_17">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_40">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_11">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Sega CD, released as the Mega-CD in most regions outside North America and Brazil, is a CD-ROM accessory for the SEGA GEnisis Video Game Console designed and produced by SEGA as part of the  fourth generation of video game consoles. It was released on December 12, 1991 in Japan. The Sega CD lets the user play CD-based games and adds hardware functionality such as a faster CPU and graphic enhancements. It can also play audio CDs and CD+G discs.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_15">
+                <item>
+                 <widget class="QRadioButton" name="radioButton_NTSC_USA_MegaCD">
+                  <property name="text">
+                   <string>NTSC_USA</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_NTSC_Japan_MegaCD">
+                  <property name="text">
+                   <string>NTSC_Japan</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_SEGA_CD">
+                  <property name="text">
+                   <string>Chose Game Disk</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_SEGA_CD">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_12">
+           <attribute name="title">
+            <string>Saturn</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_43">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_18">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_42">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_5">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Sega Saturn is a 32-bit fifth-generation home video game console developed by Sega and released on November 22, 1994 in Japan. It has a dual-CPU architecture and eight processors. Its games are in CD-ROM format. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_5">
+                <item>
+                 <widget class="QRadioButton" name="radioButton_NTSC_USA_Saturn">
+                  <property name="text">
+                   <string>NTSC_USA</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_PAL_EU_Saturn">
+                  <property name="text">
+                   <string>PAL_EU</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_NTSC_Japan_Saturn">
+                  <property name="text">
+                   <string>NTSC_Japan</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_Saturn">
+                  <property name="text">
+                   <string>Chose Game Disk</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_Saturn">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_16">
+           <attribute name="title">
+            <string>Dreamcast</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_45">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_19">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_44">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_12">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Dreamcast is a home video game console released by SEGA on November 27, 1998 in Japan. It was the first in the sixth generation of video game consoles. The Dreamcast was SEGA's final home console, marking the end of the company's 18 years in the console market. In contrast to the expensive hardware of the unsuccessful SEGA Saturn, the Dreamcast was designed to reduce costs with &amp;quot;off-the-shelf&amp;quot; components, including a Hitachi SH-4 CPU and an NEC PowerVR2 GPU.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_6">
+                <item>
+                 <widget class="QRadioButton" name="radioButton_NTSC_USA_Dreamcast">
+                  <property name="text">
+                   <string>NTSC_USA</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_PAL_EU_Dreamcast">
+                  <property name="text">
+                   <string>PAL_EU</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_NTSC_Japan_Dreamcast">
+                  <property name="text">
+                   <string>NTSC_Japan</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file_Dreamcast">
+                  <property name="text">
+                   <string>Chose Game Disk</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_Dreamcast">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QWidget" name="tab_14">
+      <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>SNES</string>
+        <string>SNK</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_6">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>350</y>
-          <width>178</width>
-          <height>121</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_7">
-         <item>
-          <widget class="QPushButton" name="Chose_file_SNES">
-           <property name="text">
-            <string>Chose Game Cartridge</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_SNES">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_7">
-        <property name="geometry">
-         <rect>
-          <x>22</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget_7">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_23">
+           <attribute name="title">
+            <string>Neo Geo Pocket Color</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_47">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_20">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_46">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_13">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Super Nintendo Entertainment System (SNES), also known as the Super NES or Super Nintendo, is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan. In Japan, the system is called the Super Famicom (SFC). &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Neo Geo Pocket Color is a 16-bit color handheld video game console manufactured by SNK. It is a successor to SNK's monochrome Neo Geo Pocket handheld which debuted in 1998 in Japan, with the Color being fully backward compatible. The Neo Geo Pocket Color was released on March 16, 1999 in Japan, August 6, 1999 in North America, and on October 1, 1999 in Europe, entering markets all dominated by Nintendo, competing with Nintendo's Game Boy Color. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_14">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_NGPC">
+                  <property name="text">
+                   <string>Chose Game Cartridge</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_NGPcolor">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_27">
+           <attribute name="title">
+            <string>Neo Geo CDZ</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_49">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_21">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>224</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_48">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_17">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;Neo Geo CD  is the second home video game console of SNK Corporation's Neo Geo family, released in September 9, 1994, four years after its cartridge-based equivalent. The unit's 1X CD-ROM drive is slow, with very long loading times. The system can also play Audio CDs. All three versions of the system have no region-lock. The Neo Geo CD was launched bundled with a control pad instead of a joystick like the AES version. However, the original AES joystick can be used with all three Neo Geo CD models. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_23">
+                <item>
+                 <widget class="QPushButton" name="Chose_file_NeoGeoCDz">
+                  <property name="text">
+                   <string>Chose Game Disk</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button_NeoGeoCDz">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QWidget" name="tab_15">
+      <widget class="QWidget" name="tab_6">
        <attribute name="title">
-        <string>N64</string>
+        <string>Sony</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_9">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>350</y>
-          <width>178</width>
-          <height>121</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_10">
-         <item>
-          <widget class="QPushButton" name="Chose_file_N64">
-           <property name="text">
-            <string>Chose Game Cartridge</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_N64">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_8">
-        <property name="geometry">
-         <rect>
-          <x>22</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget_3">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_7">
+           <attribute name="title">
+            <string>PlayStation</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_9">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>225</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_MAME_2">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Nintendo 64 (N64), is a home video game console developed and marketed by Nintendo. Named for its 64-bit central processing unit, it was released in June 1996 in Japan. It was the last major home console to use the cartridge as its primary storage format until the Nintendo Switch in 2017. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_17">
-       <attribute name="title">
-        <string>Game Boy Color</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_16">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>350</y>
-          <width>178</width>
-          <height>121</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_16">
-         <item>
-          <widget class="QPushButton" name="Chose_file_GBC">
-           <property name="text">
-            <string>Chose Game Cartridge</string>
-           </property>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The PlayStation (officially abbreviated to PS, and commonly known as the PS1 or its codename, PSX) is a home video game console developed and marketed by Sony Computer Entertainment. It was first released on 3 December 1994 in Japan and was the first of the Playstation lineup of video game consoles. In July 2000, a redesigned, slim version called the PS one was released, replacing the original grey console.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_3">
+                <item>
+                 <widget class="QRadioButton" name="radioButton_NTSC_USA">
+                  <property name="text">
+                   <string>NTSC_USA</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_PAL_EU">
+                  <property name="text">
+                   <string>PAL_EU</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_NTSC_Japan">
+                  <property name="text">
+                   <string>NTSC_Japan</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Chose_file1">
+                  <property name="text">
+                   <string>Chose Game Disk</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Launcher_Button">
+                  <property name="text">
+                   <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_GBC">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_9">
-        <property name="geometry">
-         <rect>
-          <x>22</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Game Boy Color (GBC) is a handheld game console manufactured by Nintendo, which was released on October 21, 1998, in Japan. It is the successor of the  Game boy.&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The GBC features a color screen rather than monochrome. As with the original Game Boy, it has a custom 8-bit processor made by Sharp that is considered a hybrid between the intel 8080 and the Zilog Z80. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_18">
-       <attribute name="title">
-        <string>Game Boy Advanced</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_17">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>350</y>
-          <width>178</width>
-          <height>121</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_17">
-         <item>
-          <widget class="QPushButton" name="Chose_file_GBAdvanced">
-           <property name="text">
-            <string>Chose Game Cartridge</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_GBAdvanced">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_10">
-        <property name="geometry">
-         <rect>
-          <x>22</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Game Boy Advance (GBA) is a 32-bit handheld video game console developed, manufactured and marketed by Nintendo as the successor to the Game Boy Color. It was released in Japan on March 21, 2001. The GBA was part of the sixth generation. The original model did not have an illuminated screen; Nintendo addressed that with the release of a redesigned model with a frontlit screen, the Game Boy Advanced SP, in 2003.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab_19">
-     <attribute name="title">
-      <string>NEC</string>
-     </attribute>
-     <widget class="QTabWidget" name="tabWidget_6">
-      <property name="geometry">
-       <rect>
-        <x>-2</x>
-        <y>-1</y>
-        <width>761</width>
-        <height>541</height>
-       </rect>
-      </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Rounded</enum>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tab_20">
-       <attribute name="title">
-        <string>PC-88</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_18">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>290</y>
-          <width>170</width>
-          <height>181</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_18">
-         <item>
-          <widget class="QPushButton" name="Chose_file_PC88_floppy1">
-           <property name="text">
-            <string>Chose Floppy 1</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_PC88_floppy2">
-           <property name="text">
-            <string>Chose Floppy 2</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_PC88_Cassete">
-           <property name="text">
-            <string>Chose Cassete</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_PC88">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_PC88_2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The PC-8800 series commonly shortened to PC-88, are a brand of Zilog Z80-based 8-bit home computers released by Nippon Electric Company (NEC) in 1981 and primarily sold in Japan. The PC-8800 series sold extremely well and became one of the three major Japanese home computers of the 1980s. It was later eclipsed by NEC's 16-bit PC-9800 series, although it still maintained strong sales up until the early 90s.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_21">
-       <attribute name="title">
-        <string>PC-98</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_19">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>260</y>
-          <width>170</width>
-          <height>211</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_19">
-         <item>
-          <widget class="QPushButton" name="Chose_file_PC98_floppy1">
-           <property name="text">
-            <string>Chose Floppy 1</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_PC98_floppy2">
-           <property name="text">
-            <string>Chose Floppy 2</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_PC98_CDROM">
-           <property name="text">
-            <string>Chose CD-ROM</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_PC98_HDD">
-           <property name="text">
-            <string>Hard Drive</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_PC98">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_PC98_3">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The PC-9800 series, commonly shortened to PC-98, is a lineup of Japanese 16-bit and 32-bit personal computers manufactured by NEC from 1982 through 2000. The platform established NEC's dominance in the Japanese personal computer market, and by 1999, more than 18 million PC-98 units had been sold.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_22">
-       <attribute name="title">
-        <string>PC Engine</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_20">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>290</y>
-          <width>170</width>
-          <height>181</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_20">
-         <item>
-          <widget class="QPushButton" name="Chose_file_PC_Engine_HuCard">
-           <property name="text">
-            <string>Chose HuCard</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_PC_Engine_CDROM">
-           <property name="text">
-            <string>Chose CD-ROM</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_PC_Engine">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_PC98_4">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>191</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The TurboGrafx-16, known in Japan as PC Engine, is a cartridge based console manufactured and marketed by NEC, and designed by Hudson Soft. It was released in Japan on October 30, 1987. It was the first console released in the 16-bit era, although it used an 8-bit CPU. The TurboGrafx-16 has an 8-bit CPU, a 16-bit video color encoder, and a 16-bit video display controller. The GPUs are capable of displaying 482 colors simultaneously, out of 512. Games were stored on a HuCard cartridge, or in CD-ROM optical format.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_24">
-       <attribute name="title">
-        <string>PC FX</string>
-       </attribute>
-       <widget class="QTextBrowser" name="textBrowser_PC98_7">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>191</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The PC-FX is a 32-bit home video game console developed by both NEC and Hudson Soft and released in Japan in 1994. Powered by an NEC V810 CPU and using CD-ROMs, the PC-FX was intended as the successor to the PC Engine and its international counterpart the TurboGrafx-16, two successful video game consoles from the late 1980s. It is NEC's final foray into the home console market.&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The console is shaped like a tower PC and was meant to be upgradeable. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="verticalLayoutWidget_24">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>350</y>
-          <width>170</width>
-          <height>121</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_24">
-         <item>
-          <widget class="QPushButton" name="Chose_file_PC_FX_CDROM">
-           <property name="text">
-            <string>Chose CD-ROM</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_PC_FX">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_9">
-     <attribute name="title">
-      <string>Sega</string>
-     </attribute>
-     <widget class="QTabWidget" name="tabWidget_4">
-      <property name="geometry">
-       <rect>
-        <x>-4</x>
-        <y>-1</y>
-        <width>771</width>
-        <height>561</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tab_10">
-       <attribute name="title">
-        <string>Master System</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_12">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>350</y>
-          <width>178</width>
-          <height>121</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_13">
-         <item>
-          <widget class="QPushButton" name="Chose_file_MasterSystem">
-           <property name="text">
-            <string>Chose Game Cartridge</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_MasterSystem">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_3">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Sega Master System (SMS) is a third-generation 8-bit home video game console manufactured by Sega. It was originally a remodeled export version of the Sega Mark III which was released in Japan in 1985. A cost-reduced model known as the Master System II was released in 1990 in North America and Europe.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_11">
-       <attribute name="title">
-        <string>Genesis/Megadrive</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_10">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>300</y>
-          <width>178</width>
-          <height>171</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_11">
-         <item>
-          <widget class="QRadioButton" name="radioButton_NTSC_USA_MegaDrive">
-           <property name="text">
-            <string>Genesis</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_NTSC_Japan_MegaDrive">
-           <property name="text">
-            <string>Megadrive JP</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_MegaDrive">
-           <property name="text">
-            <string>Chose Game Cartridge</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_Megadrive">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_4">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Sega Genesis, known as the Mega Drive in regions outside of North America, is a 16-bit home video game console developed and sold by Sega. The Genesis was Sega's third console and the successor to the Master System. Sega released it as the Mega Drive in Japan in 1988, followed by North America as the Genesis in 1989. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_8">
-       <attribute name="title">
-        <string>CD</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_14">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>320</y>
-          <width>170</width>
-          <height>151</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_15">
-         <item>
-          <widget class="QRadioButton" name="radioButton_NTSC_USA_MegaCD">
-           <property name="text">
-            <string>NTSC_USA</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_NTSC_Japan_MegaCD">
-           <property name="text">
-            <string>NTSC_Japan</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_SEGA_CD">
-           <property name="text">
-            <string>Chose Game Disk</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_SEGA_CD">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_11">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Sega CD, released as the Mega-CD in most regions outside North America and Brazil, is a CD-ROM accessory for the SEGA GEnisis Video Game Console designed and produced by SEGA as part of the  fourth generation of video game consoles. It was released on December 12, 1991 in Japan. The Sega CD lets the user play CD-based games and adds hardware functionality such as a faster CPU and graphic enhancements. It can also play audio CDs and CD+G discs.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_12">
-       <attribute name="title">
-        <string>Saturn</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_5">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>270</y>
-          <width>171</width>
-          <height>201</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_5">
-         <item>
-          <widget class="QRadioButton" name="radioButton_NTSC_USA_Saturn">
-           <property name="text">
-            <string>NTSC_USA</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_PAL_EU_Saturn">
-           <property name="text">
-            <string>PAL_EU</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_NTSC_Japan_Saturn">
-           <property name="text">
-            <string>NTSC_Japan</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_Saturn">
-           <property name="text">
-            <string>Chose Game Disk</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_Saturn">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_5">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Sega Saturn is a 32-bit fifth-generation home video game console developed by Sega and released on November 22, 1994 in Japan. It has a dual-CPU architecture and eight processors. Its games are in CD-ROM format. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_16">
-       <attribute name="title">
-        <string>Dreamcast</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_15">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>270</y>
-          <width>171</width>
-          <height>201</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_6">
-         <item>
-          <widget class="QRadioButton" name="radioButton_NTSC_USA_Dreamcast">
-           <property name="text">
-            <string>NTSC_USA</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_PAL_EU_Dreamcast">
-           <property name="text">
-            <string>PAL_EU</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_NTSC_Japan_Dreamcast">
-           <property name="text">
-            <string>NTSC_Japan</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file_Dreamcast">
-           <property name="text">
-            <string>Chose Game Disk</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_Dreamcast">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_12">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Dreamcast is a home video game console released by SEGA on November 27, 1998 in Japan. It was the first in the sixth generation of video game consoles. The Dreamcast was SEGA's final home console, marking the end of the company's 18 years in the console market. In contrast to the expensive hardware of the unsuccessful SEGA Saturn, the Dreamcast was designed to reduce costs with &amp;quot;off-the-shelf&amp;quot; components, including a Hitachi SH-4 CPU and an NEC PowerVR2 GPU.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>SNK</string>
-     </attribute>
-     <widget class="QTabWidget" name="tabWidget_7">
-      <property name="geometry">
-       <rect>
-        <x>-4</x>
-        <y>-1</y>
-        <width>771</width>
-        <height>561</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tab_23">
-       <attribute name="title">
-        <string>Neo Geo Pocket Color</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_13">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>350</y>
-          <width>178</width>
-          <height>121</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_14">
-         <item>
-          <widget class="QPushButton" name="Chose_file_NGPC">
-           <property name="text">
-            <string>Chose Game Cartridge</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_NGPcolor">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_13">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The Neo Geo Pocket Color is a 16-bit color handheld video game console manufactured by SNK. It is a successor to SNK's monochrome Neo Geo Pocket handheld which debuted in 1998 in Japan, with the Color being fully backward compatible. The Neo Geo Pocket Color was released on March 16, 1999 in Japan, August 6, 1999 in North America, and on October 1, 1999 in Europe, entering markets all dominated by Nintendo, competing with Nintendo's Game Boy Color. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_27">
-       <attribute name="title">
-        <string>Neo Geo CDZ</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_23">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>340</y>
-          <width>171</width>
-          <height>151</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_23">
-         <item>
-          <widget class="QPushButton" name="Chose_file_NeoGeoCDz">
-           <property name="text">
-            <string>Chose Game Disk</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button_NeoGeoCDz">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_17">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>300</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Neo Geo CD  is the second home video game console of SNK Corporation's Neo Geo family, released in September 9, 1994, four years after its cartridge-based equivalent. The unit's 1X CD-ROM drive is slow, with very long loading times. The system can also play Audio CDs. All three versions of the system have no region-lock. The Neo Geo CD was launched bundled with a control pad instead of a joystick like the AES version. However, the original AES joystick can be used with all three Neo Geo CD models. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_6">
-     <attribute name="title">
-      <string>Sony</string>
-     </attribute>
-     <widget class="QTabWidget" name="tabWidget_3">
-      <property name="geometry">
-       <rect>
-        <x>-4</x>
-        <y>-1</y>
-        <width>771</width>
-        <height>561</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tab_7">
-       <attribute name="title">
-        <string>PlayStation</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_3">
-        <property name="geometry">
-         <rect>
-          <x>580</x>
-          <y>270</y>
-          <width>160</width>
-          <height>201</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QRadioButton" name="radioButton_NTSC_USA">
-           <property name="text">
-            <string>NTSC_USA</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_PAL_EU">
-           <property name="text">
-            <string>PAL_EU</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_NTSC_Japan">
-           <property name="text">
-            <string>NTSC_Japan</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Chose_file1">
-           <property name="text">
-            <string>Chose Game Disk</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="Launcher_Button">
-           <property name="text">
-            <string>Launch!</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser_MAME_2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>280</y>
-          <width>531</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'IBM Plex Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The PlayStation (officially abbreviated to PS, and commonly known as the PS1 or its codename, PSX) is a home video game console developed and marketed by Sony Computer Entertainment. It was first released on 3 December 1994 in Japan and was the first of the Playstation lineup of video game consoles. In July 2000, a redesigned, slim version called the PS one was released, replacing the original grey console.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
-     </widget>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -1387,6 +1464,9 @@ p, li { white-space: pre-wrap; }
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+   <property name="statusTip">
+    <string extracomment="Exit BlackNOah."/>
    </property>
   </action>
   <action name="toggle_unevenstretch">
