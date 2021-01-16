@@ -709,7 +709,7 @@ void MainWindow::on_Launcher_Button_NeoGeoCDz_clicked()
 // Menu Bar section
 void MainWindow::on_actionAbout_2_triggered()
 {
-    QMessageBox::information(this,"About","Developed by Rugaliz 2019-2020");
+    QMessageBox::information(this,"About","Developed by Rugaliz 2019-2021");
 }
 
 void MainWindow::on_actionExit_triggered()
