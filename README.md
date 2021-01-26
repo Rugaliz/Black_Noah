@@ -1,5 +1,5 @@
 # Black Noah
-MAME gui frontend for various consoles and systems.
+BlackNoah is a graphical user interface for various consoles and systems working with MAME emulator.
 
 This was made with Qt Creator and thus should be compiled with it.
 
