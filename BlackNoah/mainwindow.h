@@ -128,6 +128,16 @@ private slots:
 
     void on_Launcher_Button_FamicomDisk_clicked();
 
+    void on_Chose_file_MSX_Cassete_clicked();
+
+    void on_Chose_file_MSX_Cart1_clicked();
+
+    void on_Chose_file_MSX_Cart2_clicked();
+
+    void on_Chose_file_MSX_Floppy_clicked();
+
+    void on_Launcher_Button_MSX_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

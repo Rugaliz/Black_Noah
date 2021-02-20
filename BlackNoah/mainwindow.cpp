@@ -7,49 +7,53 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-static std::string cmd="";
-static std::string filename="";
-static std::string ROM_path="";
-static std::string ROM_path_Saturn="";
-static std::string ROM_path_SNES = "";
-static std::string ROM_path_NES = "";
-static std::string ROM_path_FDS = "";
-static std::string ROM_path_N64 = "";
-static std::string ROM_path_GBC = "";
-static std::string ROM_path_GBA = "";
-static std::string ROM_path_MasterSystem = "";
-static std::string ROM_path_SEGA_CD = "";
-static std::string ROM_path_Dreamcast = "";
-static std::string ROM_path_PC_Engine_HuCards ="";
-static std::string ROM_path_PC_Engine_CDROM ="";
-static std::string ROM_path_PC_FX_CDROM ="";
-static std::string ROM_path_Genesis = "";
-static std::string ROM_path_X68k_floppy1 = "";
-static std::string ROM_path_X68k_floppy2 = "";
-static std::string ROM_path_X68k_floppy3 = "";
-static std::string ROM_path_X68k_floppy4 = "";
-static std::string ROM_path_PC88_floppy1 = "";
-static std::string ROM_path_PC88_floppy2 = "";
-static std::string ROM_path_PC88_Cassete = "";
-static std::string ROM_path_PC98_floppy1 = "";
-static std::string ROM_path_PC98_floppy2 = "";
-static std::string ROM_path_PC98_CDROM = "";
-static std::string ROM_path_PC98_HDD = "";
-static std::string ROM_path_FMMarty_floppy = "";
-static std::string ROM_path_FMMarty_CDROM = "";
-static std::string ROM_path_NGPC = "";
-static std::string ROM_path_Neo_Geo_CDz = "";
-static std::string Shader="";
-static std::string region_PSX = "";
-static std::string region_MegaCD = "";
-static std::string filter = "";
-static std::string region_Saturn ="";
-static std::string region_Dreamcast ="";
-static std::string region_MegaDrive = "";
-static std::string region_NES = "";
-static std::string vertical_strech ="";
-static std::string glsl_shader ="";
-static std::string Last_Directory = "/home" ;
+std::string cmd = "";
+std::string filename = "";
+std::string ROM_path = "";
+std::string ROM_path_Saturn = "";
+std::string ROM_path_SNES = "";
+std::string ROM_path_NES = "";
+std::string ROM_path_FDS = "";
+std::string ROM_path_N64 = "";
+std::string ROM_path_GBC = "";
+std::string ROM_path_GBA = "";
+std::string ROM_path_MasterSystem = "";
+std::string ROM_path_SEGA_CD = "";
+std::string ROM_path_Dreamcast = "";
+std::string ROM_path_PC_Engine_HuCards = "";
+std::string ROM_path_PC_Engine_CDROM = "";
+std::string ROM_path_PC_FX_CDROM = "";
+std::string ROM_path_Genesis = "";
+std::string ROM_path_X68k_floppy1 = "";
+std::string ROM_path_X68k_floppy2 = "";
+std::string ROM_path_X68k_floppy3 = "";
+std::string ROM_path_X68k_floppy4 = "";
+std::string ROM_path_PC88_floppy1 = "";
+std::string ROM_path_PC88_floppy2 = "";
+std::string ROM_path_PC88_Cassete = "";
+std::string ROM_path_PC98_floppy1 = "";
+std::string ROM_path_PC98_floppy2 = "";
+std::string ROM_path_PC98_CDROM = "";
+std::string ROM_path_PC98_HDD = "";
+std::string ROM_path_FMMarty_floppy = "";
+std::string ROM_path_FMMarty_CDROM = "";
+std::string ROM_path_NGPC = "";
+std::string ROM_path_Neo_Geo_CDz = "";
+std::string ROM_path_MSX_Cass = "";
+std::string ROM_path_MSX_Cart1 = "";
+std::string ROM_path_MSX_Cart2 = "";
+std::string ROM_path_MSX_Floppy = "";
+std::string Shader = "";
+std::string region_PSX = "";
+std::string region_MegaCD = "";
+std::string filter = "";
+std::string region_Saturn = "";
+std::string region_Dreamcast = "";
+std::string region_MegaDrive = "";
+std::string region_NES = "";
+std::string vertical_strech = "";
+std::string glsl_shader = "";
+std::string Last_Directory = "/home" ;
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -536,7 +540,59 @@ void MainWindow::on_Chose_file_NeoGeoCDz_clicked()
     Last_Directory = ROM_path_Neo_Geo_CDz;
 }
 
-// Launchers section ***###***
+void MainWindow::on_Chose_file_MSX_Cassete_clicked()
+{
+    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString filename_MSX_Cass = QFileDialog::getOpenFileName(
+                this,
+                tr("Chose Cassete"),
+                QLast_Directory,
+                "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
+                );
+    ROM_path_MSX_Cass = filename_MSX_Cass.toUtf8().constData();
+    Last_Directory = ROM_path_MSX_Cass;
+}
+
+void MainWindow::on_Chose_file_MSX_Cart1_clicked()
+{
+    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString filename_MSX_Cass = QFileDialog::getOpenFileName(
+                this,
+                tr("Chose Cartridge"),
+                QLast_Directory,
+                "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
+                );
+    ROM_path_MSX_Cart1 = filename_MSX_Cass.toUtf8().constData();
+    Last_Directory = ROM_path_MSX_Cart1;
+}
+
+void MainWindow::on_Chose_file_MSX_Cart2_clicked()
+{
+    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString filename_MSX_Cass = QFileDialog::getOpenFileName(
+                this,
+                tr("Chose Cartridge"),
+                QLast_Directory,
+                "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
+                );
+    ROM_path_MSX_Cart2 = filename_MSX_Cass.toUtf8().constData();
+    Last_Directory = ROM_path_MSX_Cart2;
+}
+
+void MainWindow::on_Chose_file_MSX_Floppy_clicked()
+{
+    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString filename_MSX_Cass = QFileDialog::getOpenFileName(
+                this,
+                tr("Chose Floppy"),
+                QLast_Directory,
+                "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
+                );
+    ROM_path_MSX_Floppy = filename_MSX_Cass.toUtf8().constData();
+    Last_Directory = ROM_path_MSX_Floppy;
+}
+
+// Launchers section ***###***//////////////////////////////////////////////////////////////////////////////////////////////
 
 void MainWindow::on_pushButton_launch_MAME_clicked()  // Launcher for MAME
 {
@@ -568,7 +624,7 @@ void MainWindow::on_Launcher_Button_clicked() // Sony Playstation
 
 void MainWindow::on_Launcher_Button_PC88_clicked()
 {
-    LM.PC88(ROM_path_PC88_floppy1, ROM_path_PC88_floppy2, vertical_strech, glsl_shader);
+    LM.PC88(ROM_path_PC88_floppy1, ROM_path_PC88_floppy2, ROM_path_PC88_Cassete, vertical_strech, glsl_shader);
 }
 
 
@@ -706,6 +762,12 @@ void MainWindow::on_Launcher_Button_NeoGeoCDz_clicked()
     LM.SNK_Neo_geo_CDz(ROM_path_Neo_Geo_CDz, vertical_strech, glsl_shader);
 }
 
+void MainWindow::on_Launcher_Button_MSX_clicked()
+{
+    LM.M$_MSX(ROM_path_MSX_Cass, ROM_path_MSX_Cart1, ROM_path_MSX_Cart2, ROM_path_MSX_Floppy, vertical_strech, glsl_shader);
+}
+
+
 // Menu Bar section
 void MainWindow::on_actionAbout_2_triggered()
 {
@@ -716,6 +778,15 @@ void MainWindow::on_actionExit_triggered()
 {
     close();
 }
+
+
+
+
+
+
+
+
+
 
 
 
