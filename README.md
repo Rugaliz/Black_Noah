@@ -7,6 +7,17 @@ The available Linux and Windows binaries dependencies and libs were compiled wit
 
 https://github.com/probonopd/linuxdeployqt
 
+# How to compile
+
+Run compile.sh for an automatic build. 
+
+Or run:
+```shell
+mkdir build
+cmake -S . -B build
+cd build
+make
+```
 
 # How to use
 
