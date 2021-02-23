@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "os_check.h"
+//#include "os_check.h"
 #include "launchmethods.h"
 #include <string>
 #include <iostream>
@@ -92,7 +92,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 // Place method and class imports after Qwidget constructor to avoid compiler errors
 static LaunchMethods LM;           // Import methods to launch various systems
-static OS_Check os_Check;          // Import classes from OS_Check
+//static OS_Check os_Check;          // Import classes from OS_Check
 //static Default_Settings defSet;    //Import classes
 
 

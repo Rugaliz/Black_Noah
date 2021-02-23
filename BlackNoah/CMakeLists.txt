@@ -23,8 +23,8 @@ add_executable(blacknoah
 	main.cpp
 	mainwindow.cpp
 	mainwindow.h
-	os_check.cpp
-	os_check.h
+	#os_check.cpp
+	#os_check.h
 	resourced.qrc
 )
 

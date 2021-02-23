@@ -1,12 +1,12 @@
 #include "launchmethods.h"
 #include "default_settings.h"
-#include "os_check.h"   // debuging
+//#include "os_check.h"   // debuging
 #include <string>
 #include <iostream>
 
 
 Default_Settings defSet;    //Import classe default default_settings
-OS_Check os_Check;          // Import classes from OS_Check
+//OS_Check os_Check;          // Import classes from OS_Check
 std::string PS_memcard1 = "";
 std::string PS_memcard2 = "";
 std::string load_cd = (" -cdrm ");                              // tell mame to load files onto cd tray

@@ -9,15 +9,20 @@ https://github.com/probonopd/linuxdeployqt
 
 # How to compile
 
+## Compiling for Linux
+
 Run compile.sh for an automatic build. 
 
 Or run:
-```shell
+```zsh
 mkdir build
 cmake -S . -B build
 cd build
 make
 ```
+## Compiling for Windows from Linux
+
+Run compileForWindows.sh. This requires mingw64 and some form of mingw64-qt5 depending on your distro.
 
 # How to use
 
