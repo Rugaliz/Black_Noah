@@ -56,7 +56,7 @@ void LaunchMethods::PC88 (std::string ROM_path_PC88_floppy1, std::string ROM_pat
 }
 
 void LaunchMethods::PC98 (std::string ROM_path_PC98_HDD, std::string ROM_path_PC98_CDROM, std::string ROM_path_PC98_floppy1, std::string ROM_path_PC98_floppy2, std::string vertical_strech, std::string glsl_shader) {
-    std::string machine_cmd = "mame pc9821";                // run machine command linux version
+    std::string machine_cmd = "mame pc9821ce2";                // run machine command linux version
     std::string sound_card = " -cbus0 pc9801_86";           // change to board pc9801_86 which contains the improved YM2608 soudncard over the default pc9801_26
 
     std::string load_hdd = (" -hard ");                     // tell mame to load files onto emulated hard drive disk
@@ -104,7 +104,7 @@ void LaunchMethods::MasterSystem(std::string ROM_path_MasterSystem, std::string 
     std::string machine_cmd = "mame sms";                   // run machine command linux version
     std::string file1locale = ROM_path_MasterSystem;        // Path pointed in "ROM1"
     std::string option = vertical_strech + glsl_shader;
-    std::string command = machine_cmd + load_cd + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
+    std::string command = machine_cmd + load_Cartridge + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *MasterSystem_command = command.c_str();
     system(MasterSystem_command);
 }
@@ -113,7 +113,7 @@ void LaunchMethods::MegaDrive (std::string ROM_path_Genesis, std::string region_
     std::string machine_cmd = "mame ";                      // run machine command linux version
     std::string file1locale = ROM_path_Genesis;             // Path pointed in "ROM1"
     std::string option = vertical_strech + glsl_shader;
-    std::string command = machine_cmd + region_MegaDrive + load_cd + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
+    std::string command = machine_cmd + region_MegaDrive + load_Cartridge + "\""+ file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *Genesis_command = command.c_str();
     system(Genesis_command);
 }
