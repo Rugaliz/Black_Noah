@@ -39,7 +39,7 @@
        <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
@@ -52,7 +52,7 @@
            <enum>QTabWidget::Rounded</enum>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tab_MAME">
            <attribute name="title">
@@ -137,28 +137,28 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_X68k_floppy1">
                   <property name="text">
-                   <string>Chose Floppy 1</string>
+                   <string>Floppy 1</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="Chose_file_X68k_floppy2">
                   <property name="text">
-                   <string>Chose Floppy 2</string>
+                   <string>Floppy 2</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="Chose_file_X68k_floppy3">
                   <property name="text">
-                   <string>Chose Floppy 3</string>
+                   <string>Floppy 3</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="Chose_file_X68k_floppy4">
                   <property name="text">
-                   <string>Chose Floppy 4</string>
+                   <string>Floppy 4</string>
                   </property>
                  </widget>
                 </item>
@@ -212,14 +212,14 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_FMTownsMarty_floppy">
                   <property name="text">
-                   <string>Chose Floppy</string>
+                   <string>Floppy</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="Chose_file_FMTownsMarty_CDROM">
                   <property name="text">
-                   <string>Chose CD-ROM</string>
+                   <string>CD-ROM</string>
                   </property>
                  </widget>
                 </item>
@@ -251,7 +251,7 @@ p, li { white-space: pre-wrap; }
            <enum>QTabWidget::Rounded</enum>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="tab_20">
            <attribute name="title">
@@ -289,21 +289,21 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC88_floppy1">
                   <property name="text">
-                   <string>Chose Floppy 1</string>
+                   <string>Floppy 1</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC88_floppy2">
                   <property name="text">
-                   <string>Chose Floppy 2</string>
+                   <string>Floppy 2</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC88_Cassete">
                   <property name="text">
-                   <string>Chose Cassete</string>
+                   <string>Cassete</string>
                   </property>
                  </widget>
                 </item>
@@ -356,21 +356,21 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC98_floppy1">
                   <property name="text">
-                   <string>Chose Floppy 1</string>
+                   <string>Floppy 1</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC98_floppy2">
                   <property name="text">
-                   <string>Chose Floppy 2</string>
+                   <string>Floppy 2</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC98_CDROM">
                   <property name="text">
-                   <string>Chose CD-ROM</string>
+                   <string>CD-ROM</string>
                   </property>
                  </widget>
                 </item>
@@ -430,14 +430,14 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC_Engine_HuCard">
                   <property name="text">
-                   <string>Chose HuCard</string>
+                   <string>HuCard</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC_Engine_CDROM">
                   <property name="text">
-                   <string>Chose CD-ROM</string>
+                   <string>CD-ROM</string>
                   </property>
                  </widget>
                 </item>
@@ -491,7 +491,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC_FX_CDROM">
                   <property name="text">
-                   <string>Chose CD-ROM</string>
+                   <string>CD-ROM</string>
                   </property>
                  </widget>
                 </item>
@@ -520,7 +520,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_5">
           <property name="currentIndex">
-           <number>5</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_13">
            <attribute name="title">
@@ -572,7 +572,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_NES">
                   <property name="text">
-                   <string>Chose Game Cartridge</string>
+                   <string>Cartridge</string>
                   </property>
                  </widget>
                 </item>
@@ -625,7 +625,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_FamicomDisk">
                   <property name="text">
-                   <string>Chose Game Floppy</string>
+                   <string>Floppy</string>
                   </property>
                  </widget>
                 </item>
@@ -678,7 +678,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_SNES">
                   <property name="text">
-                   <string>Chose Game Cartridge</string>
+                   <string>Cartridge</string>
                   </property>
                  </widget>
                 </item>
@@ -731,7 +731,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_N64">
                   <property name="text">
-                   <string>Chose Game Cartridge</string>
+                   <string>Cartridge</string>
                   </property>
                  </widget>
                 </item>
@@ -785,7 +785,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_GBC">
                   <property name="text">
-                   <string>Chose Game Cartridge</string>
+                   <string>Cartridge</string>
                   </property>
                  </widget>
                 </item>
@@ -838,7 +838,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_GBAdvanced">
                   <property name="text">
-                   <string>Chose Game Cartridge</string>
+                   <string>Cartridge</string>
                   </property>
                  </widget>
                 </item>
@@ -954,7 +954,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_4">
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tab_10">
            <attribute name="title">
@@ -992,7 +992,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_MasterSystem">
                   <property name="text">
-                   <string>Chose Game Cartridge</string>
+                   <string>Cartridge</string>
                   </property>
                  </widget>
                 </item>
@@ -1059,7 +1059,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_MegaDrive">
                   <property name="text">
-                   <string>Chose Game Cartridge</string>
+                   <string>Cartridge</string>
                   </property>
                  </widget>
                 </item>
@@ -1126,7 +1126,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_SEGA_CD">
                   <property name="text">
-                   <string>Chose Game Disk</string>
+                   <string>Game Disk</string>
                   </property>
                  </widget>
                 </item>
@@ -1200,7 +1200,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_Saturn">
                   <property name="text">
-                   <string>Chose Game Disk</string>
+                   <string>Game Disk</string>
                   </property>
                  </widget>
                 </item>
@@ -1274,7 +1274,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_Dreamcast">
                   <property name="text">
-                   <string>Chose Game Disk</string>
+                   <string>Game Disk</string>
                   </property>
                  </widget>
                 </item>
@@ -1303,7 +1303,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_7">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_23">
            <attribute name="title">
@@ -1341,7 +1341,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_NGPC">
                   <property name="text">
-                   <string>Chose Game Cartridge</string>
+                   <string>Cartridge</string>
                   </property>
                  </widget>
                 </item>
@@ -1394,7 +1394,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file_NeoGeoCDz">
                   <property name="text">
-                   <string>Chose Game Disk</string>
+                   <string>Game Disk</string>
                   </property>
                  </widget>
                 </item>
@@ -1482,7 +1482,7 @@ p, li { white-space: pre-wrap; }
                 <item>
                  <widget class="QPushButton" name="Chose_file1">
                   <property name="text">
-                   <string>Chose Game Disk</string>
+                   <string>Game Disk</string>
                   </property>
                  </widget>
                 </item>
