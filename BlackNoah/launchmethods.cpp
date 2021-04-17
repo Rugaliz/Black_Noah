@@ -157,9 +157,8 @@ void LaunchMethods::SEGA_Dreamcast (string ROM_path_Dreamcast, string vertical_s
 
 void LaunchMethods::Nintendo_NES (string ROM_path_NES, string vertical_strech, string glsl_shader) {
     string machine_cmd = "mame nes ";                      // run machine command linux version
-    string file1locale = ROM_path_NES;                 // Path pointed in "ROM1"
     string option = vertical_strech + glsl_shader;
-    string command = machine_cmd  + load_Cartridge + "\"" + file1locale + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
+    string command = machine_cmd  + load_Cartridge + "\"" + ROM_path_NES + "\"" + option;    // pass "'" before and after file path to send a proper quoted path to console
     const char *NES_command = command.c_str();
     system(NES_command);
 }

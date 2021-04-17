@@ -808,3 +808,21 @@ void MainWindow::on_treeViewNEC_clicked(const QModelIndex &index)
     QString TreeDir = FileExplorer-> fileInfo(index).absoluteFilePath();
     Selected_File_NEC = TreeDir.toUtf8().constData();
 }
+
+void MainWindow::on_treeViewNintendo_clicked(const QModelIndex &index)
+{
+    QString TreeDir = FileExplorer-> fileInfo(index).absoluteFilePath();
+    Selected_File_Nintendo = TreeDir.toUtf8().constData();
+}
+
+void MainWindow::on_treeViewSega_clicked(const QModelIndex &index)
+{
+    QString TreeDir = FileExplorer-> fileInfo(index).absoluteFilePath();
+    Selected_File_Sega = TreeDir.toUtf8().constData();
+}
+
+void MainWindow::on_treeViewSony_clicked(const QModelIndex &index)
+{
+    QString TreeDir = FileExplorer-> fileInfo(index).absoluteFilePath();
+    Selected_File_Sony = TreeDir.toUtf8().constData();
+}

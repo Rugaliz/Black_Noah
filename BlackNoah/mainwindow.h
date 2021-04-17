@@ -143,6 +143,12 @@ private slots:
 
     void on_treeViewNEC_clicked(const QModelIndex &index);
 
+    void on_treeViewNintendo_clicked(const QModelIndex &index);
+
+    void on_treeViewSega_clicked(const QModelIndex &index);
+
+    void on_treeViewSony_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     QFileSystemModel *FileExplorer;
