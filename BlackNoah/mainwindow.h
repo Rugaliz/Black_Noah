@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFileSystemModel>
 
 namespace Ui {
 class MainWindow;
@@ -20,7 +21,7 @@ private slots:
 
     void on_Launcher_Button_clicked();
 
-    void on_Chose_file1_clicked();
+    void on_Chose_file_PSX_clicked();
 
     void on_pushButton_launch_MAME_clicked();
 
@@ -138,8 +139,14 @@ private slots:
 
     void on_Launcher_Button_MSX_clicked();
 
+    void on_treeViewMisc_clicked(const QModelIndex &index);
+
+    void on_treeViewNEC_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
+    QFileSystemModel *FileExplorer;
+
 };
 
 #endif // MAINWINDOW_H

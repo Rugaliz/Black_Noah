@@ -21,7 +21,7 @@ public:
     void SEGA_MD_CD (string ROM_path_SEGA_CD, string vertical_strech, string glsl_shader, string region_MegaCD);
     void SEGA_Saturn (string ROM_path_Saturn, string vertical_strech, string glsl_shader, string region_Saturn);
     void SEGA_Dreamcast (string ROM_path_Dreamcast, string vertical_strech, string glsl_shader, string region_Dreamcast);
-    void Nintendo_NES (string region_NES,string ROM_path_NES, string vertical_strech, string glsl_shader);
+    void Nintendo_NES (string ROM_path_NES, string vertical_strech, string glsl_shader);
     void Nintendo_FDS (string ROM_path_FDS, string vertical_strech, string glsl_shader);
     void Nintendo_SNES (string ROM_path_SNES, string vertical_strech, string glsl_shader);
     void Nintendo_64 (string ROM_path_N64, string vertical_strech, string glsl_shader);
