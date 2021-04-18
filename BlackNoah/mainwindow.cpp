@@ -6,6 +6,8 @@
 #include <iostream>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QSettings>
+
 using namespace std;
 string cmd = "";
 string filename = "";
@@ -79,20 +81,19 @@ MainWindow::MainWindow(QWidget *parent) :
     // begin checking for toggled buttons
     if (ui->toggle_unevenstretch->isChecked()) {
          vertical_strech = " -unevenstretch";
-
     }
     else {
          vertical_strech = " -nounevenstretch";
     }
     if (ui->toggle_shader->isChecked()) {
          glsl_shader = " -gl_glsl";
-
     }
     else {
          glsl_shader = " -nogl_glsl ";
     }
     // end checking for toggeled buttons
 
+    LoadSettings(); // LoadSettings on startup
     FileExplorer = new QFileSystemModel(this);
     FileExplorer->setRootPath(QString::fromStdString(ROM_Dir));
     ui->treeViewMisc->setModel(FileExplorer);
@@ -124,6 +125,26 @@ MainWindow::~MainWindow()
 
     delete ui;
 }
+
+
+void MainWindow::SaveSettings(){
+    //save
+    QSettings settings("blacknoah.ini",QSettings::IniFormat);
+    settings.beginGroup("MainWindow");
+    std::cout << "Hello world";
+    settings.setValue("ROM_Dir", QString::fromStdString(ROM_Dir));
+    settings.endGroup();
+}
+
+void MainWindow::LoadSettings(){
+    //Load
+    QSettings settings("blacknoah.ini",QSettings::IniFormat);
+    settings.beginGroup("MainWindow");
+    ROM_Dir = settings.value("ROM_Dir").toString().toStdString();
+    settings.endGroup();
+}
+
+
 
 void MainWindow::on_toggle_unevenstretch_changed()
 {
@@ -792,11 +813,23 @@ void MainWindow::on_actionAbout_2_triggered()
 
 void MainWindow::on_actionExit_triggered()
 {
+    SaveSettings();
     close();
 }
 
+void MainWindow::on_actionRomPath_triggered(){
+        QString QLast_Directory = QString::fromStdString(Last_Directory);
+        QString temp = QFileDialog::getExistingDirectory(
+                    this,
+                    tr("Chose Files Directory"),
+                    QLast_Directory,
+                    QFileDialog::ShowDirsOnly  // determines types of files and name to display in window
+                    );
+        ROM_Dir = temp.toUtf8().constData();
+}
 
 
+// File browser
 void MainWindow::on_treeViewMisc_clicked(const QModelIndex &index)
 {
     QString TreeDir = FileExplorer-> fileInfo(index).absoluteFilePath();

@@ -4,6 +4,7 @@
 #include "launchmethods.h"
 #include <QApplication>
 #include <QIcon>
+#include <QDesktopWidget>
 
 //static OS_Check os_Check;          // Import classes from OS_Check
 

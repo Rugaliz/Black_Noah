@@ -1295,6 +1295,7 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionRomPath"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuVideo">
@@ -1357,6 +1358,14 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="toolTip">
     <string>If enabled mame uses filters set in its ini</string>
+   </property>
+  </action>
+  <action name="actionRomPath">
+   <property name="text">
+    <string>Set ROM path</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
    </property>
   </action>
  </widget>

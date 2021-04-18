@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QFileSystemModel>
+#include <QtCore>
+#include <QSettings>
 
 namespace Ui {
 class MainWindow;
@@ -15,6 +17,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
 
 
 private slots:
@@ -48,6 +51,8 @@ private slots:
     void on_actionAbout_2_triggered();
 
     void on_actionExit_triggered();
+
+    void on_actionRomPath_triggered();
 
     void on_Chose_file_MegaDrive_clicked();
 
@@ -152,6 +157,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QFileSystemModel *FileExplorer;
+    void SaveSettings();
+    void LoadSettings();
 
 };
 
