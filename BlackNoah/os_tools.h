@@ -1,5 +1,5 @@
-#ifndef OS_CHECK_H
-#define OS_CHECK_H
+#ifndef OS_TOOLS_H
+#define OS_TOOLS_H
 #include <string>
 using namespace std;
 class OS_Check

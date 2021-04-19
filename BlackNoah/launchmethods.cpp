@@ -1,12 +1,10 @@
 #include "launchmethods.h"
-#include "default_settings.h"
-#include "os_check.h"   // debuging
+#include "os_tools.h"   // debuging
 #include <string>
 #include <iostream>
 #include <regex>
 static OS_Check OSC;
 using namespace std;
-Default_Settings defSet;    //Import classe default default_settings
 //OS_Check os_Check;          // Import classes from OS_Check
 string PS_memcard1 = "";
 string PS_memcard2 = "";

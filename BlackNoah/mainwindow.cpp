@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-//#include "os_check.h"
 #include "launchmethods.h"
 #include <string>
 #include <iostream>
@@ -9,60 +8,59 @@
 #include <QSettings>
 
 using namespace std;
-string cmd = "";
-string filename = "";
-string ROM_path_PSX = "";
-string ROM_path_Saturn = "";
-string ROM_path_SNES = "";
-string ROM_path_NES = "";
-string ROM_path_FDS = "";
-string ROM_path_N64 = "";
-string ROM_path_GBC = "";
-string ROM_path_GBA = "";
-string ROM_path_MasterSystem = "";
-string ROM_path_SEGA_CD = "";
-string ROM_path_Dreamcast = "";
-string ROM_path_PC_Engine_HuCards = "";
-string ROM_path_PC_Engine_CDROM = "";
-string ROM_path_PC_FX_CDROM = "";
-string ROM_path_Genesis = "";
-string ROM_path_X68k_floppy1 = "";
-string ROM_path_X68k_floppy2 = "";
-string ROM_path_X68k_floppy3 = "";
-string ROM_path_X68k_floppy4 = "";
-string ROM_path_PC88_floppy1 = "";
-string ROM_path_PC88_floppy2 = "";
-string ROM_path_PC88_Cassete = "";
-string ROM_path_PC98_floppy1 = "";
-string ROM_path_PC98_floppy2 = "";
-string ROM_path_PC98_CDROM = "";
-string ROM_path_PC98_HDD = "";
-string ROM_path_FMMarty_floppy = "";
-string ROM_path_FMMarty_CDROM = "";
-string ROM_path_NGPC = "";
-string ROM_path_Neo_Geo_CDz = "";
-string ROM_path_MSX_Cass = "";
-string ROM_path_MSX_Cart1 = "";
-string ROM_path_MSX_Cart2 = "";
-string ROM_path_MSX_Floppy = "";
-string Shader = "";
+//string cmd;
+//string filename = "";
+string ROM_path_PSX;
+string ROM_path_Saturn;
+string ROM_path_SNES;
+string ROM_path_NES;
+string ROM_path_FDS;
+string ROM_path_N64;
+string ROM_path_GBC;
+string ROM_path_GBA ;
+string ROM_path_MasterSystem;
+string ROM_path_SEGA_CD;
+string ROM_path_Dreamcast;
+string ROM_path_PC_Engine_HuCards;
+string ROM_path_PC_Engine_CDROM;
+string ROM_path_PC_FX_CDROM;
+string ROM_path_Genesis;
+string ROM_path_X68k_floppy1;
+string ROM_path_X68k_floppy2;
+string ROM_path_X68k_floppy3;
+string ROM_path_X68k_floppy4;
+string ROM_path_PC88_floppy1;
+string ROM_path_PC88_floppy2;
+string ROM_path_PC88_Cassete;
+string ROM_path_PC98_floppy1;
+string ROM_path_PC98_floppy2;
+string ROM_path_PC98_CDROM;
+string ROM_path_PC98_HDD;
+string ROM_path_FMMarty_floppy;
+string ROM_path_FMMarty_CDROM;
+string ROM_path_NGPC;
+string ROM_path_Neo_Geo_CDz;
+string ROM_path_MSX_Cass;
+string ROM_path_MSX_Cart1;
+string ROM_path_MSX_Cart2;
+string ROM_path_MSX_Floppy;
+//string Shader = "";
 string region_PSX = "";
-string region_MegaCD = "";
-string filter = "";
-string region_Saturn = "";
-string region_Dreamcast = "";
-string region_MegaDrive = "";
-string region_NES = "";
-string vertical_strech = "";
-string glsl_shader = "";
-string Last_Directory = "/home" ;
-string ROM_Dir = "/mnt/5d177ccc-1e73-4fe0-bddb-35050aa0b254/ROMs";
-string Selected_File_Misc = "";
-string Selected_File_NEC = "";
-string Selected_File_Nintendo = "";
-string Selected_File_Sega = "";
-string Selected_File_Sony = "";
-
+string region_MegaCD;
+//string filter;
+string region_Saturn;
+string region_Dreamcast;
+string region_MegaDrive;
+string region_NES;
+string vertical_strech;
+string glsl_shader;
+//string Last_Directory = "/home" ;
+string ROM_Dir;
+string Selected_File_Misc;
+string Selected_File_NEC;
+string Selected_File_Nintendo;
+string Selected_File_Sega;
+string Selected_File_Sony;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -71,6 +69,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    Default_Settings();
     ui->setupUi(this);
     ui->toggle_unevenstretch->setChecked(false);
+    ui->toggle_shader->setChecked(false);
     ui->radioButton_NTSC_USA->setChecked(true);             // set radiobutton of region set by default to ntsc
     ui->radioButton_NTSC_USA_Saturn->setChecked(true);      // set radiobutton of region set by default to ntsc
     ui->radioButton_NTSC_USA_MegaCD->setChecked(true);      // set radiobutton of region set by default to ntsc
@@ -78,22 +77,23 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->radioButton_NTSC_USA_MegaDrive->setChecked(true);   // set radiobutton of region set by default to ntsc
     this->setWindowTitle("Black Noah");                     // change window title
 
+    LoadSettings(); // LoadSettings on startup
     // begin checking for toggled buttons
-    if (ui->toggle_unevenstretch->isChecked()) {
-         vertical_strech = " -unevenstretch";
+    if (vertical_strech == " -unevenstretch") {
+         ui->toggle_unevenstretch->setChecked(true);
     }
     else {
          vertical_strech = " -nounevenstretch";
+         ui->toggle_unevenstretch->setChecked(false);
     }
-    if (ui->toggle_shader->isChecked()) {
-         glsl_shader = " -gl_glsl";
+    if (glsl_shader == " -gl_glsl") {
+        ui->toggle_shader->setChecked(true);
     }
     else {
          glsl_shader = " -nogl_glsl ";
+         ui->toggle_shader->setChecked(false);
     }
     // end checking for toggeled buttons
-
-    LoadSettings(); // LoadSettings on startup
     FileExplorer = new QFileSystemModel(this);
     FileExplorer->setRootPath(QString::fromStdString(ROM_Dir));
     ui->treeViewMisc->setModel(FileExplorer);
@@ -126,25 +126,23 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
 void MainWindow::SaveSettings(){
-    //save
     QSettings settings("blacknoah.ini",QSettings::IniFormat);
-    settings.beginGroup("MainWindow");
-    std::cout << "Hello world";
+    settings.beginGroup("Settings");
     settings.setValue("ROM_Dir", QString::fromStdString(ROM_Dir));
+    settings.setValue("Shader", QString::fromStdString(glsl_shader));
+    settings.setValue("Vertical_Stretch", QString::fromStdString(vertical_strech));
     settings.endGroup();
 }
 
 void MainWindow::LoadSettings(){
-    //Load
     QSettings settings("blacknoah.ini",QSettings::IniFormat);
-    settings.beginGroup("MainWindow");
+    settings.beginGroup("Settings");
     ROM_Dir = settings.value("ROM_Dir").toString().toStdString();
+    glsl_shader = settings.value("Shader").toString().toStdString();
+    vertical_strech = settings.value("Vertical_Stretch").toString().toStdString();
     settings.endGroup();
 }
-
-
 
 void MainWindow::on_toggle_unevenstretch_changed()
 {
@@ -180,7 +178,7 @@ void MainWindow::on_Chose_file_PSX_clicked()
 //                "Compressed hundks of data (*.chd);;Cue Sheet (*.cue);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_PSX = Selected_File_Sony;//filename.toUtf8().constData();
-    Last_Directory = ROM_path_PSX;
+//    Last_Directory = ROM_path_PSX;
     //QMessageBox::information(this,tr("File Name"),filename);
 }
 
@@ -195,7 +193,7 @@ void MainWindow::on_Chose_file_X68k_floppy1_clicked()
 //                "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_X68k_floppy1 = Selected_File_Misc;//filename_X68k_floppy1.toUtf8().constData();
-    Last_Directory = ROM_path_X68k_floppy1;
+//    Last_Directory = ROM_path_X68k_floppy1;
 }
 
 void MainWindow::on_Chose_file_X68k_floppy2_clicked()
@@ -209,7 +207,7 @@ void MainWindow::on_Chose_file_X68k_floppy2_clicked()
 //                "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_X68k_floppy2 = Selected_File_Misc;//filename_X68k_floppy1.toUtf8().constData();
-    Last_Directory = ROM_path_X68k_floppy2;
+//    Last_Directory = ROM_path_X68k_floppy2;
 }
 
 void MainWindow::on_Chose_file_X68k_floppy3_clicked()
@@ -223,7 +221,7 @@ void MainWindow::on_Chose_file_X68k_floppy3_clicked()
 //                "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_X68k_floppy3 = Selected_File_Misc; //filename_X68k_floppy1.toUtf8().constData();
-    Last_Directory = ROM_path_X68k_floppy3;
+//    Last_Directory = ROM_path_X68k_floppy3;
 }
 
 void MainWindow::on_Chose_file_X68k_floppy4_clicked()
@@ -237,7 +235,7 @@ void MainWindow::on_Chose_file_X68k_floppy4_clicked()
 //                "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_X68k_floppy4 = Selected_File_Misc;//filename_X68k_floppy1.toUtf8().constData();
-    Last_Directory = ROM_path_X68k_floppy4;
+//    Last_Directory = ROM_path_X68k_floppy4;
 }
 
 void MainWindow::on_Chose_file_FMTownsMarty_floppy_clicked()
@@ -250,7 +248,7 @@ void MainWindow::on_Chose_file_FMTownsMarty_floppy_clicked()
 //                "Floppy disk image (*.fdi *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_FMMarty_floppy = Selected_File_Misc;//filename_FMMarty_Floppy.toUtf8().constData();
-    Last_Directory = ROM_path_FMMarty_floppy;
+//    Last_Directory = ROM_path_FMMarty_floppy;
 }
 
 void MainWindow::on_Chose_file_FMTownsMarty_CDROM_clicked()
@@ -263,7 +261,7 @@ void MainWindow::on_Chose_file_FMTownsMarty_CDROM_clicked()
 //                "Compressed hunk of data (*.chd);;Disk image (*.iso);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_FMMarty_CDROM = Selected_File_Misc;//filename_FMMarty_CDROM.toUtf8().constData();
-    Last_Directory = ROM_path_FMMarty_CDROM;
+//    Last_Directory = ROM_path_FMMarty_CDROM;
 }
 
 void MainWindow::on_Chose_file_NGPC_clicked()
@@ -276,7 +274,7 @@ void MainWindow::on_Chose_file_NGPC_clicked()
 //                "Zip files (*.zip);;Bin files (*.bin);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_NGPC = Selected_File_Misc;//filename_NGPC.toUtf8().constData();
-    Last_Directory = ROM_path_NGPC;
+//    Last_Directory = ROM_path_NGPC;
 }
 
 void MainWindow::on_Chose_file_NeoGeoCDz_clicked()
@@ -289,7 +287,7 @@ void MainWindow::on_Chose_file_NeoGeoCDz_clicked()
 //                "Compressed Hunk of Data(*.chd);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_Neo_Geo_CDz = Selected_File_Misc;//filename_Neo_Geo_CDz.toUtf8().constData();
-    Last_Directory = ROM_path_Neo_Geo_CDz;
+//    Last_Directory = ROM_path_Neo_Geo_CDz;
 }
 
 void MainWindow::on_Chose_file_PC_Engine_HuCard_clicked()
@@ -304,7 +302,7 @@ void MainWindow::on_Chose_file_PC_Engine_HuCard_clicked()
 //                );
     ROM_path_PC_Engine_HuCards = Selected_File_NEC;//filename.toUtf8().constData();
     //QMessageBox::information(this,tr("File Name"),filename);
-    Last_Directory = ROM_path_PC_Engine_HuCards;
+//    Last_Directory = ROM_path_PC_Engine_HuCards;
 }
 
 void MainWindow::on_Chose_file_PC_Engine_CDROM_clicked()
@@ -319,7 +317,7 @@ void MainWindow::on_Chose_file_PC_Engine_CDROM_clicked()
 //                );
     ROM_path_PC_Engine_CDROM = Selected_File_NEC;//filename.toUtf8().constData();
     //QMessageBox::information(this,tr("File Name"),filename);
-    Last_Directory = ROM_path_PC_Engine_CDROM;
+//    Last_Directory = ROM_path_PC_Engine_CDROM;
 }
 
 void MainWindow::on_Chose_file_PC_FX_CDROM_clicked()
@@ -333,7 +331,7 @@ void MainWindow::on_Chose_file_PC_FX_CDROM_clicked()
 //                );
     ROM_path_PC_FX_CDROM = Selected_File_NEC;//filename.toUtf8().constData();
     //QMessageBox::information(this,tr("File Name"),filename);
-    Last_Directory = ROM_path_PC_FX_CDROM;
+//    Last_Directory = ROM_path_PC_FX_CDROM;
 }
 
 void MainWindow::on_Chose_file_PC88_floppy1_clicked()
@@ -346,7 +344,7 @@ void MainWindow::on_Chose_file_PC88_floppy1_clicked()
 //                "Floppy disk image (*.d88);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_PC88_floppy1 =  Selected_File_NEC;//filename_PC88_floppy1.toUtf8().constData();
-    Last_Directory = ROM_path_PC88_floppy1;
+//    Last_Directory = ROM_path_PC88_floppy1;
 }
 
 void MainWindow::on_Chose_file_PC88_floppy2_clicked()
@@ -359,7 +357,7 @@ void MainWindow::on_Chose_file_PC88_floppy2_clicked()
 //                "Floppy disk image (*.d88);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_PC88_floppy2 =  Selected_File_NEC;//filename_PC88_floppy2.toUtf8().constData();
-    Last_Directory = ROM_path_PC88_floppy2;
+//    Last_Directory = ROM_path_PC88_floppy2;
 }
 
 void MainWindow::on_Chose_file_PC88_Cassete_clicked()
@@ -372,7 +370,7 @@ void MainWindow::on_Chose_file_PC88_Cassete_clicked()
 //                "Cassete image (*.d88);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_PC88_Cassete =  Selected_File_NEC;//filename_PC88_cassete.toUtf8().constData();
-    Last_Directory = ROM_path_PC88_Cassete;
+//    Last_Directory = ROM_path_PC88_Cassete;
 }
 
 
@@ -387,7 +385,7 @@ void MainWindow::on_Chose_file_PC98_floppy1_clicked()
 //                "Floppy disk image (*.fdi *.fdd *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_PC98_floppy1 =  Selected_File_NEC;//filename_PC98_floppy1.toUtf8().constData();
-    Last_Directory = ROM_path_PC98_floppy1;
+//    Last_Directory = ROM_path_PC98_floppy1;
 
 }
 
@@ -401,7 +399,7 @@ void MainWindow::on_Chose_file_PC98_floppy2_clicked()
 //                "Floppy disk image (*.fdi *.fdd *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_PC98_floppy2 =  Selected_File_NEC;//filename_PC98_floppy2.toUtf8().constData();
-    Last_Directory = ROM_path_PC98_floppy2;
+//    Last_Directory = ROM_path_PC98_floppy2;
 }
 
 void MainWindow::on_Chose_file_PC98_CDROM_clicked()
@@ -414,7 +412,7 @@ void MainWindow::on_Chose_file_PC98_CDROM_clicked()
 //                "Compressed hunk of data (*.chd);;Disk image (*.iso);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_PC98_CDROM =  Selected_File_NEC;//filename_PC98_CDROM.toUtf8().constData();
-    Last_Directory = ROM_path_PC98_CDROM;
+//    Last_Directory = ROM_path_PC98_CDROM;
 }
 
 void MainWindow::on_Chose_file_PC98_HDD_clicked()
@@ -427,7 +425,7 @@ void MainWindow::on_Chose_file_PC98_HDD_clicked()
 //                "Hard Disk Image (*.hdi);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_PC98_HDD =  Selected_File_NEC;//filename_PC98_HDD.toUtf8().constData();
-    Last_Directory = ROM_path_PC98_HDD;
+//    Last_Directory = ROM_path_PC98_HDD;
 }
 
 void MainWindow::on_Chose_file_NES_clicked()
@@ -441,7 +439,7 @@ void MainWindow::on_Chose_file_NES_clicked()
 //                "Zip files (*.zip);;Cartridge files (*.nes);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_NES = Selected_File_Nintendo;//filename_NES.toUtf8().constData();
-    Last_Directory = ROM_path_NES;
+//    Last_Directory = ROM_path_NES;
 }
 
 void MainWindow::on_Chose_file_FamicomDisk_clicked()
@@ -454,7 +452,7 @@ void MainWindow::on_Chose_file_FamicomDisk_clicked()
 //                "Zip files (*.zip);;Floppy disk files (*.fds);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_FDS = Selected_File_Nintendo;//filename_FDS.toUtf8().constData();
-    Last_Directory = ROM_path_FDS;
+//    Last_Directory = ROM_path_FDS;
 }
 
 void MainWindow::on_Chose_file_SNES_clicked()
@@ -468,7 +466,7 @@ void MainWindow::on_Chose_file_SNES_clicked()
 //                "Zip files (*.zip);;Cartridge files (*.smc);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_SNES = Selected_File_Nintendo;//filename_SNES.toUtf8().constData();
-    Last_Directory = ROM_path_SNES;
+//    Last_Directory = ROM_path_SNES;
 }
 
 void MainWindow::on_Chose_file_GBC_clicked()
@@ -482,7 +480,7 @@ void MainWindow::on_Chose_file_GBC_clicked()
 //                "Zip files (*.zip);;Cartridge files (*.gbc);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_GBC = Selected_File_Nintendo;//filename_GBC.toUtf8().constData();
-    Last_Directory = ROM_path_GBC;
+//    Last_Directory = ROM_path_GBC;
 }
 
 void MainWindow::on_Chose_file_GBAdvanced_clicked()
@@ -495,7 +493,7 @@ void MainWindow::on_Chose_file_GBAdvanced_clicked()
 //                "Zip files (*.zip);;Cartridge files (*.gba);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_GBA = Selected_File_Nintendo;//filename_GBA.toUtf8().constData();
-    Last_Directory = ROM_path_GBA;
+//    Last_Directory = ROM_path_GBA;
 }
 
 void MainWindow::on_Chose_file_N64_clicked()
@@ -508,7 +506,7 @@ void MainWindow::on_Chose_file_N64_clicked()
 //                "Zip files (*.zip);;Cartridge files (*.z64);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_N64 = Selected_File_Nintendo;//filename_N64.toUtf8().constData();
-    Last_Directory = ROM_path_N64;
+//    Last_Directory = ROM_path_N64;
 }
 
 void MainWindow::on_Chose_file_MasterSystem_clicked()
@@ -522,7 +520,7 @@ void MainWindow::on_Chose_file_MasterSystem_clicked()
 //                "Zip files (*.zip);;Cartridge files (*.sms);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_MasterSystem = Selected_File_Sega;//filename_MasterSystem.toUtf8().constData();
-    Last_Directory = ROM_path_MasterSystem;
+//    Last_Directory = ROM_path_MasterSystem;
 }
 
 
@@ -537,7 +535,7 @@ void MainWindow::on_Chose_file_MegaDrive_clicked()
 //                "Zip files (*.zip);;Cartridge files (*.md);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_Genesis = Selected_File_Sega;//filename_Genesis.toUtf8().constData();
-    Last_Directory = ROM_path_Genesis;
+//    Last_Directory = ROM_path_Genesis;
 
 }
 
@@ -552,7 +550,7 @@ void MainWindow::on_Chose_file_SEGA_CD_clicked()
 //                "Compressed Hunk of Data(*.chd);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_SEGA_CD = Selected_File_Sega;//filename_SEGA_CD.toUtf8().constData();
-    Last_Directory = ROM_path_SEGA_CD;
+//    Last_Directory = ROM_path_SEGA_CD;
 }
 
 void MainWindow::on_Chose_file_Saturn_clicked()
@@ -566,7 +564,7 @@ void MainWindow::on_Chose_file_Saturn_clicked()
 //                "Compressed hundks of data (*.chd);;Cue Sheet (*.cue);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_Saturn = Selected_File_Sega;//filename_saturn.toUtf8().constData();
-    Last_Directory = ROM_path_Saturn;
+//    Last_Directory = ROM_path_Saturn;
 }
 
 void MainWindow::on_Chose_file_Dreamcast_clicked()
@@ -580,14 +578,14 @@ void MainWindow::on_Chose_file_Dreamcast_clicked()
 //                "Compressed hundks of data (*.chd);;Cue Sheet (*.cue);;All files (*.*)"  // determines types of files and name to display in window
 //                );
     ROM_path_Dreamcast = Selected_File_Sega;//filename_Dreamcast.toUtf8().constData();
-    Last_Directory = ROM_path_Dreamcast;
+//    Last_Directory = ROM_path_Dreamcast;
 }
 
 
 
 void MainWindow::on_Chose_file_MSX_Cassete_clicked()
 {
-    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString QLast_Directory = QString::fromStdString(ROM_Dir);
     QString filename_MSX_Cass = QFileDialog::getOpenFileName(
                 this,
                 tr("Chose Cassete"),
@@ -595,12 +593,12 @@ void MainWindow::on_Chose_file_MSX_Cassete_clicked()
                 "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_MSX_Cass = filename_MSX_Cass.toUtf8().constData();
-    Last_Directory = ROM_path_MSX_Cass;
+//    Last_Directory = ROM_path_MSX_Cass;
 }
 
 void MainWindow::on_Chose_file_MSX_Cart1_clicked()
 {
-    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString QLast_Directory = QString::fromStdString(ROM_Dir);
     QString filename_MSX_Cass = QFileDialog::getOpenFileName(
                 this,
                 tr("Chose Cartridge"),
@@ -608,12 +606,12 @@ void MainWindow::on_Chose_file_MSX_Cart1_clicked()
                 "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_MSX_Cart1 = filename_MSX_Cass.toUtf8().constData();
-    Last_Directory = ROM_path_MSX_Cart1;
+//    Last_Directory = ROM_path_MSX_Cart1;
 }
 
 void MainWindow::on_Chose_file_MSX_Cart2_clicked()
 {
-    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString QLast_Directory = QString::fromStdString(ROM_Dir);
     QString filename_MSX_Cass = QFileDialog::getOpenFileName(
                 this,
                 tr("Chose Cartridge"),
@@ -621,12 +619,12 @@ void MainWindow::on_Chose_file_MSX_Cart2_clicked()
                 "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_MSX_Cart2 = filename_MSX_Cass.toUtf8().constData();
-    Last_Directory = ROM_path_MSX_Cart2;
+//    Last_Directory = ROM_path_MSX_Cart2;
 }
 
 void MainWindow::on_Chose_file_MSX_Floppy_clicked()
 {
-    QString QLast_Directory = QString::fromStdString(Last_Directory);
+    QString QLast_Directory = QString::fromStdString(ROM_Dir);
     QString filename_MSX_Cass = QFileDialog::getOpenFileName(
                 this,
                 tr("Chose Floppy"),
@@ -634,7 +632,7 @@ void MainWindow::on_Chose_file_MSX_Floppy_clicked()
                 "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_MSX_Floppy = filename_MSX_Cass.toUtf8().constData();
-    Last_Directory = ROM_path_MSX_Floppy;
+//    Last_Directory = ROM_path_MSX_Floppy;
 }
 
 // Launchers section ***###***//////////////////////////////////////////////////////////////////////////////////////////////
@@ -818,14 +816,19 @@ void MainWindow::on_actionExit_triggered()
 }
 
 void MainWindow::on_actionRomPath_triggered(){
-        QString QLast_Directory = QString::fromStdString(Last_Directory);
         QString temp = QFileDialog::getExistingDirectory(
                     this,
                     tr("Chose Files Directory"),
-                    QLast_Directory,
+                    "",
                     QFileDialog::ShowDirsOnly  // determines types of files and name to display in window
                     );
         ROM_Dir = temp.toUtf8().constData();
+        SaveSettings();
+        ui->treeViewMisc->setRootIndex(FileExplorer->setRootPath(QString::fromStdString(ROM_Dir)));
+        ui->treeViewNEC->setRootIndex(FileExplorer->setRootPath(QString::fromStdString(ROM_Dir)));
+        ui->treeViewNintendo->setRootIndex(FileExplorer->setRootPath(QString::fromStdString(ROM_Dir)));
+        ui->treeViewSega->setRootIndex(FileExplorer->setRootPath(QString::fromStdString(ROM_Dir)));
+        ui->treeViewSony->setRootIndex(FileExplorer->setRootPath(QString::fromStdString(ROM_Dir)));
 }
 
 

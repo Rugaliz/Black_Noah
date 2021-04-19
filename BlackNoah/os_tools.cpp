@@ -1,4 +1,4 @@
-#include "os_check.h"
+#include "os_tools.h"
 #ifdef linux // Checks if running on a Linux system
 static bool Linux_OS = true;
 #endif

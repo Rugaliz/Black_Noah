@@ -25,17 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        default_settings.cpp \
         launchmethods.cpp \
         main.cpp \
         mainwindow.cpp \
-        os_check.cpp
+        os_tools.cpp
 
 HEADERS += \
-        default_settings.h \
         launchmethods.h \
         mainwindow.h \
-        os_check.h
+        os_tools.h
 
 FORMS += \
         mainwindow.ui

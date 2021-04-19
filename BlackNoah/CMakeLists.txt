@@ -16,15 +16,13 @@ endif()
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 add_executable(blacknoah
-	default_settings.cpp
-	default_settings.h
 	launchmethods.cpp
 	launchmethods.h
 	main.cpp
 	mainwindow.cpp
 	mainwindow.h
-	os_check.cpp
-	os_check.h
+	os_tools.cpp
+	os_tools.h
 	resourced.qrc
 )
 
