@@ -8,8 +8,6 @@
 #include <QSettings>
 
 using namespace std;
-//string cmd;
-//string filename = "";
 string ROM_path_PSX;
 string ROM_path_Saturn;
 string ROM_path_SNES;
@@ -45,7 +43,7 @@ string ROM_path_MSX_Cart1;
 string ROM_path_MSX_Cart2;
 string ROM_path_MSX_Floppy;
 //string Shader = "";
-string region_PSX = "";
+string region_PSX;
 string region_MegaCD;
 //string filter;
 string region_Saturn;
@@ -53,7 +51,13 @@ string region_Dreamcast;
 string region_MegaDrive;
 string region_NES;
 string vertical_strech;
+string X68K_shader;
+string GBC_shader;
 string glsl_shader;
+string shader_none = " -bgfx_screen_chains none";
+string shader_crt_geom = " -bgfx_screen_chains crt-geom";
+string shader_crt_geom_deluxe = " -bgfx_screen_chains crt-geom-deluxe";
+string shader_lcd_grid = " -bgfx_screen_chains lcd-grid";
 //string Last_Directory = "/home" ;
 string ROM_Dir;
 string Selected_File_Misc;
@@ -116,8 +120,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 // Place method and class imports after Qwidget constructor to avoid compiler errors
 static LaunchMethods LM;           // Import methods to launch various systems
-//static OS_Check os_Check;          // Import classes from OS_Check
-//static Default_Settings defSet;    //Import classes
+//static OS_Tools OST;
+
 
 
 MainWindow::~MainWindow()
@@ -170,399 +174,214 @@ void MainWindow::on_toggle_shader_changed()
 void MainWindow::on_Chose_file_PSX_clicked()
 //chosing files and saving file path (Playstation)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Compressed hundks of data (*.chd);;Cue Sheet (*.cue);;All files (*.*)"  // determines types of files and name to display in window
-//                );
-    ROM_path_PSX = Selected_File_Sony;//filename.toUtf8().constData();
-//    Last_Directory = ROM_path_PSX;
-    //QMessageBox::information(this,tr("File Name"),filename);
+
+    ROM_path_PSX = Selected_File_Sony;
+
 }
 
 void MainWindow::on_Chose_file_X68k_floppy1_clicked()
 //chosing files and saving file path (X68k)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_X68k_floppy1 = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
-//                );
-    ROM_path_X68k_floppy1 = Selected_File_Misc;//filename_X68k_floppy1.toUtf8().constData();
-//    Last_Directory = ROM_path_X68k_floppy1;
+
+    ROM_path_X68k_floppy1 = Selected_File_Misc;
 }
 
 void MainWindow::on_Chose_file_X68k_floppy2_clicked()
 //chosing files and saving file path (X68k)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_X68k_floppy1 = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
-//                );
-    ROM_path_X68k_floppy2 = Selected_File_Misc;//filename_X68k_floppy1.toUtf8().constData();
-//    Last_Directory = ROM_path_X68k_floppy2;
+
+    ROM_path_X68k_floppy2 = Selected_File_Misc;
 }
 
 void MainWindow::on_Chose_file_X68k_floppy3_clicked()
 //chosing files and saving file path (X68k)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_X68k_floppy1 = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
-//                );
-    ROM_path_X68k_floppy3 = Selected_File_Misc; //filename_X68k_floppy1.toUtf8().constData();
-//    Last_Directory = ROM_path_X68k_floppy3;
+
+    ROM_path_X68k_floppy3 = Selected_File_Misc;
+
 }
 
 void MainWindow::on_Chose_file_X68k_floppy4_clicked()
 //chosing files and saving file path (X68k)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_X68k_floppy1 = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Floppy disk image (*.dim);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_X68k_floppy4 = Selected_File_Misc;//filename_X68k_floppy1.toUtf8().constData();
-//    Last_Directory = ROM_path_X68k_floppy4;
 }
 
 void MainWindow::on_Chose_file_FMTownsMarty_floppy_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_FMMarty_Floppy = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Floppy disk image (*.fdi *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_FMMarty_floppy = Selected_File_Misc;//filename_FMMarty_Floppy.toUtf8().constData();
-//    Last_Directory = ROM_path_FMMarty_floppy;
 }
 
 void MainWindow::on_Chose_file_FMTownsMarty_CDROM_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_FMMarty_CDROM = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Compressed hunk of data (*.chd);;Disk image (*.iso);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_FMMarty_CDROM = Selected_File_Misc;//filename_FMMarty_CDROM.toUtf8().constData();
-//    Last_Directory = ROM_path_FMMarty_CDROM;
+
 }
 
 void MainWindow::on_Chose_file_NGPC_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_NGPC = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Zip files (*.zip);;Bin files (*.bin);;All files (*.*)"  // determines types of files and name to display in window
-//                );
-    ROM_path_NGPC = Selected_File_Misc;//filename_NGPC.toUtf8().constData();
-//    Last_Directory = ROM_path_NGPC;
+
+    ROM_path_NGPC = Selected_File_Misc;
+
 }
 
 void MainWindow::on_Chose_file_NeoGeoCDz_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_Neo_Geo_CDz = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Compressed Hunk of Data(*.chd);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_Neo_Geo_CDz = Selected_File_Misc;//filename_Neo_Geo_CDz.toUtf8().constData();
-//    Last_Directory = ROM_path_Neo_Geo_CDz;
 }
 
 void MainWindow::on_Chose_file_PC_Engine_HuCard_clicked()
 //chosing files and saving file path (PC Engine HuCards)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Zipped archive (*.zip);;HuCard files (*.pce);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_PC_Engine_HuCards = Selected_File_NEC;//filename.toUtf8().constData();
-    //QMessageBox::information(this,tr("File Name"),filename);
-//    Last_Directory = ROM_path_PC_Engine_HuCards;
+
 }
 
 void MainWindow::on_Chose_file_PC_Engine_CDROM_clicked()
 //chosing files and saving file path (PC Engine CDROMs)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Compressed hunks of data (*.chd);;Cue Sheet (*.cue);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_PC_Engine_CDROM = Selected_File_NEC;//filename.toUtf8().constData();
-    //QMessageBox::information(this,tr("File Name"),filename);
-//    Last_Directory = ROM_path_PC_Engine_CDROM;
+
 }
 
 void MainWindow::on_Chose_file_PC_FX_CDROM_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Compressed hunks of data (*.chd);;Cue Sheet (*.cue);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_PC_FX_CDROM = Selected_File_NEC;//filename.toUtf8().constData();
-    //QMessageBox::information(this,tr("File Name"),filename);
-//    Last_Directory = ROM_path_PC_FX_CDROM;
+
 }
 
 void MainWindow::on_Chose_file_PC88_floppy1_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_PC88_floppy1 = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Floppy disk image (*.d88);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_PC88_floppy1 =  Selected_File_NEC;//filename_PC88_floppy1.toUtf8().constData();
-//    Last_Directory = ROM_path_PC88_floppy1;
+
 }
 
 void MainWindow::on_Chose_file_PC88_floppy2_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_PC88_floppy2 = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Floppy disk image (*.d88);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_PC88_floppy2 =  Selected_File_NEC;//filename_PC88_floppy2.toUtf8().constData();
-//    Last_Directory = ROM_path_PC88_floppy2;
+
 }
 
 void MainWindow::on_Chose_file_PC88_Cassete_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_PC88_cassete = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Cassete image (*.d88);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_PC88_Cassete =  Selected_File_NEC;//filename_PC88_cassete.toUtf8().constData();
-//    Last_Directory = ROM_path_PC88_Cassete;
+
 }
 
 
 void MainWindow::on_Chose_file_PC98_floppy1_clicked()
 //chosing files and saving file path (PC-98)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_PC98_floppy1 = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Floppy disk image (*.fdi *.fdd *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_PC98_floppy1 =  Selected_File_NEC;//filename_PC98_floppy1.toUtf8().constData();
-//    Last_Directory = ROM_path_PC98_floppy1;
+
 
 }
 
 void MainWindow::on_Chose_file_PC98_floppy2_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_PC98_floppy2 = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Floppy disk image (*.fdi *.fdd *.FDI *.hdm *.d88);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_PC98_floppy2 =  Selected_File_NEC;//filename_PC98_floppy2.toUtf8().constData();
-//    Last_Directory = ROM_path_PC98_floppy2;
+
 }
 
 void MainWindow::on_Chose_file_PC98_CDROM_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_PC98_CDROM = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Compressed hunk of data (*.chd);;Disk image (*.iso);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_PC98_CDROM =  Selected_File_NEC;//filename_PC98_CDROM.toUtf8().constData();
-//    Last_Directory = ROM_path_PC98_CDROM;
+
 }
 
 void MainWindow::on_Chose_file_PC98_HDD_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_PC98_HDD = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Hard Disk Image (*.hdi);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_PC98_HDD =  Selected_File_NEC;//filename_PC98_HDD.toUtf8().constData();
-//    Last_Directory = ROM_path_PC98_HDD;
+
 }
 
 void MainWindow::on_Chose_file_NES_clicked()
 //chosing files and saving file path (NES)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_NES = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Zip files (*.zip);;Cartridge files (*.nes);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_NES = Selected_File_Nintendo;//filename_NES.toUtf8().constData();
-//    Last_Directory = ROM_path_NES;
+
 }
 
 void MainWindow::on_Chose_file_FamicomDisk_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_FDS = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Zip files (*.zip);;Floppy disk files (*.fds);;All files (*.*)"  // determines types of files and name to display in window
-//                );
     ROM_path_FDS = Selected_File_Nintendo;//filename_FDS.toUtf8().constData();
-//    Last_Directory = ROM_path_FDS;
 }
 
 void MainWindow::on_Chose_file_SNES_clicked()
 //chosing files and saving file path (SNES)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_SNES = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Zip files (*.zip);;Cartridge files (*.smc);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_SNES = Selected_File_Nintendo;//filename_SNES.toUtf8().constData();
-//    Last_Directory = ROM_path_SNES;
+
 }
 
 void MainWindow::on_Chose_file_GBC_clicked()
 //chosing files and saving file path (GBC)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_GBC = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Zip files (*.zip);;Cartridge files (*.gbc);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_GBC = Selected_File_Nintendo;//filename_GBC.toUtf8().constData();
-//    Last_Directory = ROM_path_GBC;
+
 }
 
 void MainWindow::on_Chose_file_GBAdvanced_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_GBA = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Zip files (*.zip);;Cartridge files (*.gba);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_GBA = Selected_File_Nintendo;//filename_GBA.toUtf8().constData();
-//    Last_Directory = ROM_path_GBA;
+
 }
 
 void MainWindow::on_Chose_file_N64_clicked()
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_N64 = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Zip files (*.zip);;Cartridge files (*.z64);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_N64 = Selected_File_Nintendo;//filename_N64.toUtf8().constData();
-//    Last_Directory = ROM_path_N64;
+
 }
 
 void MainWindow::on_Chose_file_MasterSystem_clicked()
 //chosing files and saving file path (Master System)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_MasterSystem = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Zip files (*.zip);;Cartridge files (*.sms);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_MasterSystem = Selected_File_Sega;//filename_MasterSystem.toUtf8().constData();
-//    Last_Directory = ROM_path_MasterSystem;
+
 }
 
 
 void MainWindow::on_Chose_file_MegaDrive_clicked()
 //chosing files and saving file path (Genesis/Megadrive)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_Genesis = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Zip files (*.zip);;Cartridge files (*.md);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_Genesis = Selected_File_Sega;//filename_Genesis.toUtf8().constData();
-//    Last_Directory = ROM_path_Genesis;
+
 
 }
 
 void MainWindow::on_Chose_file_SEGA_CD_clicked()
 //chosing files and saving file path (sega cd)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_SEGA_CD = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Compressed Hunk of Data(*.chd);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_SEGA_CD = Selected_File_Sega;//filename_SEGA_CD.toUtf8().constData();
-//    Last_Directory = ROM_path_SEGA_CD;
+
 }
 
 void MainWindow::on_Chose_file_Saturn_clicked()
 //chosing files and saving file path (Saturn)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_saturn = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Compressed hundks of data (*.chd);;Cue Sheet (*.cue);;All files (*.*)"  // determines types of files and name to display in window
-//                );
+
     ROM_path_Saturn = Selected_File_Sega;//filename_saturn.toUtf8().constData();
 //    Last_Directory = ROM_path_Saturn;
 }
@@ -570,17 +389,10 @@ void MainWindow::on_Chose_file_Saturn_clicked()
 void MainWindow::on_Chose_file_Dreamcast_clicked()
 //chosing files and saving file path (Dreamcast)
 {
-//    QString QLast_Directory = QString::fromStdString(Last_Directory);
-//    QString filename_Dreamcast = QFileDialog::getOpenFileName(
-//                this,
-//                tr("Chose Game"),
-//                QLast_Directory,
-//                "Compressed hundks of data (*.chd);;Cue Sheet (*.cue);;All files (*.*)"  // determines types of files and name to display in window
-//                );
-    ROM_path_Dreamcast = Selected_File_Sega;//filename_Dreamcast.toUtf8().constData();
-//    Last_Directory = ROM_path_Dreamcast;
-}
 
+    ROM_path_Dreamcast = Selected_File_Sega;//filename_Dreamcast.toUtf8().constData();
+
+}
 
 
 void MainWindow::on_Chose_file_MSX_Cassete_clicked()
@@ -593,7 +405,7 @@ void MainWindow::on_Chose_file_MSX_Cassete_clicked()
                 "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_MSX_Cass = filename_MSX_Cass.toUtf8().constData();
-//    Last_Directory = ROM_path_MSX_Cass;
+
 }
 
 void MainWindow::on_Chose_file_MSX_Cart1_clicked()
@@ -606,7 +418,7 @@ void MainWindow::on_Chose_file_MSX_Cart1_clicked()
                 "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_MSX_Cart1 = filename_MSX_Cass.toUtf8().constData();
-//    Last_Directory = ROM_path_MSX_Cart1;
+
 }
 
 void MainWindow::on_Chose_file_MSX_Cart2_clicked()
@@ -619,7 +431,7 @@ void MainWindow::on_Chose_file_MSX_Cart2_clicked()
                 "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_MSX_Cart2 = filename_MSX_Cass.toUtf8().constData();
-//    Last_Directory = ROM_path_MSX_Cart2;
+
 }
 
 void MainWindow::on_Chose_file_MSX_Floppy_clicked()
@@ -632,7 +444,7 @@ void MainWindow::on_Chose_file_MSX_Floppy_clicked()
                 "Zip files(*.zip);;All files (*.*)"  // determines types of files and name to display in window
                 );
     ROM_path_MSX_Floppy = filename_MSX_Cass.toUtf8().constData();
-//    Last_Directory = ROM_path_MSX_Floppy;
+
 }
 
 // Launchers section ***###***//////////////////////////////////////////////////////////////////////////////////////////////
@@ -648,10 +460,19 @@ void MainWindow::on_pushButton_launch_MAME_clicked()  // Launcher for MAME
 
 void MainWindow::on_Launcher_Button_X68k_clicked()
 {
-    LM.X68k(ROM_path_X68k_floppy1, ROM_path_X68k_floppy2, ROM_path_X68k_floppy3, ROM_path_X68k_floppy4, vertical_strech, glsl_shader);
+    if (ui->x68k_shader_none->isChecked()) {
+          X68K_shader= shader_none;
+    }
+    if (ui->x68k_shader_CRT_geom->isChecked()) {
+         X68K_shader = shader_crt_geom;
+    }
+    if (ui->x68k_shader_CRT_geom_deluxe->isChecked()) {
+         X68K_shader = shader_crt_geom_deluxe;
+    }
+    LM.X68k(ROM_path_X68k_floppy1, ROM_path_X68k_floppy2, ROM_path_X68k_floppy3, ROM_path_X68k_floppy4, vertical_strech, X68K_shader);
 }
 
-void MainWindow::on_Launcher_Button_clicked() // Sony Playstation
+void MainWindow::on_Launcher_Button_PSX_clicked() // Sony Playstation
 {
     if (ui->radioButton_NTSC_USA->isChecked()) {
         region_PSX = "psu";
@@ -779,7 +600,13 @@ void MainWindow::on_Launcher_Button_N64_clicked()
 
 void MainWindow::on_Launcher_Button_GBC_clicked()
 {
-    LM.Nintendo_GBC(ROM_path_GBC, vertical_strech, glsl_shader);
+    if (ui->gbc_shader_none->isChecked()) {
+          GBC_shader = shader_none;
+    }
+    if (ui->gbc_shader_lcd_grid->isChecked()) {
+         GBC_shader = shader_lcd_grid;
+    }
+    LM.Nintendo_GBC(ROM_path_GBC, vertical_strech, GBC_shader);
 }
 
 void MainWindow::on_Launcher_Button_GBAdvanced_clicked()
@@ -806,7 +633,8 @@ void MainWindow::on_Launcher_Button_MSX_clicked()
 // Menu Bar section
 void MainWindow::on_actionAbout_2_triggered()
 {
-    QMessageBox::information(this,"About","Developed by Rugaliz 2019-2021");
+    QString temp = "Developed by Rugaliz 2019-2022";
+    QMessageBox::information(this,"About",temp);
 }
 
 void MainWindow::on_actionExit_triggered()

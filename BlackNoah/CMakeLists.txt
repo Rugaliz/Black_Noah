@@ -13,7 +13,7 @@ if(CMAKE_VERSION VERSION_LESS "3.7.0")
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
 endif()
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Core REQUIRED)
 
 add_executable(blacknoah
 	launchmethods.cpp
@@ -21,9 +21,7 @@ add_executable(blacknoah
 	main.cpp
 	mainwindow.cpp
 	mainwindow.h
-	os_tools.cpp
-	os_tools.h
 	resourced.qrc
 )
-
-target_link_libraries(blacknoah Qt5::Widgets)
+  
+target_link_libraries(blacknoah Qt5::Widgets  Qt5::Core)

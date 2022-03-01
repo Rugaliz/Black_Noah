@@ -27,13 +27,11 @@ CONFIG += c++11
 SOURCES += \
         launchmethods.cpp \
         main.cpp \
-        mainwindow.cpp \
-        os_tools.cpp
+        mainwindow.cpp
 
 HEADERS += \
         launchmethods.h \
-        mainwindow.h \
-        os_tools.h
+        mainwindow.h
 
 FORMS += \
         mainwindow.ui

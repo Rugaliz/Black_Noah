@@ -18,11 +18,9 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
-
 private slots:
 
-    void on_Launcher_Button_clicked();
+    void on_Launcher_Button_PSX_clicked();
 
     void on_Chose_file_PSX_clicked();
 

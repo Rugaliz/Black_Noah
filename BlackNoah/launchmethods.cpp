@@ -1,11 +1,9 @@
 #include "launchmethods.h"
-#include "os_tools.h"   // debuging
 #include <string>
 #include <iostream>
 #include <regex>
-static OS_Check OSC;
+//static OS_Tools OSC;
 using namespace std;
-//OS_Check os_Check;          // Import classes from OS_Check
 string PS_memcard1 = "";
 string PS_memcard2 = "";
 string load_cd = (" -cdrm ");                              // tell mame to load files onto cd tray
@@ -82,12 +80,12 @@ void LaunchMethods::PC_Engine (string ROM_path_PC_Engine_HuCards, string ROM_pat
     string machine_cmd = "mame pce";                   // run machine command linux version
     string load_HuCard = (" -cart ");                  // tell mame to load files onto HuCard slot
     string HuCard_locale = ROM_path_PC_Engine_HuCards; // Path pointed in "HUCard"
-    string directory;
-    const size_t last_slash_idx = ROM_path_PC_Engine_CDROM.rfind('\/');
-    if (string::npos != last_slash_idx)
-    {
-        directory = ROM_path_PC_Engine_CDROM.substr(0, last_slash_idx);
-    }
+//    string directory;
+//    const size_t last_slash_idx = ROM_path_PC_Engine_CDROM.rfind('\/');
+//    if (string::npos != last_slash_idx)
+//    {
+//        directory = ROM_path_PC_Engine_CDROM.substr(0, last_slash_idx);
+//    }
 //    if (std::regex_match (ROM_path_PC_Engine_CDROM, std::regex("(Japan)") )) {
 //        HuCard_locale = directory + "/[BIOS] TurboGrafx CD Super System Card (USA) (v3.0).zip";
 //    }
