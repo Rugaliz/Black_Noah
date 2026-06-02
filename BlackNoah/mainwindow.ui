@@ -33,7 +33,7 @@
        <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
@@ -86,7 +86,7 @@
            <enum>QTabWidget::Rounded</enum>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="tab_MAME">
            <attribute name="title">
@@ -245,25 +245,32 @@ p, li { white-space: pre-wrap; }
            <layout class="QGridLayout" name="gridLayout_15">
             <item row="0" column="0">
              <layout class="QGridLayout" name="gridLayout_14">
-              <item row="0" column="0">
-               <widget class="QTextBrowser" name="textBrowser_PC98_6">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="html">
-                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The FM Towns Marty is a fifth-generation home video game console released in 1993 by Fujitsu, exclusively for the Japanese market. &lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The console came complete with a built in CD-ROM drive and disk drive. It was based on the earlier FM Towns computer system Fujitsu had released in 1989. The Marty was backward-compatible with older FM Towns games. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
+              <item row="0" column="2">
+               <layout class="QVBoxLayout" name="verticalLayout_4">
+                <item>
+                 <widget class="QRadioButton" name="FMTownes_Marty_shader_none">
+                  <property name="text">
+                   <string>None</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="FMTownes_Marty_shader_crt_geom">
+                  <property name="text">
+                   <string>CRT Geom</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="FMTownes_Marty_shader_crt_geom_deluxe">
+                  <property name="text">
+                   <string>CRT Geom Deluxe</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
-              <item row="0" column="1">
+              <item row="0" column="3">
                <layout class="QVBoxLayout" name="verticalLayout_22">
                 <item>
                  <widget class="QPushButton" name="Chose_file_FMTownsMarty_floppy">
@@ -288,6 +295,24 @@ p, li { white-space: pre-wrap; }
                 </item>
                </layout>
               </item>
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowser_PC98_6">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The FM Towns Marty is a fifth-generation home video game console released in 1993 by Fujitsu, exclusively for the Japanese market. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The console came complete with a built in CD-ROM drive and disk drive. It was based on the earlier FM Towns computer system Fujitsu had released in 1989. The Marty was backward-compatible with older FM Towns games. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
            </layout>
@@ -297,18 +322,7 @@ p, li { white-space: pre-wrap; }
             <string>Neo Geo Pocket Color</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_6">
-            <item row="0" column="0">
-             <widget class="QTextBrowser" name="textBrowser_MAME_13">
-              <property name="html">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Neo Geo Pocket Color is a 16-bit color handheld video game console manufactured by SNK. It is a successor to SNK's monochrome Neo Geo Pocket handheld which debuted in 1998 in Japan, with the Color being fully backward compatible. The Neo Geo Pocket Color was released on March 16, 1999 in Japan, August 6, 1999 in North America, and on October 1, 1999 in Europe, entering markets all dominated by Nintendo, competing with Nintendo's Game Boy Color. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
+            <item row="0" column="2">
              <layout class="QVBoxLayout" name="verticalLayout_14">
               <item>
                <widget class="QPushButton" name="Chose_file_NGPC">
@@ -326,6 +340,35 @@ p, li { white-space: pre-wrap; }
               </item>
              </layout>
             </item>
+            <item row="0" column="0">
+             <widget class="QTextBrowser" name="textBrowser_MAME_13">
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;The Neo Geo Pocket Color is a 16-bit color handheld video game console manufactured by SNK. It is a successor to SNK's monochrome Neo Geo Pocket handheld which debuted in 1998 in Japan, with the Color being fully backward compatible. The Neo Geo Pocket Color was released on March 16, 1999 in Japan, August 6, 1999 in North America, and on October 1, 1999 in Europe, entering markets all dominated by Nintendo, competing with Nintendo's Game Boy Color. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <item>
+               <widget class="QRadioButton" name="neogeopocketcolor_shader_none_2">
+                <property name="text">
+                 <string>None</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="neogeopocketcolor_shader_lcd_grid">
+                <property name="text">
+                 <string>LCD Grid</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="tab_30">
@@ -333,18 +376,7 @@ p, li { white-space: pre-wrap; }
             <string>NeoGeo CD</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_53">
-            <item row="0" column="0">
-             <widget class="QTextBrowser" name="textBrowser_MAME_17">
-              <property name="html">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;Neo Geo CD  is the second home video game console of SNK Corporation's Neo Geo family, released in September 9, 1994, four years after its cartridge-based equivalent. The unit's 1X CD-ROM drive is slow, with very long loading times. The system can also play Audio CDs. All three versions of the system have no region-lock. The Neo Geo CD was launched bundled with a control pad instead of a joystick like the AES version. However, the original AES joystick can be used with all three Neo Geo CD models. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
+            <item row="0" column="2">
              <layout class="QVBoxLayout" name="verticalLayout_23">
               <item>
                <widget class="QPushButton" name="Chose_file_NeoGeoCDz">
@@ -357,6 +389,42 @@ p, li { white-space: pre-wrap; }
                <widget class="QPushButton" name="Launcher_Button_NeoGeoCDz">
                 <property name="text">
                  <string>Launch!</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="0">
+             <widget class="QTextBrowser" name="textBrowser_MAME_17">
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'IBM Plex Sans'; font-size:12pt;&quot;&gt;Neo Geo CD  is the second home video game console of SNK Corporation's Neo Geo family, released in September 9, 1994, four years after its cartridge-based equivalent. The unit's 1X CD-ROM drive is slow, with very long loading times. The system can also play Audio CDs. All three versions of the system have no region-lock. The Neo Geo CD was launched bundled with a control pad instead of a joystick like the AES version. However, the original AES joystick can be used with all three Neo Geo CD models. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <layout class="QVBoxLayout" name="verticalLayout_26">
+              <item>
+               <widget class="QRadioButton" name="neogeocd_shader_none">
+                <property name="text">
+                 <string>None</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="neogeocd_shader_crt_geom">
+                <property name="text">
+                 <string>CRT Geom</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="neogeocd_shader_crt_geom_deluxe">
+                <property name="text">
+                 <string>CRT Geom Deluxe</string>
                 </property>
                </widget>
               </item>
@@ -385,7 +453,7 @@ p, li { white-space: pre-wrap; }
            <enum>QTabWidget::Rounded</enum>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tab_20">
            <attribute name="title">
@@ -405,7 +473,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
+              <item row="0" column="2">
                <layout class="QVBoxLayout" name="verticalLayout_18">
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC88_floppy1">
@@ -437,6 +505,31 @@ p, li { white-space: pre-wrap; }
                 </item>
                </layout>
               </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_27">
+                <item>
+                 <widget class="QRadioButton" name="pc88_shader_none">
+                  <property name="text">
+                   <string>None</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="pc88_shader_crt_geom">
+                  <property name="text">
+                   <string>CRT Geom</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="pc88_shader_crt_geom_deluxe">
+                  <property name="text">
+                   <string>CRT Geom Deluxe</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
              </layout>
             </item>
            </layout>
@@ -459,7 +552,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
+              <item row="0" column="2">
                <layout class="QVBoxLayout" name="verticalLayout_19">
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC98_floppy1">
@@ -498,6 +591,31 @@ p, li { white-space: pre-wrap; }
                 </item>
                </layout>
               </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_28">
+                <item>
+                 <widget class="QRadioButton" name="pc98_shader_none">
+                  <property name="text">
+                   <string>None</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="pc98_shader_crt_geom">
+                  <property name="text">
+                   <string>CRT Geom</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="pc98_shader_crt_geom_deluxe">
+                  <property name="text">
+                   <string>CRT Gom Deluxe</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
              </layout>
             </item>
            </layout>
@@ -520,7 +638,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
+              <item row="0" column="2">
                <layout class="QVBoxLayout" name="verticalLayout_20">
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC_Engine_HuCard">
@@ -540,6 +658,31 @@ p, li { white-space: pre-wrap; }
                  <widget class="QPushButton" name="Launcher_Button_PC_Engine">
                   <property name="text">
                    <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_29">
+                <item>
+                 <widget class="QRadioButton" name="pcengine_shader_none">
+                  <property name="text">
+                   <string>None</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="pcengine_shader_crt_geom">
+                  <property name="text">
+                   <string>CRT Geom</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="pcengine_shader_crt_geom_deluxe">
+                  <property name="text">
+                   <string>CRT Geom Deluxe</string>
                   </property>
                  </widget>
                 </item>
@@ -568,7 +711,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
+              <item row="0" column="2">
                <layout class="QVBoxLayout" name="verticalLayout_24">
                 <item>
                  <widget class="QPushButton" name="Chose_file_PC_FX_CDROM">
@@ -581,6 +724,31 @@ p, li { white-space: pre-wrap; }
                  <widget class="QPushButton" name="Launcher_Button_PC_FX">
                   <property name="text">
                    <string>Launch!</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_30">
+                <item>
+                 <widget class="QRadioButton" name="pcfx_shader_none">
+                  <property name="text">
+                   <string>None</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="pcfx_shader_crt_geom">
+                  <property name="text">
+                   <string>CRT Geom</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="pcfx_shader_crt_geom_deluxe">
+                  <property name="text">
+                   <string>CRT Geom Deluxe</string>
                   </property>
                  </widget>
                 </item>
@@ -900,7 +1068,16 @@ p, li { white-space: pre-wrap; }
        </attribute>
        <layout class="QGridLayout" name="gridLayout_50">
         <item row="0" column="0">
+         <widget class="QTreeView" name="treeViewMicrosoft"/>
+        </item>
+        <item row="1" column="0">
          <widget class="QTabWidget" name="tabWidget_8">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>300</height>
+           </size>
+          </property>
           <property name="currentIndex">
            <number>0</number>
           </property>
@@ -939,7 +1116,7 @@ p, li { white-space: pre-wrap; }
             <item row="1" column="1">
              <layout class="QVBoxLayout" name="verticalLayout_25">
               <item>
-               <widget class="QPushButton" name="Chose_file_MSX_Cassete">
+               <widget class="QPushButton" name="Chose_file_MSX_Cassette">
                 <property name="text">
                  <string>Cassete</string>
                 </property>
