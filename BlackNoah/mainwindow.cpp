@@ -1,610 +1,643 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "launchmethods.h"
+#include <QAbstractButton>
+#include <QCloseEvent>
+#include <QDir>
+#include <QFile>
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QFileSystemModel>
+#include <QHeaderView>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QLabel>
+#include <QLineEdit>
+#include <QMenu>
 #include <QMessageBox>
-#include <QProcess>
-#include <QSettings>
+#include <QRadioButton>
 #include <QShortcut>
+#include <QSignalBlocker>
+#include <QStandardPaths>
 #include <QTreeView>
 
-static const std::string SHADER_NONE         = " -bgfx_screen_chains none";
-static const std::string SHADER_CRT_GEOM     = " -bgfx_screen_chains crt-geom";
-static const std::string SHADER_CRT_GEOM_DLX = " -bgfx_screen_chains crt-geom-deluxe";
-static const std::string SHADER_LCD_GRID     = " -bgfx_screen_chains lcd-grid";
+namespace {
 
-static LaunchMethods LM;
+const QString kStretchOn  = " -unevenstretch";
+const QString kStretchOff = " -nounevenstretch";
+const QString kGlslOn     = " -gl_glsl";
+const QString kGlslOff    = " -nogl_glsl";
 
-// ── helpers ──────────────────────────────────────────────────────────────────
-
-static bool requireFile(QWidget *parent, const std::string &path, const QString &system)
+// Settings live in the per-user config folder. A blacknoah.ini left next to the old
+// working directory / executable is migrated on first run.
+QString settingsFilePath()
 {
-    if (!path.empty()) return true;
-    QMessageBox::warning(parent, "No File Selected",
-        QString("Please select a %1 file before launching.").arg(system));
-    return false;
+    const QString dir = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
+    QDir().mkpath(dir);
+    const QString path = dir + "/blacknoah.ini";
+    if (!QFile::exists(path)) {
+        const QStringList legacy{QDir::current().filePath("blacknoah.ini"),
+                                 QCoreApplication::applicationDirPath() + "/blacknoah.ini"};
+        for (const QString &old : legacy) {
+            if (QFile::exists(old) && QFile::copy(old, path))
+                break;
+        }
+    }
+    return path;
 }
 
-static bool requireAnyFile(QWidget *parent, std::initializer_list<const std::string *> paths,
-                            const QString &system)
+QString fileLabel(const QString &path)
 {
-    for (const std::string *p : paths)
-        if (!p->empty()) return true;
-    QMessageBox::warning(parent, "No File Selected",
-        QString("Please select at least one %1 file before launching.").arg(system));
-    return false;
+    return QFileInfo(path).fileName();
 }
 
-static void restoreShader3(QRadioButton *none, QRadioButton *crt, QRadioButton *dlx,
-                           const std::string &val)
+int indexOfValue(const QList<RadioChoice> &choices, const QString &value)
 {
-    if      (val == SHADER_CRT_GEOM)     crt->setChecked(true);
-    else if (val == SHADER_CRT_GEOM_DLX) dlx->setChecked(true);
-    else                                  none->setChecked(true);
+    for (int i = 0; i < choices.size(); ++i) {
+        if (choices[i].value == value)
+            return i;
+    }
+    return -1;
 }
 
-// ── constructor / destructor ──────────────────────────────────────────────────
+} // namespace
+
+template <typename T>
+T *MainWindow::child(const QString &name)
+{
+    T *widget = findChild<T *>(name);
+    if (!widget)
+        qWarning("BlackNoah: widget '%s' not found in mainwindow.ui", qPrintable(name));
+    return widget;
+}
+
+// ── construction ─────────────────────────────────────────────────────────────
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(std::make_unique<Ui::MainWindow>()),
+    m_settings(settingsFilePath(), QSettings::IniFormat),
+    m_specs(allSystems())
 {
     ui->setupUi(this);
     setWindowTitle("Black Noah");
 
-    LoadSettings();
+    setupSystems();
+    loadSettings();
 
-    // Restore toggle states
-    if (state.vertical_stretch == " -unevenstretch")
-        ui->toggle_unevenstretch->setChecked(true);
-    else {
-        state.vertical_stretch = " -nounevenstretch";
-        ui->toggle_unevenstretch->setChecked(false);
+    {
+        const QSignalBlocker stretchBlocker(ui->toggle_unevenstretch);
+        const QSignalBlocker shaderBlocker(ui->toggle_shader);
+        ui->toggle_unevenstretch->setChecked(m_stretch == kStretchOn);
+        ui->toggle_shader->setChecked(m_glslShader == kGlslOn);
     }
-    if (state.glsl_shader == " -gl_glsl")
-        ui->toggle_shader->setChecked(true);
-    else {
-        state.glsl_shader = " -nogl_glsl ";
-        ui->toggle_shader->setChecked(false);
+    for (int i = 0; i < static_cast<int>(m_specs.size()); ++i)
+        applyStateToUi(i);
+
+    setupFileBrowser();
+    setupMenus();
+    setupStatusBar();
+    restoreWindowState();
+
+    // Ctrl+Return launches whatever system is currently visible (Ctrl+L is "Set ROM path")
+    auto *shortcut = new QShortcut(QKeySequence("Ctrl+Return"), this);
+    connect(shortcut, &QShortcut::activated, this, &MainWindow::launchCurrent);
+
+    connect(&m_launcher, &MameLauncher::launchFailed, this, [this](const QString &message) {
+        QMessageBox::critical(this, tr("Launch Failed"), message);
+    });
+    connect(&m_launcher, &MameLauncher::versionDetected, this, [this](const QString &version) {
+        m_mameVersion = version;
+        updateStatusBar();
+    });
+    m_launcher.queryVersion();
+}
+
+MainWindow::~MainWindow() = default;
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    saveSettings();
+    QMainWindow::closeEvent(event);
+}
+
+void MainWindow::setupSystems()
+{
+    m_states.resize(m_specs.size());
+    m_widgets.resize(m_specs.size());
+
+    for (int i = 0; i < m_specs.size(); ++i) {
+        const SystemSpec &spec = m_specs[i];
+        SystemState &state = m_states[i];
+        SystemWidgets &widgets = m_widgets[i];
+
+        state.paths = QStringList();
+        for (int s = 0; s < spec.media.size(); ++s)
+            state.paths.append(QString());
+        if (!spec.shaders.isEmpty())
+            state.shader = spec.shaders.first().value;
+        if (!spec.regions.isEmpty())
+            state.region = spec.regions.first().value;
+
+        for (int s = 0; s < spec.media.size(); ++s) {
+            auto *button = child<QAbstractButton>(spec.media[s].chooseButton);
+            widgets.chooseButtons.push_back(button);
+            if (!button)
+                continue;
+            connect(button, &QAbstractButton::clicked, this, [this, i, s] {
+                const QString &selected = m_selectedFile[m_specs[i].topTab];
+                if (selected.isEmpty())
+                    statusBar()->showMessage(tr("Select a file in the file browser first."), 3000);
+                else
+                    setMedia(i, s, selected);
+            });
+        }
+        for (const RadioChoice &choice : spec.shaders)
+            widgets.shaderRadios.push_back(child<QRadioButton>(choice.radio));
+        for (const RadioChoice &choice : spec.regions)
+            widgets.regionRadios.push_back(child<QRadioButton>(choice.radio));
+
+        if (auto *launch = child<QAbstractButton>(spec.launchButton))
+            connect(launch, &QAbstractButton::clicked, this, [this, i] { launchSystem(i); });
     }
+}
 
-    restoreUI();
+void MainWindow::setupFileBrowser()
+{
+    // A single model is shared by every vendor tab.
+    m_fileModel = new QFileSystemModel(this);
+    m_fileModel->setNameFilterDisables(false);
+    const QModelIndex rootIndex = m_fileModel->setRootPath(m_romDir);
 
-    // File browser — single model shared across all tabs
-    FileExplorer = new QFileSystemModel(this);
-    QModelIndex rootIndex = FileExplorer->setRootPath(QString::fromStdString(state.ROM_Dir));
-    QTreeView *views[] = {ui->treeViewMisc, ui->treeViewNEC, ui->treeViewNintendo,
-                          ui->treeViewSega, ui->treeViewSony, ui->treeViewMicrosoft};
-    for (QTreeView *view : views) {
-        view->setModel(FileExplorer);
+    for (int top = 0; top < kVendorTabs; ++top) {
+        QTreeView *view = treeView(top);
+        view->setModel(m_fileModel);
         view->header()->resizeSection(0, 600);
         view->setRootIndex(rootIndex);
-    }
+        view->setContextMenuPolicy(Qt::CustomContextMenu);
 
-    // Status bar
-    statusLabel = new QLabel(this);
-    statusBar()->addPermanentWidget(statusLabel);
+        connect(view, &QTreeView::clicked, this, [this, top](const QModelIndex &index) {
+            if (selectFile(top, index))
+                statusBar()->showMessage(m_selectedFile[top], 2000);
+        });
+        connect(view, &QTreeView::doubleClicked, this, [this, top](const QModelIndex &index) {
+            if (!selectFile(top, index))
+                return;     // folders keep their default expand/collapse behaviour
+            const int system = systemForTab(top);
+            if (system < 0) {
+                statusBar()->showMessage(tr("Open a system tab to launch this file."), 3000);
+                return;
+            }
+            setMedia(system, 0, m_selectedFile[top]);
+            launchSystem(system);
+        });
+        connect(view, &QWidget::customContextMenuRequested, this, [this, top](const QPoint &pos) {
+            showBrowserMenu(top, pos);
+        });
+    }
+}
+
+void MainWindow::setupMenus()
+{
+    auto *chooseMame = new QAction(tr("Set MAME executable..."), this);
+    connect(chooseMame, &QAction::triggered, this, &MainWindow::chooseMameExecutable);
+    ui->menuFile->insertAction(ui->actionExit, chooseMame);
+
+    m_recentMenu = new QMenu(tr("Recent"), this);
+    menuBar()->insertMenu(ui->menuHelp->menuAction(), m_recentMenu);
+    rebuildRecentMenu();
+}
+
+void MainWindow::setupStatusBar()
+{
+    m_filterEdit = new QLineEdit(this);
+    m_filterEdit->setPlaceholderText(tr("Filter files..."));
+    m_filterEdit->setClearButtonEnabled(true);
+    m_filterEdit->setFixedWidth(200);
+    connect(m_filterEdit, &QLineEdit::textChanged, this, &MainWindow::applyNameFilter);
+    statusBar()->addPermanentWidget(m_filterEdit);
+
+    m_statusLabel = new QLabel(this);
+    statusBar()->addPermanentWidget(m_statusLabel);
     updateStatusBar();
-
-    // Ctrl+L launches whatever system is currently visible
-    QShortcut *shortcut = new QShortcut(QKeySequence("Ctrl+L"), this);
-    connect(shortcut, &QShortcut::activated, this, &MainWindow::launchCurrentSystem);
 }
 
-MainWindow::~MainWindow()
+void MainWindow::restoreWindowState()
 {
-    delete ui;
-}
-
-// ── settings ──────────────────────────────────────────────────────────────────
-
-void MainWindow::SaveSettings()
-{
-    QSettings settings("blacknoah.ini", QSettings::IniFormat);
-    settings.beginGroup("Settings");
-    settings.setValue("ROM_Dir",          QString::fromStdString(state.ROM_Dir));
-    settings.setValue("Shader",           QString::fromStdString(state.glsl_shader));
-    settings.setValue("Vertical_Stretch", QString::fromStdString(state.vertical_stretch));
-    // Per-system shader picks
-    settings.setValue("X68K_shader",      QString::fromStdString(state.X68K_shader));
-    settings.setValue("PC88_shader",      QString::fromStdString(state.PC88_shader));
-    settings.setValue("PC98_shader",      QString::fromStdString(state.PC98_shader));
-    settings.setValue("PCe_shader",       QString::fromStdString(state.PCe_shader));
-    settings.setValue("PCFX_shader",      QString::fromStdString(state.PCFX_shader));
-    settings.setValue("FMTmarty_shader",  QString::fromStdString(state.FMTmarty_shader));
-    settings.setValue("GBC_shader",       QString::fromStdString(state.GBC_shader));
-    settings.setValue("NGPC_shader",      QString::fromStdString(state.NGPC_shader));
-    settings.setValue("NGCD_shader",      QString::fromStdString(state.NGCD_shader));
-    // Region picks
-    settings.setValue("region_PSX",       QString::fromStdString(state.region_PSX));
-    settings.setValue("region_MegaDrive", QString::fromStdString(state.region_MegaDrive));
-    settings.setValue("region_MegaCD",    QString::fromStdString(state.region_MegaCD));
-    settings.setValue("region_Saturn",    QString::fromStdString(state.region_Saturn));
-    settings.setValue("region_Dreamcast", QString::fromStdString(state.region_Dreamcast));
-    settings.endGroup();
-}
-
-void MainWindow::LoadSettings()
-{
-    QSettings settings("blacknoah.ini", QSettings::IniFormat);
-    settings.beginGroup("Settings");
-    state.ROM_Dir          = settings.value("ROM_Dir").toString().toStdString();
-    state.glsl_shader      = settings.value("Shader").toString().toStdString();
-    state.vertical_stretch = settings.value("Vertical_Stretch").toString().toStdString();
-    // Per-system shader picks
-    state.X68K_shader      = settings.value("X68K_shader").toString().toStdString();
-    state.PC88_shader      = settings.value("PC88_shader").toString().toStdString();
-    state.PC98_shader      = settings.value("PC98_shader").toString().toStdString();
-    state.PCe_shader       = settings.value("PCe_shader").toString().toStdString();
-    state.PCFX_shader      = settings.value("PCFX_shader").toString().toStdString();
-    state.FMTmarty_shader  = settings.value("FMTmarty_shader").toString().toStdString();
-    state.GBC_shader       = settings.value("GBC_shader").toString().toStdString();
-    state.NGPC_shader      = settings.value("NGPC_shader").toString().toStdString();
-    state.NGCD_shader      = settings.value("NGCD_shader").toString().toStdString();
-    // Region picks
-    state.region_PSX       = settings.value("region_PSX").toString().toStdString();
-    state.region_MegaDrive = settings.value("region_MegaDrive").toString().toStdString();
-    state.region_MegaCD    = settings.value("region_MegaCD").toString().toStdString();
-    state.region_Saturn    = settings.value("region_Saturn").toString().toStdString();
-    state.region_Dreamcast = settings.value("region_Dreamcast").toString().toStdString();
-    settings.endGroup();
-}
-
-void MainWindow::restoreUI()
-{
-    // Shader radio buttons
-    restoreShader3(ui->x68k_shader_none, ui->x68k_shader_CRT_geom, ui->x68k_shader_CRT_geom_deluxe, state.X68K_shader);
-    restoreShader3(ui->pc88_shader_none, ui->pc88_shader_crt_geom, ui->pc88_shader_crt_geom_deluxe, state.PC88_shader);
-    restoreShader3(ui->pc98_shader_none, ui->pc98_shader_crt_geom, ui->pc98_shader_crt_geom_deluxe, state.PC98_shader);
-    restoreShader3(ui->pcengine_shader_none, ui->pcengine_shader_crt_geom, ui->pcengine_shader_crt_geom_deluxe, state.PCe_shader);
-    restoreShader3(ui->pcfx_shader_none, ui->pcfx_shader_crt_geom, ui->pcfx_shader_crt_geom_deluxe, state.PCFX_shader);
-    restoreShader3(ui->FMTownes_Marty_shader_none, ui->FMTownes_Marty_shader_crt_geom, ui->FMTownes_Marty_shader_crt_geom_deluxe, state.FMTmarty_shader);
-    restoreShader3(ui->neogeocd_shader_none, ui->neogeocd_shader_crt_geom, ui->neogeocd_shader_crt_geom_deluxe, state.NGCD_shader);
-
-    if (state.GBC_shader == SHADER_LCD_GRID) ui->gbc_shader_lcd_grid->setChecked(true);
-    else                                      ui->gbc_shader_none->setChecked(true);
-
-    if (state.NGPC_shader == SHADER_CRT_GEOM) ui->neogeopocketcolor_shader_lcd_grid->setChecked(true);
-    else                                       ui->neogeopocketcolor_shader_none_2->setChecked(true);
-
-    // Region radio buttons — default to USA if empty or unknown
-    if      (state.region_PSX == "pse") ui->radioButton_PAL_EU->setChecked(true);
-    else if (state.region_PSX == "psj") ui->radioButton_NTSC_Japan->setChecked(true);
-    else                                 ui->radioButton_NTSC_USA->setChecked(true);
-
-    if (state.region_MegaDrive == "megadrij") ui->radioButton_NTSC_Japan_MegaDrive->setChecked(true);
-    else                                       ui->radioButton_NTSC_USA_MegaDrive->setChecked(true);
-
-    if (state.region_MegaCD == "megacd2j") ui->radioButton_NTSC_Japan_MegaCD->setChecked(true);
-    else                                    ui->radioButton_NTSC_USA_MegaCD->setChecked(true);
-
-    if      (state.region_Saturn == "saturneu") ui->radioButton_PAL_EU_Saturn->setChecked(true);
-    else if (state.region_Saturn == "saturnjp") ui->radioButton_NTSC_Japan_Saturn->setChecked(true);
-    else                                         ui->radioButton_NTSC_USA_Saturn->setChecked(true);
-
-    if      (state.region_Dreamcast == "dceu") ui->radioButton_PAL_EU_Dreamcast->setChecked(true);
-    else if (state.region_Dreamcast == "dcjp") ui->radioButton_NTSC_Japan_Dreamcast->setChecked(true);
-    else                                        ui->radioButton_NTSC_USA_Dreamcast->setChecked(true);
-}
-
-// ── status bar ────────────────────────────────────────────────────────────────
-
-void MainWindow::updateStatusBar()
-{
-    QString romDir = state.ROM_Dir.empty()
-        ? "not set"
-        : QString::fromStdString(state.ROM_Dir);
-
-    QString mameVer = "not detected";
-    QProcess proc;
-    proc.start("mame", {"-version"});
-    if (proc.waitForFinished(500)) {
-        QStringList parts = QString(proc.readAllStandardOutput()).simplified().split(' ');
-        if (parts.size() >= 2) mameVer = parts[1];
+    m_settings.beginGroup("Window");
+    restoreGeometry(m_settings.value("geometry").toByteArray());
+    const int top = m_settings.value("topTab", 0).toInt();
+    if (top >= 0 && top < kVendorTabs)
+        ui->tabWidget_2->setCurrentIndex(top);
+    for (int i = 0; i < kVendorTabs; ++i) {
+        QTabWidget *tabs = systemTabs(i);
+        const int sub = m_settings.value(QString("subTab%1").arg(i), 0).toInt();
+        if (sub >= 0 && sub < tabs->count())
+            tabs->setCurrentIndex(sub);
     }
-
-    statusLabel->setText(QString("  ROM Dir: %1   |   MAME: %2  ").arg(romDir, mameVer));
+    m_settings.endGroup();
 }
 
-// ── Ctrl+L: launch active system ─────────────────────────────────────────────
+// ── settings ─────────────────────────────────────────────────────────────────
 
-void MainWindow::launchCurrentSystem()
+void MainWindow::loadSettings()
 {
-    switch (ui->tabWidget_2->currentIndex()) {
-        case 0: // Misc
-            switch (ui->tabWidget->currentIndex()) {
-                case 0: on_pushButton_launch_MAME_clicked();  break;
-                case 1: on_Launcher_Button_X68k_clicked();    break;
-                case 2: on_Launcher_Button_FMMarty_clicked(); break;
-                case 3: on_Launcher_Button_NGPcolor_clicked(); break;
-                case 4: on_Launcher_Button_NeoGeoCDz_clicked(); break;
-            }
-            break;
-        case 1: // NEC
-            switch (ui->tabWidget_6->currentIndex()) {
-                case 0: on_Launcher_Button_PC88_clicked();       break;
-                case 1: on_Launcher_Button_PC98_clicked();       break;
-                case 2: on_Launcher_Button_PC_Engine_clicked();  break;
-                case 3: on_Launcher_Button_PC_FX_clicked();      break;
-            }
-            break;
-        case 2: // Nintendo
-            switch (ui->tabWidget_5->currentIndex()) {
-                case 0: on_Launcher_Button_NES_clicked();          break;
-                case 1: on_Launcher_Button_FamicomDisk_clicked();  break;
-                case 2: on_Launcher_Button_SNES_clicked();         break;
-                case 3: on_Launcher_Button_N64_clicked();          break;
-                case 4: on_Launcher_Button_GBC_clicked();          break;
-                case 5: on_Launcher_Button_GBAdvanced_clicked();   break;
-            }
-            break;
-        case 3: // Microsoft
-            on_Launcher_Button_MSX_clicked();
-            break;
-        case 4: // Sega
-            switch (ui->tabWidget_4->currentIndex()) {
-                case 0: on_Launcher_Button_MasterSystem_clicked(); break;
-                case 1: on_Launcher_Button_Megadrive_clicked();    break;
-                case 2: on_Launcher_Button_SEGA_CD_clicked();      break;
-                case 3: on_Launcher_Button_Saturn_clicked();       break;
-                case 4: on_Launcher_Button_Dreamcast_clicked();    break;
-            }
-            break;
-        case 5: // Sony
-            on_Launcher_Button_PSX_clicked();
-            break;
+    m_settings.beginGroup("Settings");
+    m_romDir = m_settings.value("ROM_Dir").toString();
+    m_stretch = m_settings.value("Vertical_Stretch").toString().trimmed() == kStretchOn.trimmed()
+                    ? kStretchOn : kStretchOff;
+    m_glslShader = m_settings.value("Shader").toString().trimmed() == kGlslOn.trimmed()
+                       ? kGlslOn : kGlslOff;
+
+    for (int i = 0; i < m_specs.size(); ++i) {
+        const SystemSpec &spec = m_specs[i];
+        SystemState &state = m_states[i];
+
+        if (!spec.shaders.isEmpty()) {
+            QString shader = m_settings.value(spec.shaderKey).toString();
+            // Older versions stored crt-geom for the NGPC "LCD grid" option.
+            if (spec.id == "NGPC" && shader == kShaderCrtGeom)
+                shader = kShaderLcdGrid;
+            if (indexOfValue(spec.shaders, shader) >= 0)
+                state.shader = shader;
+        }
+        if (!spec.regions.isEmpty()) {
+            const QString region = m_settings.value(spec.regionKey).toString();
+            if (indexOfValue(spec.regions, region) >= 0)
+                state.region = region;
+        }
+    }
+    m_settings.endGroup();
+
+    m_launcher.setConfiguredPath(m_settings.value("MAME_path").toString());
+
+    m_settings.beginGroup("Paths");
+    for (int i = 0; i < m_specs.size(); ++i) {
+        for (int s = 0; s < m_specs[i].media.size(); ++s) {
+            const QString path = m_settings.value(m_specs[i].id + "/" + m_specs[i].media[s].id).toString();
+            if (!path.isEmpty() && QFileInfo::exists(path))
+                m_states[i].paths[s] = path;
+        }
+    }
+    m_settings.endGroup();
+
+    m_settings.beginGroup("MachineOverrides");
+    for (const QString &key : m_settings.childKeys())
+        m_machineOverrides.insert(key, m_settings.value(key).toString());
+    m_settings.endGroup();
+
+    const int count = m_settings.beginReadArray("Recent");
+    for (int i = 0; i < count && i < kMaxRecent; ++i) {
+        m_settings.setArrayIndex(i);
+        RecentEntry entry;
+        entry.title = m_settings.value("title").toString();
+        entry.logName = m_settings.value("log").toString();
+        const QJsonArray args =
+            QJsonDocument::fromJson(m_settings.value("args").toString().toUtf8()).array();
+        for (const QJsonValue &arg : args)
+            entry.args << arg.toString();
+        if (!entry.title.isEmpty() && !entry.args.isEmpty())
+            m_recent.append(entry);
+    }
+    m_settings.endArray();
+}
+
+void MainWindow::saveSettings()
+{
+    m_settings.beginGroup("Settings");
+    m_settings.setValue("ROM_Dir", m_romDir);
+    m_settings.setValue("Shader", m_glslShader);
+    m_settings.setValue("Vertical_Stretch", m_stretch);
+    for (int i = 0; i < m_specs.size(); ++i) {
+        const SystemSpec &spec = m_specs[i];
+        if (!spec.shaders.isEmpty())
+            m_settings.setValue(spec.shaderKey, m_states[i].shader);
+        if (!spec.regions.isEmpty())
+            m_settings.setValue(spec.regionKey, m_states[i].region);
+    }
+    m_settings.endGroup();
+
+    m_settings.setValue("MAME_path", m_launcher.configuredPath());
+
+    m_settings.beginGroup("Paths");
+    for (int i = 0; i < m_specs.size(); ++i) {
+        for (int s = 0; s < m_specs[i].media.size(); ++s)
+            m_settings.setValue(m_specs[i].id + "/" + m_specs[i].media[s].id, m_states[i].paths[s]);
+    }
+    m_settings.endGroup();
+
+    m_settings.beginWriteArray("Recent", m_recent.size());
+    for (int i = 0; i < m_recent.size(); ++i) {
+        m_settings.setArrayIndex(i);
+        m_settings.setValue("title", m_recent[i].title);
+        m_settings.setValue("log", m_recent[i].logName);
+        m_settings.setValue("args", QString::fromUtf8(
+            QJsonDocument(QJsonArray::fromStringList(m_recent[i].args)).toJson(QJsonDocument::Compact)));
+    }
+    m_settings.endArray();
+
+    m_settings.beginGroup("Window");
+    m_settings.setValue("geometry", saveGeometry());
+    m_settings.setValue("topTab", ui->tabWidget_2->currentIndex());
+    for (int i = 0; i < kVendorTabs; ++i)
+        m_settings.setValue(QString("subTab%1").arg(i), systemTabs(i)->currentIndex());
+    m_settings.endGroup();
+
+    m_settings.sync();
+}
+
+// ── per-system state <-> widgets ─────────────────────────────────────────────
+
+void MainWindow::readUiState(int system)
+{
+    const SystemSpec &spec = m_specs[system];
+    SystemState &state = m_states[system];
+    const SystemWidgets &widgets = m_widgets[system];
+
+    for (int i = 0; i < spec.shaders.size(); ++i) {
+        if (widgets.shaderRadios[i] && widgets.shaderRadios[i]->isChecked())
+            state.shader = spec.shaders[i].value;
+    }
+    for (int i = 0; i < spec.regions.size(); ++i) {
+        if (widgets.regionRadios[i] && widgets.regionRadios[i]->isChecked())
+            state.region = spec.regions[i].value;
     }
 }
 
-void MainWindow::reportLaunchError()
+void MainWindow::applyStateToUi(int system)
 {
-    QMessageBox::critical(this, "Launch Failed",
-        "Failed to start MAME. Make sure it is installed and available in PATH.");
+    const SystemSpec &spec = m_specs[system];
+    const SystemState &state = m_states[system];
+    const SystemWidgets &widgets = m_widgets[system];
+
+    const int shader = indexOfValue(spec.shaders, state.shader);
+    if (shader >= 0 && widgets.shaderRadios[shader])
+        widgets.shaderRadios[shader]->setChecked(true);
+
+    const int region = indexOfValue(spec.regions, state.region);
+    if (region >= 0 && widgets.regionRadios[region])
+        widgets.regionRadios[region]->setChecked(true);
+
+    for (int s = 0; s < spec.media.size(); ++s) {
+        if (widgets.chooseButtons[s] && !state.paths[s].isEmpty())
+            widgets.chooseButtons[s]->setToolTip(state.paths[s]);
+    }
 }
 
-// ── toggle handlers ───────────────────────────────────────────────────────────
-
-void MainWindow::on_toggle_unevenstretch_changed()
+void MainWindow::setMedia(int system, int slot, const QString &path)
 {
-    state.vertical_stretch = ui->toggle_unevenstretch->isChecked() ? " -unevenstretch" : " -nounevenstretch";
-    SaveSettings();
+    m_states[system].paths[slot] = path;
+    if (QAbstractButton *button = m_widgets[system].chooseButtons[slot])
+        button->setToolTip(path);
+    statusBar()->showMessage(m_specs[system].media[slot].label + ": " + fileLabel(path), 3000);
 }
 
-void MainWindow::on_toggle_shader_changed()
+QStringList MainWindow::videoArgs(const SystemSpec &spec, const SystemState &state) const
 {
-    state.glsl_shader = ui->toggle_shader->isChecked() ? " -gl_glsl" : " -nogl_glsl ";
-    SaveSettings();
+    // Systems with their own shader choice ignore the global shader toggle.
+    const QString &shader = spec.shaders.isEmpty() ? m_glslShader : state.shader;
+    return splitOptions(m_stretch + " " + shader);
 }
 
-// ── file selection helper ─────────────────────────────────────────────────────
-
-void MainWindow::setRomFile(std::string &target, const std::string &source, const QString &label)
+LaunchRequest MainWindow::makeRequest(int system) const
 {
-    target = source;
-    if (!source.empty())
-        statusBar()->showMessage(
-            label + ": " + QFileInfo(QString::fromStdString(source)).fileName(), 3000);
+    const SystemSpec &spec = m_specs[system];
+    const SystemState &state = m_states[system];
+
+    const QString machine = spec.regions.isEmpty() ? spec.machine : state.region;
+
+    LaunchRequest request;
+    request.machine = m_machineOverrides.value(machine, machine);
+    request.fixedArgs = spec.fixedArgs;
+    if (spec.extraArgs)
+        request.fixedArgs += spec.extraArgs();
+    for (int s = 0; s < spec.media.size(); ++s)
+        request.media.append({spec.media[s].option, state.paths[s]});
+    request.videoArgs = videoArgs(spec, state);
+    return request;
 }
 
-// ── Set buttons — copy highlighted tree view file into each system slot ───────
+// ── launching ────────────────────────────────────────────────────────────────
 
-void MainWindow::on_Chose_file_PSX_clicked()               { setRomFile(state.ROM_path_PSX,               state.Selected_File_Sony,      "PlayStation"); }
-void MainWindow::on_Chose_file_X68k_floppy1_clicked()      { setRomFile(state.ROM_path_X68k_floppy1,      state.Selected_File_Misc,      "X68k Floppy 1"); }
-void MainWindow::on_Chose_file_X68k_floppy2_clicked()      { setRomFile(state.ROM_path_X68k_floppy2,      state.Selected_File_Misc,      "X68k Floppy 2"); }
-void MainWindow::on_Chose_file_X68k_floppy3_clicked()      { setRomFile(state.ROM_path_X68k_floppy3,      state.Selected_File_Misc,      "X68k Floppy 3"); }
-void MainWindow::on_Chose_file_X68k_floppy4_clicked()      { setRomFile(state.ROM_path_X68k_floppy4,      state.Selected_File_Misc,      "X68k Floppy 4"); }
-void MainWindow::on_Chose_file_FMTownsMarty_floppy_clicked(){ setRomFile(state.ROM_path_FMMarty_floppy,   state.Selected_File_Misc,      "FM Marty Floppy"); }
-void MainWindow::on_Chose_file_FMTownsMarty_CDROM_clicked() { setRomFile(state.ROM_path_FMMarty_CDROM,    state.Selected_File_Misc,      "FM Marty CD-ROM"); }
-void MainWindow::on_Chose_file_NGPC_clicked()              { setRomFile(state.ROM_path_NGPC,              state.Selected_File_Misc,      "Neo Geo Pocket Color"); }
-void MainWindow::on_Chose_file_NeoGeoCDz_clicked()         { setRomFile(state.ROM_path_Neo_Geo_CDz,       state.Selected_File_Misc,      "Neo Geo CD"); }
-void MainWindow::on_Chose_file_PC_Engine_HuCard_clicked()  { setRomFile(state.ROM_path_PC_Engine_HuCards, state.Selected_File_NEC,       "PC Engine HuCard"); }
-void MainWindow::on_Chose_file_PC_Engine_CDROM_clicked()   { setRomFile(state.ROM_path_PC_Engine_CDROM,   state.Selected_File_NEC,       "PC Engine CD-ROM"); }
-void MainWindow::on_Chose_file_PC_FX_CDROM_clicked()       { setRomFile(state.ROM_path_PC_FX_CDROM,       state.Selected_File_NEC,       "PC-FX CD-ROM"); }
-void MainWindow::on_Chose_file_PC88_floppy1_clicked()      { setRomFile(state.ROM_path_PC88_floppy1,      state.Selected_File_NEC,       "PC-88 Floppy 1"); }
-void MainWindow::on_Chose_file_PC88_floppy2_clicked()      { setRomFile(state.ROM_path_PC88_floppy2,      state.Selected_File_NEC,       "PC-88 Floppy 2"); }
-void MainWindow::on_Chose_file_PC88_Cassette_clicked()     { setRomFile(state.ROM_path_PC88_Cassette,     state.Selected_File_NEC,       "PC-88 Cassette"); }
-void MainWindow::on_Chose_file_PC98_floppy1_clicked()      { setRomFile(state.ROM_path_PC98_floppy1,      state.Selected_File_NEC,       "PC-98 Floppy 1"); }
-void MainWindow::on_Chose_file_PC98_floppy2_clicked()      { setRomFile(state.ROM_path_PC98_floppy2,      state.Selected_File_NEC,       "PC-98 Floppy 2"); }
-void MainWindow::on_Chose_file_PC98_CDROM_clicked()        { setRomFile(state.ROM_path_PC98_CDROM,        state.Selected_File_NEC,       "PC-98 CD-ROM"); }
-void MainWindow::on_Chose_file_PC98_HDD_clicked()          { setRomFile(state.ROM_path_PC98_HDD,          state.Selected_File_NEC,       "PC-98 HDD"); }
-void MainWindow::on_Chose_file_NES_clicked()               { setRomFile(state.ROM_path_NES,               state.Selected_File_Nintendo,  "NES"); }
-void MainWindow::on_Chose_file_FamicomDisk_clicked()       { setRomFile(state.ROM_path_FDS,               state.Selected_File_Nintendo,  "Famicom Disk"); }
-void MainWindow::on_Chose_file_SNES_clicked()              { setRomFile(state.ROM_path_SNES,              state.Selected_File_Nintendo,  "SNES"); }
-void MainWindow::on_Chose_file_GBC_clicked()               { setRomFile(state.ROM_path_GBC,               state.Selected_File_Nintendo,  "Game Boy Color"); }
-void MainWindow::on_Chose_file_GBAdvanced_clicked()        { setRomFile(state.ROM_path_GBA,               state.Selected_File_Nintendo,  "Game Boy Advance"); }
-void MainWindow::on_Chose_file_N64_clicked()               { setRomFile(state.ROM_path_N64,               state.Selected_File_Nintendo,  "N64"); }
-void MainWindow::on_Chose_file_MasterSystem_clicked()      { setRomFile(state.ROM_path_MasterSystem,      state.Selected_File_Sega,      "Master System"); }
-void MainWindow::on_Chose_file_MegaDrive_clicked()         { setRomFile(state.ROM_path_Genesis,           state.Selected_File_Sega,      "Genesis/Mega Drive"); }
-void MainWindow::on_Chose_file_SEGA_CD_clicked()           { setRomFile(state.ROM_path_SEGA_CD,           state.Selected_File_Sega,      "Sega CD"); }
-void MainWindow::on_Chose_file_Saturn_clicked()            { setRomFile(state.ROM_path_Saturn,            state.Selected_File_Sega,      "Saturn"); }
-void MainWindow::on_Chose_file_Dreamcast_clicked()         { setRomFile(state.ROM_path_Dreamcast,         state.Selected_File_Sega,      "Dreamcast"); }
-void MainWindow::on_Chose_file_MSX_Cassette_clicked()      { setRomFile(state.ROM_path_MSX_Cass,          state.Selected_File_Microsoft, "MSX Cassette"); }
-void MainWindow::on_Chose_file_MSX_Cart1_clicked()         { setRomFile(state.ROM_path_MSX_Cart1,         state.Selected_File_Microsoft, "MSX Cart 1"); }
-void MainWindow::on_Chose_file_MSX_Cart2_clicked()         { setRomFile(state.ROM_path_MSX_Cart2,         state.Selected_File_Microsoft, "MSX Cart 2"); }
-void MainWindow::on_Chose_file_MSX_Floppy_clicked()        { setRomFile(state.ROM_path_MSX_Floppy,        state.Selected_File_Microsoft, "MSX Floppy"); }
+void MainWindow::launchSystem(int system)
+{
+    const SystemSpec &spec = m_specs[system];
+    readUiState(system);
+    const SystemState &state = m_states[system];
 
-// ── launchers ─────────────────────────────────────────────────────────────────
+    QString firstFile;
+    for (const QString &path : state.paths) {
+        if (path.isEmpty())
+            continue;
+        if (!QFileInfo::exists(path)) {
+            QMessageBox::warning(this, tr("File Not Found"),
+                                 tr("This file no longer exists:\n%1").arg(path));
+            return;
+        }
+        if (firstFile.isEmpty())
+            firstFile = path;
+    }
+    if (firstFile.isEmpty()) {
+        QMessageBox::warning(this, tr("No File Selected"),
+            spec.media.size() == 1
+                ? tr("Please select a %1 file before launching.").arg(spec.media.first().label)
+                : tr("Please select at least one %1 file before launching.").arg(spec.name));
+        return;
+    }
+
+    saveSettings();
+    const LaunchRequest request = makeRequest(system);
+    startMame(buildArguments(request), spec.name + ": " + fileLabel(firstFile), request.machine);
+}
+
+void MainWindow::launchCurrent()
+{
+    const int top = ui->tabWidget_2->currentIndex();
+    const int system = systemForTab(top);
+    if (system >= 0)
+        launchSystem(system);
+    else if (top == 0 && ui->tabWidget->currentIndex() == 0)
+        on_pushButton_launch_MAME_clicked();
+}
+
+bool MainWindow::chooseMameExecutable()
+{
+    const QString path = QFileDialog::getOpenFileName(this, tr("Choose MAME executable"),
+                                                      m_launcher.configuredPath());
+    if (path.isEmpty())
+        return false;
+    m_launcher.setConfiguredPath(path);
+    saveSettings();
+    m_launcher.queryVersion();
+    return true;
+}
+
+bool MainWindow::ensureMameAvailable()
+{
+    if (!m_launcher.resolvedExecutable().isEmpty())
+        return true;
+    const auto answer = QMessageBox::question(this, tr("MAME Not Found"),
+        tr("MAME could not be found in PATH or next to BlackNoah. Do you want to locate it now?"));
+    return answer == QMessageBox::Yes && chooseMameExecutable()
+           && !m_launcher.resolvedExecutable().isEmpty();
+}
+
+void MainWindow::startMame(const QStringList &args, const QString &title, const QString &logName)
+{
+    if (!ensureMameAvailable())
+        return;
+    m_launcher.launch(args, logName);
+    addRecent({title, logName, args});
+}
+
+void MainWindow::addRecent(const RecentEntry &entry)
+{
+    for (int i = m_recent.size() - 1; i >= 0; --i) {
+        if (m_recent[i].args == entry.args)
+            m_recent.removeAt(i);
+    }
+    m_recent.prepend(entry);
+    while (m_recent.size() > kMaxRecent)
+        m_recent.removeLast();
+    rebuildRecentMenu();
+}
+
+void MainWindow::rebuildRecentMenu()
+{
+    m_recentMenu->clear();
+    if (m_recent.isEmpty()) {
+        m_recentMenu->addAction(tr("(empty)"))->setEnabled(false);
+        return;
+    }
+    for (const RecentEntry &entry : std::as_const(m_recent)) {
+        m_recentMenu->addAction(entry.title, this, [this, entry] {
+            startMame(entry.args, entry.title, entry.logName);
+        });
+    }
+    m_recentMenu->addSeparator();
+    m_recentMenu->addAction(tr("Clear recent"), this, [this] {
+        m_recent.clear();
+        rebuildRecentMenu();
+    });
+}
 
 void MainWindow::on_pushButton_launch_MAME_clicked()
 {
-    QProcess::startDetached("mame",
-        QString::fromStdString(state.vertical_stretch + " " + state.glsl_shader)
-            .simplified().split(' ', Qt::SkipEmptyParts));
+    startMame(splitOptions(m_stretch + " " + m_glslShader), "MAME", "mame");
 }
 
-void MainWindow::on_Launcher_Button_PSX_clicked()
+// ── toggles ──────────────────────────────────────────────────────────────────
+
+void MainWindow::on_toggle_unevenstretch_toggled(bool checked)
 {
-    if (ui->radioButton_NTSC_USA->isChecked())   state.region_PSX = "psu";
-    if (ui->radioButton_PAL_EU->isChecked())     state.region_PSX = "pse";
-    if (ui->radioButton_NTSC_Japan->isChecked()) state.region_PSX = "psj";
-    if (!requireFile(this, state.ROM_path_PSX, "PlayStation disc")) return;
-    SaveSettings();
-    if (!LM.Playstation(state.ROM_path_PSX, state.vertical_stretch, state.glsl_shader, state.region_PSX))
-        reportLaunchError();
+    m_stretch = checked ? kStretchOn : kStretchOff;
+    saveSettings();
 }
 
-void MainWindow::on_Launcher_Button_X68k_clicked()
+void MainWindow::on_toggle_shader_toggled(bool checked)
 {
-    if (ui->x68k_shader_none->isChecked())            state.X68K_shader = SHADER_NONE;
-    if (ui->x68k_shader_CRT_geom->isChecked())        state.X68K_shader = SHADER_CRT_GEOM;
-    if (ui->x68k_shader_CRT_geom_deluxe->isChecked()) state.X68K_shader = SHADER_CRT_GEOM_DLX;
-    if (!requireAnyFile(this, {&state.ROM_path_X68k_floppy1, &state.ROM_path_X68k_floppy2,
-                                &state.ROM_path_X68k_floppy3, &state.ROM_path_X68k_floppy4}, "X68k floppy")) return;
-    SaveSettings();
-    if (!LM.X68k(state.ROM_path_X68k_floppy1, state.ROM_path_X68k_floppy2,
-                 state.ROM_path_X68k_floppy3, state.ROM_path_X68k_floppy4,
-                 state.vertical_stretch, state.X68K_shader))
-        reportLaunchError();
+    m_glslShader = checked ? kGlslOn : kGlslOff;
+    saveSettings();
 }
 
-void MainWindow::on_Launcher_Button_PC88_clicked()
-{
-    if (ui->pc88_shader_none->isChecked())            state.PC88_shader = SHADER_NONE;
-    if (ui->pc88_shader_crt_geom->isChecked())        state.PC88_shader = SHADER_CRT_GEOM;
-    if (ui->pc88_shader_crt_geom_deluxe->isChecked()) state.PC88_shader = SHADER_CRT_GEOM_DLX;
-    if (!requireAnyFile(this, {&state.ROM_path_PC88_floppy1, &state.ROM_path_PC88_floppy2,
-                                &state.ROM_path_PC88_Cassette}, "PC-88 media")) return;
-    SaveSettings();
-    if (!LM.PC88(state.ROM_path_PC88_floppy1, state.ROM_path_PC88_floppy2,
-                 state.ROM_path_PC88_Cassette, state.vertical_stretch, state.PC88_shader))
-        reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_PC98_clicked()
-{
-    if (ui->pc98_shader_none->isChecked())            state.PC98_shader = SHADER_NONE;
-    if (ui->pc98_shader_crt_geom->isChecked())        state.PC98_shader = SHADER_CRT_GEOM;
-    if (ui->pc98_shader_crt_geom_deluxe->isChecked()) state.PC98_shader = SHADER_CRT_GEOM_DLX;
-    if (!requireAnyFile(this, {&state.ROM_path_PC98_floppy1, &state.ROM_path_PC98_floppy2,
-                                &state.ROM_path_PC98_CDROM,   &state.ROM_path_PC98_HDD}, "PC-98 media")) return;
-    SaveSettings();
-    if (!LM.PC98(state.ROM_path_PC98_HDD, state.ROM_path_PC98_CDROM,
-                 state.ROM_path_PC98_floppy1, state.ROM_path_PC98_floppy2,
-                 state.vertical_stretch, state.PC98_shader))
-        reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_FMMarty_clicked()
-{
-    if (ui->FMTownes_Marty_shader_none->isChecked())            state.FMTmarty_shader = SHADER_NONE;
-    if (ui->FMTownes_Marty_shader_crt_geom->isChecked())        state.FMTmarty_shader = SHADER_CRT_GEOM;
-    if (ui->FMTownes_Marty_shader_crt_geom_deluxe->isChecked()) state.FMTmarty_shader = SHADER_CRT_GEOM_DLX;
-    if (!requireAnyFile(this, {&state.ROM_path_FMMarty_CDROM, &state.ROM_path_FMMarty_floppy}, "FM Marty media")) return;
-    SaveSettings();
-    if (!LM.FMMarty(state.ROM_path_FMMarty_CDROM, state.ROM_path_FMMarty_floppy,
-                    state.vertical_stretch, state.FMTmarty_shader))
-        reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_PC_Engine_clicked()
-{
-    if (ui->pcengine_shader_none->isChecked())            state.PCe_shader = SHADER_NONE;
-    if (ui->pcengine_shader_crt_geom->isChecked())        state.PCe_shader = SHADER_CRT_GEOM;
-    if (ui->pcengine_shader_crt_geom_deluxe->isChecked()) state.PCe_shader = SHADER_CRT_GEOM_DLX;
-    if (!requireAnyFile(this, {&state.ROM_path_PC_Engine_HuCards, &state.ROM_path_PC_Engine_CDROM}, "PC Engine media")) return;
-    SaveSettings();
-    if (!LM.PC_Engine(state.ROM_path_PC_Engine_HuCards, state.ROM_path_PC_Engine_CDROM,
-                      state.vertical_stretch, state.PCe_shader))
-        reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_PC_FX_clicked()
-{
-    if (ui->pcfx_shader_none->isChecked())            state.PCFX_shader = SHADER_NONE;
-    if (ui->pcfx_shader_crt_geom->isChecked())        state.PCFX_shader = SHADER_CRT_GEOM;
-    if (ui->pcfx_shader_crt_geom_deluxe->isChecked()) state.PCFX_shader = SHADER_CRT_GEOM_DLX;
-    if (!requireFile(this, state.ROM_path_PC_FX_CDROM, "PC-FX disc")) return;
-    SaveSettings();
-    if (!LM.PC_FX(state.ROM_path_PC_FX_CDROM, state.vertical_stretch, state.PCFX_shader))
-        reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_MasterSystem_clicked()
-{
-    if (!requireFile(this, state.ROM_path_MasterSystem, "Master System ROM")) return;
-    SaveSettings();
-    if (!LM.MasterSystem(state.ROM_path_MasterSystem, state.vertical_stretch, state.glsl_shader))
-        reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_Megadrive_clicked()
-{
-    if (ui->radioButton_NTSC_USA_MegaDrive->isChecked())   state.region_MegaDrive = "genesis";
-    if (ui->radioButton_NTSC_Japan_MegaDrive->isChecked()) state.region_MegaDrive = "megadrij";
-    if (!requireFile(this, state.ROM_path_Genesis, "Mega Drive ROM")) return;
-    SaveSettings();
-    if (!LM.MegaDrive(state.ROM_path_Genesis, state.region_MegaDrive, state.vertical_stretch, state.glsl_shader))
-        reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_SEGA_CD_clicked()
-{
-    if (ui->radioButton_NTSC_USA_MegaCD->isChecked())   state.region_MegaCD = "segacd";
-    if (ui->radioButton_NTSC_Japan_MegaCD->isChecked()) state.region_MegaCD = "megacd2j";
-    if (!requireFile(this, state.ROM_path_SEGA_CD, "Sega CD disc")) return;
-    SaveSettings();
-    if (!LM.SEGA_MD_CD(state.ROM_path_SEGA_CD, state.vertical_stretch, state.glsl_shader, state.region_MegaCD))
-        reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_Saturn_clicked()
-{
-    if (ui->radioButton_NTSC_USA_Saturn->isChecked())   state.region_Saturn = "saturn";
-    if (ui->radioButton_PAL_EU_Saturn->isChecked())     state.region_Saturn = "saturneu";
-    if (ui->radioButton_NTSC_Japan_Saturn->isChecked()) state.region_Saturn = "saturnjp";
-    if (!requireFile(this, state.ROM_path_Saturn, "Saturn disc")) return;
-    SaveSettings();
-    if (!LM.SEGA_Saturn(state.ROM_path_Saturn, state.vertical_stretch, state.glsl_shader, state.region_Saturn))
-        reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_Dreamcast_clicked()
-{
-    if (ui->radioButton_NTSC_USA_Dreamcast->isChecked())   state.region_Dreamcast = "dc";
-    if (ui->radioButton_PAL_EU_Dreamcast->isChecked())     state.region_Dreamcast = "dceu";
-    if (ui->radioButton_NTSC_Japan_Dreamcast->isChecked()) state.region_Dreamcast = "dcjp";
-    if (!requireFile(this, state.ROM_path_Dreamcast, "Dreamcast disc")) return;
-    SaveSettings();
-    if (!LM.SEGA_Dreamcast(state.ROM_path_Dreamcast, state.vertical_stretch, state.glsl_shader, state.region_Dreamcast))
-        reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_NES_clicked()
-{
-    if (!requireFile(this, state.ROM_path_NES, "NES ROM")) return;
-    SaveSettings();
-    if (!LM.Nintendo_NES(state.ROM_path_NES, state.vertical_stretch, state.glsl_shader)) reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_FamicomDisk_clicked()
-{
-    if (!requireFile(this, state.ROM_path_FDS, "Famicom Disk image")) return;
-    SaveSettings();
-    if (!LM.Nintendo_FDS(state.ROM_path_FDS, state.vertical_stretch, state.glsl_shader)) reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_SNES_clicked()
-{
-    if (!requireFile(this, state.ROM_path_SNES, "SNES ROM")) return;
-    SaveSettings();
-    if (!LM.Nintendo_SNES(state.ROM_path_SNES, state.vertical_stretch, state.glsl_shader)) reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_N64_clicked()
-{
-    if (!requireFile(this, state.ROM_path_N64, "N64 ROM")) return;
-    SaveSettings();
-    if (!LM.Nintendo_64(state.ROM_path_N64, state.vertical_stretch, state.glsl_shader)) reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_GBC_clicked()
-{
-    if (ui->gbc_shader_none->isChecked())     state.GBC_shader = SHADER_NONE;
-    if (ui->gbc_shader_lcd_grid->isChecked()) state.GBC_shader = SHADER_LCD_GRID;
-    if (!requireFile(this, state.ROM_path_GBC, "Game Boy Color ROM")) return;
-    SaveSettings();
-    if (!LM.Nintendo_GBC(state.ROM_path_GBC, state.vertical_stretch, state.GBC_shader)) reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_GBAdvanced_clicked()
-{
-    if (!requireFile(this, state.ROM_path_GBA, "Game Boy Advance ROM")) return;
-    SaveSettings();
-    if (!LM.Nintendo_GBA(state.ROM_path_GBA, state.vertical_stretch, state.glsl_shader)) reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_NGPcolor_clicked()
-{
-    if (ui->neogeopocketcolor_shader_none_2->isChecked())   state.NGPC_shader = SHADER_NONE;
-    if (ui->neogeopocketcolor_shader_lcd_grid->isChecked()) state.NGPC_shader = SHADER_CRT_GEOM;
-    if (!requireFile(this, state.ROM_path_NGPC, "Neo Geo Pocket Color ROM")) return;
-    SaveSettings();
-    if (!LM.SNK_NGPC(state.ROM_path_NGPC, state.vertical_stretch, state.NGPC_shader)) reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_NeoGeoCDz_clicked()
-{
-    if (ui->neogeocd_shader_none->isChecked())            state.NGCD_shader = SHADER_NONE;
-    if (ui->neogeocd_shader_crt_geom->isChecked())        state.NGCD_shader = SHADER_CRT_GEOM;
-    if (ui->neogeocd_shader_crt_geom_deluxe->isChecked()) state.NGCD_shader = SHADER_CRT_GEOM_DLX;
-    if (!requireFile(this, state.ROM_path_Neo_Geo_CDz, "Neo Geo CD disc")) return;
-    SaveSettings();
-    if (!LM.SNK_Neo_geo_CDz(state.ROM_path_Neo_Geo_CDz, state.vertical_stretch, state.NGCD_shader)) reportLaunchError();
-}
-
-void MainWindow::on_Launcher_Button_MSX_clicked()
-{
-    if (!requireAnyFile(this, {&state.ROM_path_MSX_Cass, &state.ROM_path_MSX_Cart1,
-                                &state.ROM_path_MSX_Cart2, &state.ROM_path_MSX_Floppy}, "MSX media")) return;
-    SaveSettings();
-    if (!LM.MSX(state.ROM_path_MSX_Cass, state.ROM_path_MSX_Cart1, state.ROM_path_MSX_Cart2,
-                state.ROM_path_MSX_Floppy, state.vertical_stretch, state.glsl_shader))
-        reportLaunchError();
-}
-
-// ── menu bar ──────────────────────────────────────────────────────────────────
+// ── menu bar ─────────────────────────────────────────────────────────────────
 
 void MainWindow::on_actionAbout_2_triggered()
 {
-    QMessageBox::information(this, "About", "Developed by Rugaliz 2019-2025");
+    QMessageBox::information(this, tr("About"), tr("Developed by Rugaliz 2019-2025"));
 }
 
 void MainWindow::on_actionExit_triggered()
 {
-    SaveSettings();
-    close();
+    close();    // closeEvent saves the settings
 }
 
 void MainWindow::on_actionRomPath_triggered()
 {
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose Files Directory"), "",
-                                                    QFileDialog::ShowDirsOnly);
-    if (dir.isEmpty()) return;
-    state.ROM_Dir = dir.toStdString();
-    SaveSettings();
+    const QString dir = QFileDialog::getExistingDirectory(this, tr("Choose Files Directory"), m_romDir,
+                                                          QFileDialog::ShowDirsOnly);
+    if (dir.isEmpty())
+        return;
+    m_romDir = dir;
+    saveSettings();
     updateStatusBar();
-    QModelIndex rootIndex = FileExplorer->setRootPath(dir);
-    QTreeView *views[] = {ui->treeViewMisc, ui->treeViewNEC, ui->treeViewNintendo,
-                          ui->treeViewSega, ui->treeViewSony, ui->treeViewMicrosoft};
-    for (QTreeView *view : views)
-        view->setRootIndex(rootIndex);
+    const QModelIndex rootIndex = m_fileModel->setRootPath(dir);
+    for (int top = 0; top < kVendorTabs; ++top)
+        treeView(top)->setRootIndex(rootIndex);
 }
 
-// ── file browser — store selection and show in status bar ────────────────────
+// ── file browser ─────────────────────────────────────────────────────────────
 
-void MainWindow::on_treeViewMisc_clicked(const QModelIndex &index)
+QTreeView *MainWindow::treeView(int vendorTab) const
 {
-    state.Selected_File_Misc = FileExplorer->fileInfo(index).absoluteFilePath().toStdString();
-    statusBar()->showMessage(QString::fromStdString(state.Selected_File_Misc), 2000);
+    // Vendor tab order: Misc, NEC, Nintendo, Microsoft, Sega, Sony.
+    const std::array<QTreeView *, kVendorTabs> views{ui->treeViewMisc, ui->treeViewNEC, ui->treeViewNintendo,
+                                                     ui->treeViewMicrosoft, ui->treeViewSega, ui->treeViewSony};
+    return views[vendorTab];
 }
 
-void MainWindow::on_treeViewNEC_clicked(const QModelIndex &index)
+QTabWidget *MainWindow::systemTabs(int vendorTab) const
 {
-    state.Selected_File_NEC = FileExplorer->fileInfo(index).absoluteFilePath().toStdString();
-    statusBar()->showMessage(QString::fromStdString(state.Selected_File_NEC), 2000);
+    const std::array<QTabWidget *, kVendorTabs> tabs{ui->tabWidget, ui->tabWidget_6, ui->tabWidget_5,
+                                                     ui->tabWidget_8, ui->tabWidget_4, ui->tabWidget_3};
+    return tabs[vendorTab];
 }
 
-void MainWindow::on_treeViewNintendo_clicked(const QModelIndex &index)
+// Directories are ignored so a stray click on a folder can't become a ROM path.
+bool MainWindow::selectFile(int vendorTab, const QModelIndex &index)
 {
-    state.Selected_File_Nintendo = FileExplorer->fileInfo(index).absoluteFilePath().toStdString();
-    statusBar()->showMessage(QString::fromStdString(state.Selected_File_Nintendo), 2000);
+    const QFileInfo info = m_fileModel->fileInfo(index);
+    if (!info.isFile())
+        return false;
+    m_selectedFile[vendorTab] = info.absoluteFilePath();
+    return true;
 }
 
-void MainWindow::on_treeViewSega_clicked(const QModelIndex &index)
+// Index of the system shown in the given vendor tab, or -1 (e.g. the plain MAME tab).
+int MainWindow::systemForTab(int vendorTab) const
 {
-    state.Selected_File_Sega = FileExplorer->fileInfo(index).absoluteFilePath().toStdString();
-    statusBar()->showMessage(QString::fromStdString(state.Selected_File_Sega), 2000);
+    const int sub = systemTabs(vendorTab)->currentIndex();
+    for (int i = 0; i < m_specs.size(); ++i) {
+        if (m_specs[i].topTab == vendorTab && m_specs[i].subTab == sub)
+            return i;
+    }
+    return -1;
 }
 
-void MainWindow::on_treeViewSony_clicked(const QModelIndex &index)
+void MainWindow::showBrowserMenu(int vendorTab, const QPoint &pos)
 {
-    state.Selected_File_Sony = FileExplorer->fileInfo(index).absoluteFilePath().toStdString();
-    statusBar()->showMessage(QString::fromStdString(state.Selected_File_Sony), 2000);
+    QTreeView *view = treeView(vendorTab);
+    if (!selectFile(vendorTab, view->indexAt(pos)))
+        return;
+    const int system = systemForTab(vendorTab);
+    if (system < 0)
+        return;
+
+    const SystemSpec &spec = m_specs[system];
+    const QString file = m_selectedFile[vendorTab];
+
+    QMenu menu(this);
+    for (int s = 0; s < spec.media.size(); ++s)
+        menu.addAction(tr("Set as %1").arg(spec.media[s].label), this, [this, system, s, file] {
+            setMedia(system, s, file);
+        });
+    menu.addSeparator();
+    menu.addAction(tr("Launch with %1").arg(spec.name), this, [this, system, file] {
+        setMedia(system, 0, file);
+        launchSystem(system);
+    });
+    menu.exec(view->viewport()->mapToGlobal(pos));
 }
 
-void MainWindow::on_treeViewMicrosoft_clicked(const QModelIndex &index)
+void MainWindow::applyNameFilter(const QString &text)
 {
-    state.Selected_File_Microsoft = FileExplorer->fileInfo(index).absoluteFilePath().toStdString();
-    statusBar()->showMessage(QString::fromStdString(state.Selected_File_Microsoft), 2000);
+    m_fileModel->setNameFilters(text.isEmpty() ? QStringList() : QStringList{"*" + text + "*"});
+}
+
+// ── status bar ───────────────────────────────────────────────────────────────
+
+void MainWindow::updateStatusBar()
+{
+    const QString romDir = m_romDir.isEmpty() ? tr("not set") : m_romDir;
+    const QString mame = m_mameVersion.isEmpty() ? tr("not detected") : m_mameVersion;
+    m_statusLabel->setText(tr("  ROM Dir: %1   |   MAME: %2  ").arg(romDir, mame));
 }

@@ -1,23 +1,16 @@
 #include "mainwindow.h"
-#include "launchmethods.h"
 #include <QApplication>
 #include <QIcon>
 
-// Main entry point for the application
 int main(int argc, char *argv[])
 {
-    // Create the Qt application instance
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
+    QApplication::setApplicationName("blacknoah");
+    QApplication::setDesktopFileName("blacknoah");
+    app.setWindowIcon(QIcon(":/images/blacknoah.svg"));
 
-    // Set the window icon using a SVG resource
-    a.setWindowIcon(QIcon(":/images/blacknoah.svg"));
+    MainWindow window;
+    window.show();
 
-    // Create the main window
-    MainWindow w;
-
-    // Display the main window
-    w.show();
-
-    // Start the event loop and return the application exit code
-    return a.exec();
+    return app.exec();
 }

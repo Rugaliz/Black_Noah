@@ -1,5 +1,8 @@
-build-BlackNoah-Desktop-Debug/
-BlackNoah/BlackNoah.pro.user.0f198bd
-BlackNoah/blacknoah.ini
+build/
+build-*/
 BlackNoah/build/
+*.pro.user
+*.pro.user.*
+BlackNoah/blacknoah.ini
 BlackNoah/history/
+CLAUDE.md

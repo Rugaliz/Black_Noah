@@ -1,8 +1,5 @@
 #!/bin/sh
-[  -d build ] && chmod -R 777 build;
-rm -r build;
-mkdir build;
-cmake -S . -B build;
-cd build;
-make
-
+set -e
+rm -rf build
+cmake -S . -B build
+cmake --build build -j"$(nproc)"

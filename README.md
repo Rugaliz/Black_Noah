@@ -9,22 +9,33 @@ https://github.com/probonopd/linuxdeployqt
 
 # How to compile
 
+Requires Qt 5.14 or newer (Qt 6 is preferred) and a C++17 compiler.
+
 ## Compiling for Linux
 If you don't want to use Qt Creator you can use the compile scripts or do it directly with CLI (only for Linux).
 Run compile.sh for an automatic build. 
 
 Or run:
 ```zsh
-mkdir build
 cmake -S . -B build
-cd build
-make
+cmake --build build
+ctest --test-dir build   # optional, runs the unit tests
 ```
 ## Compiling for Windows from Linux
 
 Run compileForWindows.sh. This requires mingw64 and some form of mingw64-qt5 depending on your distro.
 
 # How to use
+
+Select a ROM or disc image in the file browser, then either click the matching "Set ..." button, double-click
+the file to launch it with the current tab's system, or right-click it for "Set as ..." / "Launch with ...".
+Ctrl+Return launches the current tab, the File menu sets the ROM folder and MAME executable, and the Recent menu
+re-launches earlier games. The filter box in the status bar narrows the file list. If MAME fails, its error output
+is shown, and the full log is kept in the app data folder.
+
+Settings are saved to `~/.config/blacknoah/blacknoah.ini` (an existing `blacknoah.ini` next to the program is
+migrated on first start). Machine names can be overridden in a `[MachineOverrides]` section
+(`pc9821cx3=pc9821ce`), which is useful when MAME renames a machine.
 
 This frontend works with the MAME emulator.
 For Linux systems: 

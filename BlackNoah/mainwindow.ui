@@ -490,9 +490,9 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="Chose_file_PC88_Cassete">
+                 <widget class="QPushButton" name="Chose_file_PC88_Cassette">
                   <property name="text">
-                   <string>Set Cassete</string>
+                   <string>Set Cassette</string>
                   </property>
                  </widget>
                 </item>
@@ -1118,7 +1118,7 @@ p, li { white-space: pre-wrap; }
               <item>
                <widget class="QPushButton" name="Chose_file_MSX_Cassette">
                 <property name="text">
-                 <string>Cassete</string>
+                 <string>Cassette</string>
                 </property>
                </widget>
               </item>
